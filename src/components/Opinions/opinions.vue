@@ -1,57 +1,36 @@
 <template>
-    <div class="q-gutter-md">
-      <q-carousel
-        v-model="slide"
-        transition-prev="scale"
-        transition-next="scale"
-        swipeable
-        animated
-        control-color="white"
-        navigation
-        padding
-        arrows
-        height="300px"
-        class="bg-primary text-white shadow-1 rounded-borders"
-      >
-        <q-carousel-slide name="style" class="column no-wrap flex-center">
-          <q-icon name="style" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="tv" class="column no-wrap flex-center">
-          <q-icon name="live_tv" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <q-icon name="layers" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="map" class="column no-wrap flex-center">
-          <q-icon name="terrain" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-      </q-carousel>
+  <div class="opinions">
+    <h2>Կարծիքներ</h2>
+    <div class="opinion-container">
+      <img src="images/LeftButton.png" />
+      <one-opinion
+        v-for="opinion in opinions"
+        :key="opinion.id"
+        :info="opinion.info"
+        :name="opinion.name"
+        :speciality="opinion.speciality"
+      />
+      <img src="images/RightButton.png" />
     </div>
+  </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
-// import oneOpinion from "./oneOpinion.vue";
+import oneOpinion from "./oneOpinion.vue";
 export default {
-  setup () {
+  components: { oneOpinion },
+  data() {
     return {
-      slide: ref('style'),
-      lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
-    }
+      opinions: [
+        {
+          id: 1,
+          speciality: "CEO Aranea",
+          name: "Արման Սարգսյան",
+          info: "Տեքստի մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։ Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
+        },
+      ],
+    };
   },
-  // components: { oneOpinion,},
 };
 </script>
 

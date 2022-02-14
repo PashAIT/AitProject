@@ -3,21 +3,24 @@
     <img src="images/opinionPerson.png" alt="" />
     <div class="person-opinion">
       <div class="person-info">
-        <h4>Արման Սարգսյան</h4>
-        <p>CEO Aranea</p>
+        <h4>{{ name }}</h4>
+        <p>{{ speciality }}</p>
       </div>
       <p>
-        Տեքստի մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝
-        տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների
-        ամբողջականությունը։ Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին
-        է, առանց որոնց անհնար է միասնական լեզվական:
+        {{ info }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    name: String,
+    speciality: String,
+    info: String,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -14,22 +14,16 @@ import Home from "./pages/home.vue";
 
 export default defineComponent({
   components: { Header, Home, Footer },
-
 });
 </script>
 
 <style lang="scss" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
 .main {
   // height: 3861px;
   // background-image: url("../public/images/Background.png");
   // background-size: 100% 100%;
   // background-position: center center;
+  scroll-behavior: smooth;
   background-color: #f8f8f8;
   position: relative;
   .scroll {
@@ -44,5 +38,3 @@ export default defineComponent({
   }
 }
 </style>
-
-

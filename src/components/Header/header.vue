@@ -62,7 +62,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1.5625vw 10.4166666667vw 0 10.4166666667vw;
-  margin-bottom: 56px;
+  margin-bottom: 5.18518518519vh;
   color: #004a5d;
   position: relative;
 
