@@ -79,13 +79,6 @@ export default {
   padding: 0 10.4166666667vw;
   margin-bottom: 139px;
 
-  &-header {
-    font-size: 40px;
-    line-height: 41px;
-    color: #004a5d;
-    font-family: NorTar;
-    margin-bottom: 100px;
-  }
   .stage-container {
     height: 43vw;
     display: flex;

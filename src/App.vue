@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <Header />
-    <home />
+    <router-view />
     <Footer />
     <img class="scroll" src="../public/images/Scroll.png" alt="" />
   </div>
@@ -10,10 +10,9 @@
 import { defineComponent } from "vue";
 import Footer from "./components/Footer/footer.vue";
 import Header from "./components/Header/header.vue";
-import Home from "./pages/home.vue";
 
 export default defineComponent({
-  components: { Header, Home, Footer },
+  components: { Header, Footer },
 });
 </script>
 

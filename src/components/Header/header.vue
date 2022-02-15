@@ -1,16 +1,24 @@
 <template>
   <header>
     <div class="logo">
-      <img src="images/HeaderLogo.png" alt="" />
+      <img
+        src="images/HeaderLogo.png"
+        alt="header logo"
+        @click="$router.push('/home')"
+      />
     </div>
     <div class="menu">
       <ul class="navBar">
-        <li class="li" v-for="navItem in navBar" :key="navItem.id">
+        <li
+          class="li"
+          v-for="navItem in navBar"
+          :key="navItem.id"
+          @click="$router.push(navItem.path)"
+        >
           {{ navItem.title }}
         </li>
       </ul>
     </div>
-    <img src="images/Ellipse1.png" alt="" />
   </header>
 </template>
 
@@ -27,12 +35,12 @@ export default {
         {
           id: 2,
           title: "Դասընթաց",
-          path: "#course",
+          path: "/course",
         },
         {
           id: 3,
           title: "Մեր մասին",
-          path: "/about",
+          path: "/aboutUs",
         },
         {
           id: 4,

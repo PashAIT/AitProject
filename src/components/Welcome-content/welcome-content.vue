@@ -3,7 +3,7 @@
     <div class="welome-text">
       <div>
         <h1>Ararat</h1>
-        <h2>IT Center</h2>
+        <h3>IT Center</h3>
         <p>IT հնարավորություններն արդեն Արարատում են.</p>
         <button>Գրանցվել դասընթացին</button>
       </div>
@@ -11,7 +11,6 @@
     <div class="man">
       <img src="images/Man.png" alt="" />
     </div>
-    <img src="images/Ellipse2.png" alt="" />
   </div>
 </template>
 
@@ -20,7 +19,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import '../../css/mixins.scss';
+@import "../../css/mixins.scss";
 .welcome-content {
   padding: 0 10.4166666667vw;
   display: flex;
@@ -36,7 +35,7 @@ export default {};
       font-family: MonserratAlternates;
       color: #004a5e;
     }
-    h2 {
+    h3 {
       font-weight: bold;
       font-size: 4.16666666667vw;
       // line-height: 98px;

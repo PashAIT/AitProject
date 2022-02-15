@@ -1,12 +1,10 @@
-const routes = [
-  // {
-  //   path: "/",
-  //   component: () => import("layouts/MainLayout.vue"),
-  //   children: [{ path: "", component: () => import("pages/Index.vue") }],
-  // },
-
-
-
+export default [
+  {
+    path: "/",
+    component: () => import("../pages/home.vue"),
+  },
+  {
+    path: "/aboutUs",
+    component: () => import("../pages/about-us.vue"),
+  },
 ];
-
-export default routes;

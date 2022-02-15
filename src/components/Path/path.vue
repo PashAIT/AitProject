@@ -54,12 +54,6 @@ export default {
   padding: 0 10.4166666667vw;
   margin-bottom: 125px;
   h2 {
-    letter-spacing: 0.02em;
-    color: #004a5d;
-    font-family: Nortar;
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 41px;
     margin-bottom: 64px;
   }
   .path-item-container {
