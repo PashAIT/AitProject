@@ -23,7 +23,7 @@
     </div>
     <div class="about-us-founders column items-center">
       <h2>Հիմնադիրներ</h2>
-      <div class="founders row">
+      <div class="founders row items-center justify-between">
         <person-info
           v-for="founder in founders"
           :speciality="founder.speciality"
@@ -38,7 +38,7 @@
     </div>
     <div class="about-us-trainers column items-center">
       <h2>Դասընթացավարներ</h2>
-      <div class="trainers row">
+      <div class="trainers row items-center justify-between">
         <person-info
           v-for="trainer in trainers"
           :speciality="trainer.speciality"
@@ -49,6 +49,26 @@
           :fbLink="trainer.fbLink"
           class="trainer"
         />
+      </div>
+    </div>
+    <div class="questions-container column items-center">
+      <h2>Հաճախ տրվող հարցեր</h2>
+      <div class="questions">
+        <q-expansion-item
+          v-for="item in questions"
+          :key="`question${item.id}`"
+          class="overflow-hidden header-acordion"
+          style="border-radius: 50px"
+          :label="item.request"
+          header-class=" "
+          expand-icon-class=""
+        >
+          <q-card class="answer">
+            <q-card-section>
+              {{ item.answer }}
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
       </div>
     </div>
   </div>
@@ -95,6 +115,32 @@ export default {
           image: "Pash.jpg",
         },
       ],
+      questions: [
+        {
+          id: 1,
+          request: "Որքա՞ն արժե այս դասընթացը:",
+          answer:
+            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
+        },
+        {
+          id: 2,
+          request: "Կարո՞ղ եք ավելին պատմել այս դպրոցի մասին:",
+          answer:
+            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
+        },
+        {
+          id: 3,
+          request: "Նոր ուսանողներ ընդունու՞մ եք։",
+          answer:
+            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
+        },
+        {
+          id: 4,
+          request: "Որտե՞ղ եք գտնվում:",
+          answer:
+            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
+        },
+      ],
     };
   },
   components: { PersonInfo },
@@ -111,30 +157,62 @@ export default {
       border-radius: 50px;
       margin-bottom: 200px;
       p {
-        width: 750px;
-        margin-right: 8vw;
+        width: 39.0625vw;
+        margin-right: 5vw;
         color: #0e243c;
         font-family: Nortar;
         font-style: normal;
         font-weight: normal;
-        font-size: 18px;
+        font-size: 0.9vw;
         line-height: 150%;
+      }
+      img {
+        width: 20vw;
+        height: 18vw;
       }
     }
   }
   &-founders {
     margin-bottom: 100px;
     .founders {
-      > :first-child {
-        margin-right: 30px;
-      }
+      box-sizing: border-box;
+      width: 66.1458333333vw;
     }
   }
   &-trainers {
     margin-bottom: 200px;
     .trainers {
-      > :first-child {
-        margin-right: 30px;
+      box-sizing: border-box;
+      width: 66.1458333333vw;
+    }
+  }
+  .questions-container {
+    margin-bottom: 100px;
+    .questions {
+      .header-acordion {
+        background: rgba(255, 255, 255, 0.5);
+        color: #004a5d;
+        font-family: Nortar;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 40px 100px;
+        width: 79.6875vw;
+        margin-top: 40px;
+        .answer {
+          background: rgba(255, 255, 255, 0.1);
+          margin-top: 20px;
+          font-family: Nortar;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 18px;
+          line-height: 150%;
+          color: #0e243c;
+        }
+      }
+      :first-child {
+        margin-top: 0;
       }
     }
   }

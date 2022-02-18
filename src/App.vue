@@ -1,8 +1,8 @@
 <template>
-  <div class="main">
+  <div class="main" :class="{ forPages: onRegistration }">
     <Header />
     <router-view />
-    <Footer />
+    <Footer v-if="!onRegistration" />
     <img class="scroll" src="../public/images/Scroll.png" alt="" />
   </div>
 </template>
@@ -12,16 +12,31 @@ import Footer from "./components/Footer/footer.vue";
 import Header from "./components/Header/header.vue";
 
 export default defineComponent({
+  data() {
+    return {
+      onRegistration: false,
+    };
+  },
   components: { Header, Footer },
+  methods: {
+    isOnRegistration() {
+      this.onRegistration = true;
+    },
+    isOffRegistration() {
+      this.onRegistration = false;
+    },
+  },
+  provide() {
+    return {
+      isOnRegistration: this.isOnRegistration,
+      isOffRegistration: this.isOffRegistration,
+    };
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .main {
-  // height: 3861px;
-  // background-image: url("../public/images/Background.png");
-  // background-size: 100% 100%;
-  // background-position: center center;
   scroll-behavior: smooth;
   background-color: #f8f8f8;
   position: relative;
@@ -35,5 +50,8 @@ export default defineComponent({
     top: 80%;
     cursor: pointer;
   }
+}
+.forPages {
+  height: 100vh;
 }
 </style>

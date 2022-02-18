@@ -2,7 +2,8 @@
   <div class="person-info column items-center">
     <div
       alt="person"
-      :style="`background-image: url('../../../public/images/${image}')`"
+      class="person-image"
+      :style="{ 'background-image': `url('images/${image}')` }"
     ></div>
     <h4>{{ name }}</h4>
     <h5>{{ speciality }}</h5>
@@ -31,16 +32,19 @@ export default {
 
 <style lang="scss" scoped>
 .person-info {
+  width: 32.2916666667vw;
+  max-width: 620px;
+  min-width: 500px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.5);
-  padding: 60px 156px 30px 156px;
-  > img {
+  padding: 60px 0 30px 0;
+  > .person-image {
     width: 280px;
     height: 280px;
     margin-bottom: 30px;
     border-radius: 100%;
-    object-fit: contain;
-    background-position: center center;
+    background-size: cover;
+    background-position: top right;
   }
   h4 {
     color: #0e243c;

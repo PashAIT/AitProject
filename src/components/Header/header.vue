@@ -35,7 +35,7 @@ export default {
         {
           id: 2,
           title: "Դասընթաց",
-          path: "/course",
+          path: "",
         },
         {
           id: 3,
@@ -55,7 +55,7 @@ export default {
         {
           id: 6,
           title: "Մուտք",
-          path: "/enter",
+          path: "/logIn",
         },
       ],
     };
@@ -70,7 +70,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1.5625vw 10.4166666667vw 0 10.4166666667vw;
-  margin-bottom: 5.18518518519vh;
+  margin-bottom: 1.5vw;
   color: #004a5d;
   position: relative;
 
