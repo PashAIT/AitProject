@@ -4,14 +4,15 @@
     <div class="opinion-container row justify-center">
       <q-carousel
         v-model="slide"
+        transition-prev="slide-right"
+        transition-next="slide-left"
         swipeable
         animated
-        control-type="unelevated"
-        control-color="black"
-        prev-icon="img:images/LeftButton.png"
-        next-icon="img:images/RightButton.png"
+        control-color="primary"
         padding
         arrows
+        prev-icon="img:images/LeftButton.png"
+        next-icon="img:images/RightButton.png"
         height="max-content"
         class="option-slider rowitems-center"
       >
@@ -66,7 +67,7 @@ export default {
           info: "Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
         },
       ],
-      slide: "first",
+      slide: "second",
     };
   },
 };
@@ -86,7 +87,7 @@ export default {
     width: 100%;
     .option-slider {
       width: 79vw;
-      background: #f8f8f8;
+      background: none;
       .one-opinion {
         background: rgba(255, 255, 255, 0.5);
         border-radius: 50px;

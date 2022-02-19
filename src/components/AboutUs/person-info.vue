@@ -8,7 +8,7 @@
     <h4>{{ name }}</h4>
     <h5>{{ speciality }}</h5>
     <div class="icons row">
-      <a :href="`https://www.facebook.com/${fbLink}`"
+      <a :href="`https://www.facebook.com/${fbLink}`" target="blank"
         ><img src="images/facebook.png" alt="facebook"
       /></a>
       <a :href="`https://www.facebook.com/${inLink}`"
@@ -65,7 +65,7 @@ export default {
     line-height: 22px;
   }
   .icons {
-    :first-child {
+    > :first-child {
       margin-right: 20px;
     }
   }

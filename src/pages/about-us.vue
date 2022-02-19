@@ -60,8 +60,8 @@
           class="overflow-hidden header-acordion"
           style="border-radius: 50px"
           :label="item.request"
-          header-class=" "
-          expand-icon-class=""
+          :dense-toggle="false"
+          :header-class="{ 'my-custom-class': true }"
         >
           <q-card class="answer">
             <q-card-section>
@@ -101,7 +101,7 @@ export default {
         {
           id: 1,
           name: "Էրիկ Մուրադյան",
-          speciality: "FROND/END Developer",
+          speciality: "Front-End Developer",
           fbLink: "erik.muradyan.50",
           linkedIn: "",
           image: "Erik.jpg",
@@ -109,7 +109,7 @@ export default {
         {
           id: 2,
           name: "Պարույր Կարապետյան",
-          speciality: "FROND/END Developer",
+          speciality: "Front-End Developer",
           fbLink: "paruyr.karapetyan",
           linkedIn: "",
           image: "Pash.jpg",
@@ -209,6 +209,11 @@ export default {
           font-size: 18px;
           line-height: 150%;
           color: #0e243c;
+        }
+      }
+      .my-custom-class {
+        &:hover {
+          background: rgba(255, 255, 255, 0.5);
         }
       }
       :first-child {

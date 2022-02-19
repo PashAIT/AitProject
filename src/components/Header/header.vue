@@ -4,7 +4,7 @@
       <img
         src="images/HeaderLogo.png"
         alt="header logo"
-        @click="$router.push('/home')"
+        @click="$router.push('/')"
       />
     </div>
     <div class="menu">
@@ -66,6 +66,10 @@ export default {
 <style lang="scss" scoped>
 header {
   font-family: NorTar;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -76,6 +80,7 @@ header {
 
   .logo {
     z-index: 1;
+    cursor: pointer;
   }
   .menu {
     .navBar {

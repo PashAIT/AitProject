@@ -1,6 +1,6 @@
 <template>
   <div class="main" :class="{ forPages: onRegistration }">
-    <Header />
+    <Header id="header-content" />
     <router-view />
     <Footer v-if="!onRegistration" />
     <img class="scroll" src="../public/images/Scroll.png" alt="" />
@@ -39,6 +39,11 @@ export default defineComponent({
 .main {
   scroll-behavior: smooth;
   background-color: #f8f8f8;
+  // background-image: url("../public/images/Background.png");
+  // background-size: ;
+  // background-repeat: no-repeat;
+  // background-position: center center;
+
   position: relative;
   .scroll {
     width: 80px;

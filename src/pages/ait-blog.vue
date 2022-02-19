@@ -16,11 +16,13 @@
       <div class="blog-month">
         <q-carousel
           v-model="slide"
+          transition-prev="slide-right"
+          transition-next="slide-left"
           swipeable
           animated
           prev-icon="img:images/monthLeft.png"
           next-icon="img:images/monthRight.png"
-          control-type="push"
+          control-color="primary"
           control-text-color="black"
           arrows
           height="max-content"

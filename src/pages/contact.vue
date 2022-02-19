@@ -30,15 +30,30 @@
           </li>
         </ul>
       </div>
-      <div class="chat column justify-evenly items-start">
-        <input type="mail" name="text" id="mail" placeholder="Էլ․ փոստ" />
-        <input
-          type="text"
-          name="text"
-          id="messageText"
-          placeholder="Գրեք ձեր հարցը"
-        />
-        <img src="images/messageArrow.png" alt="message arrow" />
+      <div class="chat column justify-center items-center">
+        <div
+          v-if="sendMessage"
+          class="inputs-content column justify-evenly items-start"
+        >
+          <input type="mail" name="text" id="mail" placeholder="Էլ․ փոստ" />
+          <textarea
+            type="text"
+            name="text"
+            id="messageText"
+            placeholder="Գրեք ձեր հարցը"
+          ></textarea>
+          <img
+            src="images/messageArrow.png"
+            alt="message arrow"
+            @click="issendMessage"
+          />
+        </div>
+        <div v-else class="sendMessage row q-px-xl justify-center items-center">
+          <p>
+            Շնորհակալություն, Ձեր նամակը ուղարկված է, մեք Ձեզ կպատասխանենք էլ.
+            փոստով
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +62,19 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      sendMessage: true,
+      mailValid: false,
+      testValid: false,
+    };
+  },
+  methods: {
+    issendMessage() {
+      this.sendMessage = false;
+      setTimeout(() => {
+        this.sendMessage = true;
+      }, 3000);
+    },
   },
   inject: ["isOnRegistration", "isOffRegistration"],
   mounted() {
@@ -107,31 +134,69 @@ export default {
       background: rgba(255, 255, 255, 0.5);
       border-radius: 50px;
       padding-left: 40px;
-      position: relative;
-      #mail {
-        width: 78%;
-        border: 2px solid #004a5d;
-        box-sizing: border-box;
-        border-radius: 20px;
-        padding: 4% 0 4% 8%;
+      .inputs-content {
+        position: relative;
+        width: 31vw;
+        height: 59.3vh;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        padding-left: 40px;
+        #mail {
+          width: 78%;
+          border: 2px solid #004a5d;
+          box-sizing: border-box;
+          border-radius: 20px;
+          padding: 4% 0 4% 8%;
+          font-family: Nortar;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 150%;
+          color: #0e243c;
+        }
+        #messageText {
+          height: 70%;
+          width: 78%;
+          padding: 5% 0 0 6%;
+          border: 2px solid #004a5d;
+          box-sizing: border-box;
+          border-radius: 20px;
+          display: flex;
+          align-items: flex-start;
+          color: #0e243c;
+          font-family: Nortar;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 150%;
+          resize: none;
+        }
+        img {
+          width: 3.6vw;
+          height: 3.6vw;
+          position: absolute;
+          bottom: 40px;
+          right: 21px;
+          cursor: pointer;
+        }
+        .sendError1,
+        .sendError2 {
+          border: 2px solid red !important;
+          color: red !important;
+        }
       }
-      #messageText {
-        height: 70%;
-        width: 78%;
-        padding: 0 0 0 6%;
-        border: 2px solid #004a5d;
-        box-sizing: border-box;
+      .sendMessage {
+        width: 20.8333333333vw;
+        height: 21.4814814815vh;
+        background: #004a5d;
         border-radius: 20px;
-        display: flex;
-        align-items: flex-start;
-      }
-      img {
-        width: 3.6vw;
-        height: 3.6vw;
-        position: absolute;
-        bottom: 40px;
-        right: 21px;
-        cursor: pointer;
+        font-family: Nortar;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: center;
+        color: #ffffff;
       }
     }
   }
