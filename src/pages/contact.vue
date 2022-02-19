@@ -32,8 +32,9 @@
       </div>
       <div class="chat column justify-center items-center">
         <div
-          v-if="sendMessage"
+          v-if="true"
           class="inputs-content column justify-evenly items-start"
+          :class="{ animationInputs: activeclass }"
         >
           <input type="mail" name="text" id="mail" placeholder="Էլ․ փոստ" />
           <textarea
@@ -48,7 +49,10 @@
             @click="issendMessage"
           />
         </div>
-        <div v-else class="sendMessage row q-px-xl justify-center items-center">
+        <div
+          v-if="activeclass"
+          class="sendMessage row q-px-xl justify-center items-center"
+        >
           <p>
             Շնորհակալություն, Ձեր նամակը ուղարկված է, մեք Ձեզ կպատասխանենք էլ.
             փոստով
@@ -66,14 +70,19 @@ export default {
       sendMessage: true,
       mailValid: false,
       testValid: false,
+      activeclass: false,
     };
   },
   methods: {
     issendMessage() {
-      this.sendMessage = false;
+      this.activeclass = true;
       setTimeout(() => {
-        this.sendMessage = true;
-      }, 3000);
+        this.sendMessage = false;
+        setTimeout(() => {
+          this.sendMessage = true;
+          this.activeclass = false;
+        }, 3000);
+      }, 2000);
     },
   },
   inject: ["isOnRegistration", "isOffRegistration"],
@@ -88,6 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .contact-page {
+  overflow: hidden;
   h2 {
     margin-bottom: 3vw;
   }
@@ -134,11 +144,13 @@ export default {
       background: rgba(255, 255, 255, 0.5);
       border-radius: 50px;
       padding-left: 40px;
+      position: relative;
+      z-index: 2;
       .inputs-content {
-        position: relative;
+        position: absolute;
         width: 31vw;
         height: 59.3vh;
-        background: rgba(255, 255, 255, 0.5);
+        background: none;
         border-radius: 50px;
         padding-left: 40px;
         #mail {
@@ -185,6 +197,13 @@ export default {
           color: red !important;
         }
       }
+      .animationInputs {
+        animation-name: inputAnimation;
+        animation-duration: 2s;
+        top: -100%;
+        opacity: 0;
+        z-index: 1;
+      }
       .sendMessage {
         width: 20.8333333333vw;
         height: 21.4814814815vh;
@@ -197,8 +216,32 @@ export default {
         line-height: 150%;
         text-align: center;
         color: #ffffff;
+        animation-name: sendMessage;
+        animation-duration: 2s;
+        position: absolute;
+        bottom: 30%;
       }
     }
+  }
+}
+@keyframes sendMessage {
+  0% {
+    bottom: -100%;
+  }
+
+  100% {
+    bottom: 30%;
+  }
+}
+@keyframes inputAnimation {
+  0% {
+    top: 0%;
+    opacity: 0.7;
+  }
+
+  100% {
+    top: -100%;
+    opacity: 0;
   }
 }
 </style>
