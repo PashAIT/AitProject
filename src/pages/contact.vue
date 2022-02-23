@@ -188,7 +188,7 @@ export default {
           height: 3.6vw;
           position: absolute;
           bottom: 40px;
-          right: 21px;
+          right: 30px;
           cursor: pointer;
         }
         .sendError1,

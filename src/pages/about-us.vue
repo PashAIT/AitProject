@@ -23,7 +23,9 @@
     </div>
     <div class="about-us-founders column items-center">
       <h2>Հիմնադիրներ</h2>
-      <div class="founders row items-center justify-between">
+      <div
+        class="founders row items-center justify-center q-gutter-x-xl q-gutter-y-lg"
+      >
         <person-info
           v-for="founder in founders"
           :speciality="founder.speciality"
@@ -38,7 +40,9 @@
     </div>
     <div class="about-us-trainers column items-center">
       <h2>Դասընթացավարներ</h2>
-      <div class="trainers row items-center justify-between">
+      <div
+        class="trainers row items-center justify-center q-gutter-x-xl q-gutter-y-lg"
+      >
         <person-info
           v-for="trainer in trainers"
           :speciality="trainer.speciality"
@@ -174,17 +178,9 @@ export default {
   }
   &-founders {
     margin-bottom: 100px;
-    .founders {
-      box-sizing: border-box;
-      width: 66.1458333333vw;
-    }
   }
   &-trainers {
     margin-bottom: 200px;
-    .trainers {
-      box-sizing: border-box;
-      width: 66.1458333333vw;
-    }
   }
   .questions-container {
     margin-bottom: 100px;

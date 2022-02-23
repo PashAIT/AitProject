@@ -10,11 +10,9 @@
         animated
         control-color="primary"
         padding
-        arrows
-        prev-icon="img:images/LeftButton.png"
-        next-icon="img:images/RightButton.png"
         height="max-content"
-        class="option-slider rowitems-center"
+        ref="carousel"
+        class="option-slider"
       >
         <q-carousel-slide
           v-for="item in opinions"
@@ -35,6 +33,26 @@
             </div>
           </div>
         </q-carousel-slide>
+        <template v-slot:control>
+          <q-carousel-control class="q-gutter-xs controls items-center">
+            <q-btn
+              push
+              round
+              dense
+              icon="img:images/LeftButton.png"
+              class="arrows arrow1"
+              @click="$refs.carousel.previous()"
+            ></q-btn>
+            <q-btn
+              push
+              round
+              dense
+              icon="img:images/RightButton.png"
+              @click="$refs.carousel.next()"
+              class="arrows arrow2"
+            ></q-btn>
+          </q-carousel-control>
+        </template>
       </q-carousel>
     </div>
   </div>
@@ -67,7 +85,7 @@ export default {
           info: "Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
         },
       ],
-      slide: "second",
+      slide: "first",
     };
   },
 };
@@ -88,6 +106,7 @@ export default {
     .option-slider {
       width: 79vw;
       background: none;
+      position: relative;
       .one-opinion {
         background: rgba(255, 255, 255, 0.5);
         border-radius: 50px;
@@ -130,13 +149,24 @@ export default {
           }
         }
       }
+      .controls {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        width: 96.5%;
+        top: 0% !important;
+        left: 0% !important;
+        .arrows::before {
+          box-shadow: 0 0 0;
+        }
+        .arrows::before {
+          border-bottom: none;
+        }
+        .arrows {
+          font-size: 1.9em;
+        }
+      }
     }
-  }
-}
-.q-icon {
-  > img {
-    width: 80px;
-    height: 80px;
   }
 }
 </style>

@@ -20,11 +20,9 @@
           transition-next="slide-left"
           swipeable
           animated
-          prev-icon="img:images/monthLeft.png"
-          next-icon="img:images/monthRight.png"
           control-color="primary"
           control-text-color="black"
-          arrows
+          ref="carousel"
           height="max-content"
           class="rounded-borders month-carousel"
         >
@@ -38,9 +36,31 @@
               {{ month.name }}
             </div>
           </q-carousel-slide>
+          <template v-slot:control>
+            <q-carousel-control class="q-gutter-xs controls">
+              <q-btn
+                push
+                round
+                dense
+                icon="img:images/monthLeft.png"
+                class="arrows arrow1"
+                @click="$refs.carousel.previous()"
+              ></q-btn>
+              <q-btn
+                push
+                round
+                dense
+                icon="img:images/monthRight.png"
+                @click="$refs.carousel.next()"
+                class="arrows arrow2"
+              ></q-btn>
+            </q-carousel-control>
+          </template>
         </q-carousel>
       </div>
-      <div class="row items-center blog-container q-gutter-x-lg q-gutter-y-xl">
+      <div
+        class="row items-center justify-center blog-container q-gutter-x-lg q-gutter-y-xl"
+      >
         <blog-item
           v-for="blog in blogs"
           :key="`blog${blog.id}`"
@@ -236,13 +256,8 @@ export default {
     .blog-month {
       margin-bottom: 100px;
       .month-carousel {
-        width: 517px;
+        width: 600px;
         background: #f8f8f8;
-
-        img {
-          width: 80px !important;
-          height: 80px !important;
-        }
 
         .month-name {
           font-family: Nortar;
@@ -255,8 +270,25 @@ export default {
       }
     }
     .blog-container {
-      padding: 0 10.4166666667vw;
+      padding: 0 10vw;
       margin-bottom: 100px;
+    }
+    .controls {
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      width: 91%;
+      top: 0% !important;
+      left: 0% !important;
+      .arrows::before {
+        box-shadow: 0 0 0;
+      }
+      .arrows::before {
+        border-bottom: none;
+      }
+      .arrows {
+        font-size: 2.2em;
+      }
     }
   }
 }

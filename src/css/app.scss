@@ -17,6 +17,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+[v-cloak] {
+  display: none;
+}
 h2 {
   font-family: Nortar;
   font-weight: bold;

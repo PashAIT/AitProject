@@ -24,8 +24,8 @@ export default {
   padding: 2vw;
   border-radius: 50px;
   img {
-    width: 21vw;
-    height: 14vw;
+    width: 95%;
+    height: 8%;
     border-radius: 20px;
     margin-bottom: 40px;
   }

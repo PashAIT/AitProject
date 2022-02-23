@@ -28,6 +28,7 @@ export default {
   align-items: center;
   padding-top: 30px;
   box-sizing: border-box;
+  cursor: pointer;
   img {
     width: 13.3333333333vw;
     height: 11vw;

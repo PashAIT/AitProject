@@ -28,13 +28,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  inject: ["isOnRegistration", "isOffRegistration"],
+  mounted() {
+    this.isOnRegistration();
+  },
+  unmounted() {
+    this.isOffRegistration();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .blog-info-container {
-  padding: 0 10.4166666667vw;
-  margin-bottom: 100px;
+  padding: 0 10.4166666667vw 100px;
+  background: #f8f8f8;
 
   .blog-info {
     background: rgba(255, 255, 255, 0.5);
@@ -44,7 +52,7 @@ export default {};
     .person-img {
       width: 100%;
       margin-bottom: 60px;
-      height: 40vh;
+      height: 74.0740740741vh;
       object-fit: cover;
       border-radius: 30px;
     }
