@@ -254,11 +254,6 @@ body {
 hr {
   margin: 1rem 0;
 }
-
-[v-cloak] {
-  display: none;
-}
-
 strong,
 .bold {
   font-weight: 500;
@@ -277,7 +272,6 @@ a {
 }
 
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -289,12 +283,6 @@ h6 {
 h1 {
   font-size: 2.2rem;
   font-weight: 600;
-}
-
-h2 {
-  font-size: 1.65rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid #eaecef;
 }
 
 h3 {

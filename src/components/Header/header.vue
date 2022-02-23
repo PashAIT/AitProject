@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header :class="{ noScrollPages: isNoScrollPages }">
     <div class="logo">
       <img
         src="images/HeaderLogo.png"
@@ -60,6 +60,9 @@ export default {
       ],
     };
   },
+  props: {
+    isNoScrollPages: Boolean,
+  },
 };
 </script>
 
@@ -104,5 +107,8 @@ header {
     top: 0;
     left: 0;
   }
+}
+.noScrollPages {
+  padding-right: 10.9895833334vw;
 }
 </style>

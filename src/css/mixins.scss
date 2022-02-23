@@ -9,7 +9,7 @@
 }
 @mixin scroll {
   ::-webkit-scrollbar {
-    width: 7px;
+    width: 11px;
   }
   ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
@@ -17,11 +17,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #e0e0e0;
+    background: #9b9898;
     border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #919090;
+    background: #636262;
   }
 }

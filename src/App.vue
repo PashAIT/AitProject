@@ -1,6 +1,6 @@
 <template>
   <div class="main" :class="{ forPages: onRegistration }" v-cloak>
-    <Header id="header-content" />
+    <Header id="header-content" :isNoScrollPages="onRegistration" />
     <router-view />
     <Footer v-if="!onRegistration" />
     <img
@@ -42,11 +42,14 @@ export default defineComponent({
 
 <style lang="scss">
 @import "css/mixins.scss";
-
-.main {
+* {
+  margin: 0;
+  padding: 0;
   scroll-behavior: smooth;
-  background-color: #f8f8f8;
   @include scroll();
+}
+.main {
+  background-color: #f8f8f8;
   // background-image: url("../public/images/Background.png");
   // background-size: ;
   // background-repeat: no-repeat;
