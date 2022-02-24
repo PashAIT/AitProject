@@ -24,52 +24,56 @@
       </div>
     </div>
   </div>
-  <div class="q-pa-xl q-gutter-sm">
-    <q-dialog v-model="bar" persistent full-width>
-      <q-card>
-        <q-bar>
-          <q-space></q-space>
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>Close</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section>
-          <div class="card">
-            <ul class="steps-list">
-              <li
-                class="steps-item"
-                v-for="(step, idx) in steps"
-                :key="step.title"
-                :class="{
-                  active: idx === activeIndex,
-                  done: idx < activeIndex,
-                }"
-              >
-                <span @click="setActive(idx)">{{ idx + 1 }}</span>
-                {{ step.title }}
-              </li>
-            </ul>
-            <h1>План по изучению Vue.js</h1>
-
+  <div class="">
+    <q-dialog v-model="bar" persistent full-width class="course-modal">
+      <q-card class="course-modal-card">
+        <div class="modal-header row justify-end items-center q-pt-lg q-pr-xl">
+          <img
+            src="images/Esc.png"
+            alt="Esc"
+            v-close-popup
+            class="cursor-pointer"
+          />
+        </div>
+        <div class="course-modal-container">
+          <ul class="steps-list">
+            <li
+              class="steps-item row items-center justify-center"
+              v-for="(stage, idx) in courseStages"
+              :key="stage.title"
+              :class="{
+                active: idx === activeIndex,
+                done: idx < activeIndex,
+              }"
+              @click="setActive(idx)"
+            >
+              <img :src="`images/${stage.image}`" alt="" />
+            </li>
+          </ul>
+          <div class="modal-info row items-center justify-center">
+            <img :src="`images/${activeStep.image}`" alt="activeStep.img" />
             <div class="steps">
-              <div class="steps-content">
-                {{ activeStep.text }}
-              </div>
-
-              <div v-if="isActive">
-                <button class="btn" :disabled="prevDisabled" @click="prev">
-                  Назад
-                </button>
-                <button class="btn primary" @click="nextOfFinish">
-                  {{ isLastStep ? "Закончить" : "Вперед" }}
-                </button>
-              </div>
-              <div v-else>
-                <button class="btn" @click="reset">Начать заного</button>
+              <div class="modal-info-text">
+                <h3>{{ activeStep.title }}</h3>
+                <h4>{{ activeStep.subTitle }}</h4>
+                <p>{{ activeStep.text }}</p>
               </div>
             </div>
           </div>
-        </q-card-section>
+          <div class="buttons">
+            <div v-if="isActive">
+              <button class="btn" :disabled="prevDisabled" @click="prev">
+                Назад
+              </button>
+              <button class="btn primary" @click="nextOfFinish">
+                {{ isLastStep ? "Закончить" : "Вперед" }}
+              </button>
+            </div>
+            <div v-else>
+              <button class="btn" @click="reset">Начать заного</button>
+            </div>
+          </div>
+        </div>
       </q-card>
     </q-dialog>
   </div>
@@ -86,18 +90,21 @@ export default {
           title: "HTML & CSS",
           subTitle: "1-ին փուլ",
           image: "HTMLCSS.png",
+          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
         },
         {
           id: 2,
           title: "Javascript",
           subTitle: "2-րդ փուլ",
           image: "JS.png",
+          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
         },
         {
           id: 3,
           title: "Advanced JS",
           subTitle: "3-րդ փուլ",
           image: "AdvancedJS.png",
+          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
         },
 
         {
@@ -105,39 +112,19 @@ export default {
           title: "Front-End / React JS",
           subTitle: "4-րդ փուլ",
           image: "React.png",
+          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
         },
         {
           id: 5,
           title: "Back-End / Node. JS",
           subTitle: "5-րդ փուլ",
           image: "NodeJS.png",
+          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
         },
       ],
       bar: false,
       activeIndex: 0,
       isActive: true,
-      steps: [
-        {
-          title: "Основы",
-          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
-        },
-        {
-          title: "Компоненты",
-          text: "Один из самых важных блоков в курсе, где вы узнаете все о компонентах. В блоке мы напишем 2 разных приложения и создадим более 5 различных UI компонентов как в реальной разработке. Блок расскажет про абсолютно все составляющие, которые есть в компонентах: взаимодействие, slots, асинхронные и динамические компоненты и тонна примеров.",
-        },
-        {
-          title: "Роутер",
-          text: "В данном блоке вы узнаете все о том, как работает мультиязычность во Vue. Мы создадим миниклон Gmail в данном блоке, где вы на практике увидите как работать с динамическим роутером.",
-        },
-        {
-          title: "Vuex",
-          text: "В блоке вы узнаете абсолютно все про Vuex. Вы узнаете как работать с данными, какие есть лучшие практики по их программированию и структурированию. Все на практике.",
-        },
-        {
-          title: "Composition",
-          text: "Одним из наиболее важных обновлений в Vue 3 является появление альтернативного синтаксиса Composition API. В этом блоке вы узнаете все, чтобы полностью пользоваться данными синтаксисом на практических примерах. Помимо этого вы узнаете как работать совместно с Vue Router и Vuex.",
-        },
-      ],
     };
   },
   methods: {
@@ -163,13 +150,13 @@ export default {
   },
   computed: {
     activeStep() {
-      return this.steps[this.activeIndex];
+      return this.courseStages[this.activeIndex];
     },
     prevDisabled() {
       return this.activeIndex === 0;
     },
     isLastStep() {
-      return this.activeIndex === this.steps.length - 1;
+      return this.activeIndex === this.courseStages.length - 1;
     },
   },
   components: { Stage },
@@ -237,58 +224,19 @@ export default {
     }
   }
 }
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
-
-.courseModal {
-  width: 800px;
+.course-modal {
+  .modal-header {
+    background: rgba(14, 36, 60, 0.8) !important;
+  }
+  &-card {
+    border-radius: 50px;
+    background: none;
+    .course-modal-container {
+      padding: 50px 90px 60px 90px;
+      background: rgba(14, 36, 60, 0.8) !important;
+    }
+  }
 }
-body {
-  font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
-  color: #2c3e50;
-  background: #2c3e50;
-}
-
-hr {
-  margin: 1rem 0;
-}
-strong,
-.bold {
-  font-weight: 500;
-}
-
-ol,
-p,
-ul {
-  line-height: 1.7;
-}
-
-a {
-  color: #3eaf7c;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-h1,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 500;
-  line-height: 1.45;
-}
-
-h1 {
-  font-size: 2.2rem;
-  font-weight: 600;
-}
-
-h3 {
-  font-size: 1.35rem;
-}
-
 .primary {
   color: #42b983;
 }
@@ -344,70 +292,6 @@ h3 {
   border-color: #e53935;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1000px;
-}
-
-.pt-5 {
-  padding-top: 5rem;
-}
-
-.form-control {
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-
-.form-control input {
-  margin: 0;
-  outline: none;
-  border: 2px solid #ccc;
-  display: block;
-  width: 100%;
-  color: #2c3e50;
-  padding: 0.5rem 1.5rem;
-  border-radius: 3px;
-  font-size: 1rem;
-}
-
-.form-control label {
-  display: block;
-  margin: 0 0 0.3rem 0.3rem;
-  font-weight: 500;
-}
-
-.form-control input:active,
-.form-control input:focus {
-  transition: border 0.22s;
-  border: 2px solid #42b983;
-}
-
-.card {
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
-  background: #fff;
-}
-
-.card.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.list-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-}
-
 .steps {
   position: relative;
 }
@@ -419,27 +303,39 @@ h3 {
   padding: 0;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 110px;
 }
 
-.steps-item span {
+.steps-item {
+  width: 160px;
+  height: 160px;
   cursor: pointer;
   border-radius: 50%;
   padding: 0.75rem 1rem;
   font-size: 0.75rem;
-  background: #cccccc;
+  background: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+
+  img {
+    width: 120px;
+    height: 94px;
+  }
 }
 
 .steps-content {
   margin-bottom: 1rem;
 }
 
-.steps-item.active span,
-.steps-item.done span {
-  background: #42b983;
+.steps-item.active,
+.steps-item.done {
+  background: rgba(255, 255, 255, 0.9);
 }
 
-.steps-item.active span {
+.steps-item.active {
+  width: 180px;
+  height: 180px;
   font-weight: bold;
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.5);
 }
 </style>
