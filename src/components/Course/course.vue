@@ -38,19 +38,29 @@
         <div class="course-modal-container">
           <ul class="steps-list">
             <li
-              class="steps-item row items-center justify-center"
               v-for="(stage, idx) in courseStages"
               :key="stage.title"
-              :class="{
-                active: idx === activeIndex,
-                done: idx < activeIndex,
-              }"
-              @click="setActive(idx)"
+              class="row items-center"
             >
-              <img :src="`images/${stage.image}`" alt="" />
+              <div
+                class="steps-item row items-center justify-center"
+                :class="{
+                  active: idx === activeIndex,
+                  done: idx < activeIndex,
+                }"
+                @click="setActive(idx)"
+              >
+                <img :src="`images/${stage.image}`" alt="" />
+              </div>
+              <img
+                src="images/Line.png"
+                alt="line"
+                :class="'line' + stage.id"
+                class="lines"
+              />
             </li>
           </ul>
-          <div class="modal-info row items-center justify-center">
+          <div class="modal-info row items-center justify-center q-mr-xl">
             <img :src="`images/${activeStep.image}`" alt="activeStep.img" />
             <div class="steps">
               <div class="modal-info-text">
@@ -60,17 +70,23 @@
               </div>
             </div>
           </div>
-          <div class="buttons">
-            <div v-if="isActive">
-              <button class="btn" :disabled="prevDisabled" @click="prev">
-                Назад
-              </button>
-              <button class="btn primary" @click="nextOfFinish">
-                {{ isLastStep ? "Закончить" : "Вперед" }}
-              </button>
-            </div>
-            <div v-else>
-              <button class="btn" @click="reset">Начать заного</button>
+          <div class="buttons row justify-end items-center">
+            <button class="addCourse">Գրանցվել դասընթացին</button>
+            <div class="row justify-center items-center">
+              <img
+                src="images/monthLeft.png"
+                v-if="!prevDisabled"
+                @click="prev"
+                alt="left"
+                class="cursor-pointer prev-icon q-mr-md"
+              />
+              <img
+                @click="nextOfFinish"
+                src="images/monthRight.png"
+                alt="right"
+                class="cursor-pointer next-icon"
+                v-if="!nextDisabled"
+              />
             </div>
           </div>
         </div>
@@ -90,21 +106,21 @@ export default {
           title: "HTML & CSS",
           subTitle: "1-ին փուլ",
           image: "HTMLCSS.png",
-          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
           id: 2,
           title: "Javascript",
           subTitle: "2-րդ փուլ",
           image: "JS.png",
-          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
+          text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
           id: 3,
           title: "Advanced JS",
           subTitle: "3-րդ փուլ",
           image: "AdvancedJS.png",
-          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
 
         {
@@ -112,14 +128,14 @@ export default {
           title: "Front-End / React JS",
           subTitle: "4-րդ փուլ",
           image: "React.png",
-          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
           id: 5,
           title: "Back-End / Node. JS",
           subTitle: "5-րդ փուլ",
           image: "NodeJS.png",
-          text: "В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
       ],
       bar: false,
@@ -138,7 +154,7 @@ export default {
       this.isActive = true;
     },
     nextOfFinish() {
-      if (this.activeIndex !== this.steps.length - 1) {
+      if (this.activeIndex !== this.courseStages.length - 1) {
         this.activeIndex++;
       } else {
         this.isActive = false;
@@ -155,6 +171,9 @@ export default {
     prevDisabled() {
       return this.activeIndex === 0;
     },
+    nextDisabled() {
+      return this.activeIndex === this.courseStages.length - 1;
+    },
     isLastStep() {
       return this.activeIndex === this.courseStages.length - 1;
     },
@@ -164,6 +183,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .course {
   display: flex;
   flex-direction: column;
@@ -231,84 +252,90 @@ export default {
   &-card {
     border-radius: 50px;
     background: none;
+    overflow: hidden;
     .course-modal-container {
-      padding: 50px 90px 60px 90px;
+      max-height: 880px;
+      padding: 4vh 4vw 5vh 4vw;
       background: rgba(14, 36, 60, 0.8) !important;
+      .modal-info {
+        color: #fff;
+        margin-bottom: 5vh;
+        > img {
+          width: 20.8vw;
+          height: 18vw;
+        }
+        &-text {
+          h3 {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 37px;
+          }
+          h4 {
+            font-family: Nortar;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 30px;
+            margin-bottom: 40px;
+          }
+          p {
+            font-family: Nortar;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 140%;
+            width: 48.1770833333vw;
+          }
+        }
+      }
+      .buttons {
+        .addCourse {
+          @include button();
+          padding: 2.5vh 2.60416666667vw;
+          font-family: Nortar;
+          font-style: normal;
+          font-weight: bold;
+          margin-right: 40px;
+        }
+        .prev-icon,
+        .next-icon {
+          width: 80px;
+          height: 80px;
+          transition: 1s;
+        }
+      }
     }
   }
 }
-.primary {
-  color: #42b983;
-}
-
-.danger {
-  color: #e53935;
-}
-
-.btn {
-  color: #42b983;
-  position: relative;
-  place-content: center;
-  place-items: center;
-  width: fit-content;
-  border-radius: 99px;
-  letter-spacing: 0.05em;
-  border: 1px solid #42b983;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin-right: 10px;
-  padding: 0.5rem 1.5rem;
-  white-space: nowrap;
-  font-weight: 700;
-  outline: none;
-  background: #fff;
-  transition: all 0.22s;
-}
-
-.btn:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.btn:disabled {
-  background: #eee !important;
-  border: #ddd !important;
-  color: #aaa !important;
-  cursor: not-allowed;
-}
-
-.btn:active {
-  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
-}
-
-.btn.primary {
-  background: #42b983;
-  color: #fff;
-}
-
-.btn.danger {
-  background: #e53935;
-  color: #fff;
-  border-color: #e53935;
-}
-
-.steps {
-  position: relative;
-}
 
 .steps-list {
+  height: 8vw;
   list-style: none;
   margin: 0;
   margin-bottom: 1rem;
   padding: 0;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 110px;
+  margin-bottom: 9.25925925926vh;
+  li {
+    position: relative;
+    .lines {
+      position: absolute;
+      right: -93%;
+      width: 6.25vw;
+    }
+  }
+
+  .line5 {
+    display: none;
+  }
 }
 
 .steps-item {
-  width: 160px;
-  height: 160px;
+  width: 8vw;
+  height: 8vw;
   cursor: pointer;
   border-radius: 50%;
   padding: 0.75rem 1rem;
@@ -317,13 +344,9 @@ export default {
   box-sizing: border-box;
 
   img {
-    width: 120px;
-    height: 94px;
+    width: 6.25vw;
+    height: 5vw;
   }
-}
-
-.steps-content {
-  margin-bottom: 1rem;
 }
 
 .steps-item.active,
@@ -332,10 +355,11 @@ export default {
 }
 
 .steps-item.active {
-  width: 180px;
-  height: 180px;
+  width: 9vw;
+  height: 9vw;
   font-weight: bold;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.5);
+  transition: 0.8s;
 }
 </style>
