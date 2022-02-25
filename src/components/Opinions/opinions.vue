@@ -88,6 +88,24 @@ export default {
       slide: "first",
     };
   },
+  computed: {
+    activeOpinions() {
+      if (this.slide === this.opinions[0].type) {
+        return [this.opinions[0], this.opinions[1]];
+      } else if (this.slide === this.opinions[this.opinions.length - 1].type) {
+        return [
+          this.opinions[this.opinions.length - 2],
+          this.opinions[this.opinions.length - 1],
+        ];
+      } else {
+        return [
+          this.opinions[this.opinions.indexOf(this.slide) - 1],
+          this.opinions[this.opinions.indexOf(this.slide)],
+          this.opinions[this.opinions.indexOf(this.slide) + 1],
+        ];
+      }
+    },
+  },
 };
 </script>
 
