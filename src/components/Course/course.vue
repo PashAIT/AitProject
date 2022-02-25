@@ -60,16 +60,34 @@
               />
             </li>
           </ul>
-          <div class="modal-info row items-center justify-center q-mr-xl">
-            <img :src="`images/${activeStep.image}`" alt="activeStep.img" />
-            <div class="steps">
-              <div class="modal-info-text">
-                <h3>{{ activeStep.title }}</h3>
-                <h4>{{ activeStep.subTitle }}</h4>
-                <p>{{ activeStep.text }}</p>
+          <q-carousel
+            v-model="slide"
+            transition-prev="slide-right"
+            transition-next="slide-left"
+            swipeable
+            animated
+            control-color="primary"
+            padding
+            height="max-content"
+            ref="carousel"
+          >
+            <q-carousel-slide
+              v-for="item in activeSlder"
+              :key="item + item.id"
+              :name="item.type"
+            >
+              <div class="modal-info row items-center justify-center q-mr-xl">
+                <img :src="`images/${item.image}`" alt="activeStep.img" />
+                <div class="steps">
+                  <div class="modal-info-text">
+                    <h3>{{ item.title }}</h3>
+                    <h4>{{ item.subTitle }}</h4>
+                    <p>{{ item.text }}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </q-carousel-slide>
+          </q-carousel>
           <div class="buttons row justify-end items-center">
             <button class="addCourse">Գրանցվել դասընթացին</button>
             <div class="row justify-center items-center">
@@ -100,12 +118,14 @@ import Stage from "./stage.vue";
 export default {
   data() {
     return {
+      slide: "html",
       courseStages: [
         {
           id: 1,
           title: "HTML & CSS",
           subTitle: "1-ին փուլ",
           image: "HTMLCSS.png",
+          type: "html",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
@@ -113,6 +133,7 @@ export default {
           title: "Javascript",
           subTitle: "2-րդ փուլ",
           image: "JS.png",
+          type: "Js",
           text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
@@ -120,6 +141,7 @@ export default {
           title: "Advanced JS",
           subTitle: "3-րդ փուլ",
           image: "AdvancedJS.png",
+          type: "advJs",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
 
@@ -128,6 +150,7 @@ export default {
           title: "Front-End / React JS",
           subTitle: "4-րդ փուլ",
           image: "React.png",
+          type: "reactJs",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
@@ -135,6 +158,7 @@ export default {
           title: "Back-End / Node. JS",
           subTitle: "5-րդ փուլ",
           image: "NodeJS.png",
+          type: "nodeJs",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
       ],
@@ -148,6 +172,7 @@ export default {
       if (this.activeIndex !== 0) {
         this.activeIndex--;
       }
+      this.$refs.carousel.previous();
     },
     reset() {
       this.activeIndex = 0;
@@ -159,6 +184,7 @@ export default {
       } else {
         this.isActive = false;
       }
+      this.$refs.carousel.next();
     },
     setActive(idx) {
       this.activeIndex = idx;
@@ -167,6 +193,25 @@ export default {
   computed: {
     activeStep() {
       return this.courseStages[this.activeIndex];
+    },
+    activeSlder() {
+      if (this.activeIndex === 0) {
+        return [
+          this.courseStages[this.activeIndex],
+          this.courseStages[this.activeIndex + 1],
+        ];
+      } else if (this.activeIndex === 4) {
+        return [
+          this.courseStages[this.activeIndex - 1],
+          this.courseStages[this.activeIndex],
+        ];
+      } else {
+        return [
+          this.courseStages[this.activeIndex - 1],
+          this.courseStages[this.activeIndex],
+          this.courseStages[this.activeIndex + 1],
+        ];
+      }
     },
     prevDisabled() {
       return this.activeIndex === 0;
@@ -259,7 +304,7 @@ export default {
       background: rgba(14, 36, 60, 0.8) !important;
       .modal-info {
         color: #fff;
-        margin-bottom: 5vh;
+        margin-bottom: 20px;
         > img {
           width: 20.8vw;
           height: 18vw;
