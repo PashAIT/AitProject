@@ -89,7 +89,9 @@
             </q-carousel-slide>
           </q-carousel>
           <div class="buttons row justify-end items-center">
-            <button class="addCourse">Գրանցվել դասընթացին</button>
+            <button class="addCourse" @click="$router.push('/registration')">
+              Գրանցվել դասընթացին
+            </button>
             <div class="row justify-center items-center">
               <img
                 src="images/monthLeft.png"

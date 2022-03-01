@@ -5,7 +5,9 @@
         <h1>Ararat</h1>
         <h3>IT Center</h3>
         <p>IT հնարավորություններն արդեն Արարատում են.</p>
-        <button>Գրանցվել դասընթացին</button>
+        <button @click="$router.push('/registration')">
+          Գրանցվել դասընթացին
+        </button>
       </div>
     </div>
     <div class="man">

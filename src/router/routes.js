@@ -23,4 +23,9 @@ export default [
     path: "/logIn",
     component: () => import("../pages/logIn.vue"),
   },
+  {
+    path: "/registration",
+    component: () =>
+      import("../../src/components/Registration/registration.vue"),
+  },
 ];
