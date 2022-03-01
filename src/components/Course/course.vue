@@ -306,7 +306,6 @@ export default {
       background: rgba(14, 36, 60, 0.8) !important;
       .modal-info {
         color: #fff;
-        margin-bottom: 20px;
         > img {
           width: 20.8vw;
           height: 18vw;

@@ -3,12 +3,15 @@
     <Header id="header-content" :isNoScrollPages="onRegistration" />
     <router-view />
     <Footer v-if="!onRegistration" />
-    <img
-      v-if="!onRegistration"
-      class="scrollimage"
-      src="../public/images/Scroll.png"
-      alt=""
-    />
+    <div class="scrollDiv" v-if="scrollDiv">
+      <img
+        v-if="!onRegistration"
+        class="scrollimage"
+        src="../public/images/Scroll.png"
+        alt=""
+        @click="GoToTop"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -20,6 +23,8 @@ export default defineComponent({
   data() {
     return {
       onRegistration: false,
+      scrollY: 0,
+      scrollDiv: false,
     };
   },
   components: { Header, Footer },
@@ -30,6 +35,20 @@ export default defineComponent({
     isOffRegistration() {
       this.onRegistration = false;
     },
+    handleScroll() {
+      this.scrollY = window.scrollY;
+      if (this.scrollY >= 700) {
+        this.scrollDiv = true;
+      } else if (this.scrollY < 700) {
+        this.scrollDiv = false;
+      }
+    },
+    GoToTop() {
+      window.scrollTo(0, 0);
+    },
+  },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
   },
   provide() {
     return {
