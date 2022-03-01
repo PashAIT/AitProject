@@ -23,11 +23,17 @@
     <div class="footer-contact">
       <ul>
         <li>Կոնտակտներ</li>
-        <li>+374 (77) - 01 - 02 - 03</li>
-        <li>ararat_itcenter</li>
-        <li>Ararat IT Center</li>
-        <li>Ararat IT Center</li>
-        <li>ait@gmail.com</li>
+        <li>
+          <img src="images/PhoneIcon.png" alt="" /> +374 (77) - 01 - 02 - 03
+        </li>
+        <li><img src="images/instagramIcon.png" alt="" /> ararat_itcenter</li>
+        <li>
+          <img src="images/facebookIconfooter.png" alt="" /> Ararat IT Center
+        </li>
+        <li>
+          <img src="images/linkedinIconfooter.png" alt="" /> Ararat IT Center
+        </li>
+        <li><img src="images/MailIconfooter.png" alt="" /> ait@gmail.com</li>
       </ul>
     </div>
   </div>
@@ -65,6 +71,17 @@ export default {};
   }
   :first-child {
     margin-left: 0;
+  }
+  .footer-contact {
+    ul {
+      li {
+        display: flex;
+        align-items: center;
+        img {
+          margin-right: 20px;
+        }
+      }
+    }
   }
 }
 </style>
