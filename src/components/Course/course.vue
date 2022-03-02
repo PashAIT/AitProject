@@ -4,7 +4,7 @@
     <div class="stage-container">
       <div
         class="course-stages"
-        v-for="stage in courseStages"
+        v-for="(stage, i) in courseStages"
         :key="`stage${stage.id}`"
       >
         <Stage
@@ -13,7 +13,7 @@
           :title="stage.title"
           class="stage"
           :class="`stage${stage.id}`"
-          @click="bar = true"
+          @click="openModal(i)"
         >
           <img
             src="images/path.png"
@@ -41,12 +41,14 @@
               v-for="(stage, idx) in courseStages"
               :key="stage.title"
               class="row items-center"
+              :class="`step${stage.id}`"
             >
               <div
                 class="steps-item row items-center justify-center"
                 :class="{
                   active: idx === activeIndex,
                   done: idx < activeIndex,
+                  [`step${stage.id}`]: true,
                 }"
                 @click="setActive(idx)"
               >
@@ -170,6 +172,11 @@ export default {
     };
   },
   methods: {
+    openModal(i) {
+      this.bar = true;
+      this.activeIndex = i;
+      this.slide = this.courseStages[i].type;
+    },
     prev() {
       if (this.activeIndex !== 0) {
         this.activeIndex--;
@@ -190,6 +197,7 @@ export default {
     },
     setActive(idx) {
       this.activeIndex = idx;
+      this.slide = this.courseStages[idx].type;
     },
   },
   computed: {
@@ -365,12 +373,23 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 9.25925925926vh;
+  position: relative;
   li {
-    position: relative;
     .lines {
       position: absolute;
-      right: -93%;
       width: 6.25vw;
+    }
+    .line1 {
+      left: 12.5%;
+    }
+    .line2 {
+      left: 35%;
+    }
+    .line3 {
+      left: 58%;
+    }
+    .line4 {
+      left: 81%;
     }
   }
 
@@ -388,11 +407,26 @@ export default {
   font-size: 0.75rem;
   background: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
-
+  position: absolute;
   img {
     width: 6.25vw;
     height: 5vw;
   }
+}
+.step1 {
+  left: 0%;
+}
+.step2 {
+  left: 22%;
+}
+.step3 {
+  left: 45.5%;
+}
+.step4 {
+  left: 68%;
+}
+.step5 {
+  left: 91%;
 }
 
 .steps-item.active,
