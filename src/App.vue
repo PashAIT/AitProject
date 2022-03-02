@@ -45,6 +45,10 @@ export default defineComponent({
     },
     GoToTop() {
       window.scrollTo(0, 0);
+      console.log(this.$route.path);
+    },
+    getCourseScrolltop() {
+      return;
     },
   },
   created() {

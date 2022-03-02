@@ -1,5 +1,5 @@
 <template>
-  <div class="course" id="course">
+  <div class="course" id="course" ref="course">
     <h2 class="course-header">Դասընթացի փուլեր</h2>
     <div class="stage-container">
       <div
@@ -310,12 +310,12 @@ export default {
     overflow: hidden;
     .course-modal-container {
       max-height: 880px;
-      padding: 4vh 4vw 5vh 4vw;
+      padding: 2vh 4vw 5vh 4vw;
       background: rgba(14, 36, 60, 0.8) !important;
       .modal-info {
         color: #fff;
         > img {
-          width: 20.8vw;
+          width: 20vw;
           height: 18vw;
         }
         &-text {
@@ -323,16 +323,14 @@ export default {
             font-family: Montserrat;
             font-style: normal;
             font-weight: bold;
-            font-size: 30px;
-            line-height: 37px;
+            font-size: 1.5625;
           }
           h4 {
             font-family: Nortar;
             font-style: normal;
             font-weight: bold;
             font-size: 30px;
-            line-height: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 3vh;
           }
           p {
             font-family: Nortar;
@@ -347,16 +345,16 @@ export default {
       .buttons {
         .addCourse {
           @include button();
-          padding: 2.5vh 2.60416666667vw;
+          padding: 2vh 2.60416666667vw;
           font-family: Nortar;
           font-style: normal;
           font-weight: bold;
-          margin-right: 40px;
+          margin-right: 2.08333333333vw;
         }
         .prev-icon,
         .next-icon {
-          width: 80px;
-          height: 80px;
+          width: 4.16666666667vw;
+          height: 4.16666666667vw;
           transition: 1s;
         }
       }
@@ -372,7 +370,7 @@ export default {
   padding: 0;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 9.25925925926vh;
+  margin-bottom: 9vh;
   position: relative;
   li {
     .lines {

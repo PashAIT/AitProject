@@ -13,7 +13,7 @@
           class="li"
           v-for="navItem in navBar"
           :key="navItem.id"
-          @click="$router.push(navItem.path)"
+          @click="changePage(navItem.id, navItem.path)"
         >
           {{ navItem.title }}
         </li>
@@ -62,6 +62,16 @@ export default {
   },
   props: {
     isNoScrollPages: Boolean,
+  },
+  methods: {
+    changePage(id, path) {
+      if (id === 2) {
+        this.$router.push("/");
+        window.scrollTo(0, 700);
+      } else {
+        this.$router.push(path);
+      }
+    },
   },
 };
 </script>
