@@ -81,8 +81,8 @@ export default {
         setTimeout(() => {
           this.sendMessage = true;
           this.activeclass = false;
-        }, 3000);
-      }, 2000);
+        }, 2000);
+      }, 1000);
     },
   },
   inject: ["isOnRegistration", "isOffRegistration"],
@@ -199,7 +199,7 @@ export default {
       }
       .animationInputs {
         animation-name: inputAnimation;
-        animation-duration: 2s;
+        animation-duration: 1s;
         top: -100%;
         opacity: 0;
         z-index: 1;
@@ -217,7 +217,7 @@ export default {
         text-align: center;
         color: #ffffff;
         animation-name: sendMessage;
-        animation-duration: 2s;
+        animation-duration: 1s;
         position: absolute;
         bottom: 30%;
       }

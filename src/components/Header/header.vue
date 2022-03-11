@@ -67,7 +67,9 @@ export default {
     changePage(id, path) {
       if (id === 2) {
         this.$router.push("/");
-        window.scrollTo(0, 700);
+        setTimeout(() => {
+          window.scrollTo(0, 920);
+        }, 400);
       } else {
         this.$router.push(path);
       }
