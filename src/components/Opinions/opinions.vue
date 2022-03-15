@@ -3,7 +3,7 @@
     <h2>Կարծիքներ</h2>
     <div class="opinion-container row justify-center">
       <q-carousel
-        v-model="slide"
+        v-model="currentSlide"
         transition-prev="slide-right"
         transition-next="slide-left"
         swipeable
@@ -15,9 +15,9 @@
         class="option-slider"
       >
         <q-carousel-slide
-          v-for="item in opinions"
+          v-for="item in sliderItems"
           :key="item.id"
-          :name="item.type"
+          :name="item.id"
           class="column no-wrap flex-center"
         >
           <div class="one-opinion row items-center">
@@ -59,10 +59,12 @@
 </template>
 
 <script>
+import activeSlideMixin from "src/mixins/activeSlideMixin";
+
 export default {
   data() {
     return {
-      opinions: [
+      sliderItems: [
         {
           id: 1,
           speciality: "CEO Aranea",
@@ -85,27 +87,10 @@ export default {
           info: "Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
         },
       ],
-      slide: "first",
+      currentSlide: 1,
     };
   },
-  computed: {
-    activeOpinions() {
-      if (this.slide === this.opinions[0].type) {
-        return [this.opinions[0], this.opinions[1]];
-      } else if (this.slide === this.opinions[this.opinions.length - 1].type) {
-        return [
-          this.opinions[this.opinions.length - 2],
-          this.opinions[this.opinions.length - 1],
-        ];
-      } else {
-        return [
-          this.opinions[this.opinions.indexOf(this.slide) - 1],
-          this.opinions[this.opinions.indexOf(this.slide)],
-          this.opinions[this.opinions.indexOf(this.slide) + 1],
-        ];
-      }
-    },
-  },
+  mixins: [activeSlideMixin],
 };
 </script>
 

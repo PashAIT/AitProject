@@ -4,7 +4,7 @@
     <div class="stage-container">
       <div
         class="course-stages"
-        v-for="(stage, i) in courseStages"
+        v-for="(stage, i) in sliderItems"
         :key="`stage${stage.id}`"
       >
         <Stage
@@ -38,7 +38,7 @@
         <div class="course-modal-container">
           <ul class="steps-list">
             <li
-              v-for="(stage, idx) in courseStages"
+              v-for="(stage, idx) in sliderItems"
               :key="stage.title"
               class="row items-center"
               :class="`step${stage.id}`"
@@ -63,7 +63,7 @@
             </li>
           </ul>
           <q-carousel
-            v-model="slide"
+            v-model="currentSlide"
             transition-prev="slide-right"
             transition-next="slide-left"
             swipeable
@@ -74,9 +74,9 @@
             ref="carousel"
           >
             <q-carousel-slide
-              v-for="item in activeSlder"
+              v-for="item in activeSlides"
               :key="item + item.id"
-              :name="item.type"
+              :name="item.id"
             >
               <div class="modal-info row items-center justify-center q-mr-xl">
                 <img :src="`images/${item.image}`" alt="activeStep.img" />
@@ -118,18 +118,18 @@
 </template>
 
 <script>
+import activeSlideMixin from "src/mixins/activeSlideMixin";
 import Stage from "./stage.vue";
 export default {
   data() {
     return {
-      slide: "html",
-      courseStages: [
+      currentSlide: 1,
+      sliderItems: [
         {
           id: 1,
           title: "HTML & CSS",
           subTitle: "1-ին փուլ",
           image: "HTMLCSS.png",
-          type: "html",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
@@ -137,7 +137,6 @@ export default {
           title: "Javascript",
           subTitle: "2-րդ փուլ",
           image: "JS.png",
-          type: "Js",
           text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
@@ -145,7 +144,6 @@ export default {
           title: "Advanced JS",
           subTitle: "3-րդ փուլ",
           image: "AdvancedJS.png",
-          type: "advJs",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
 
@@ -154,7 +152,6 @@ export default {
           title: "Front-End / React JS",
           subTitle: "4-րդ փուլ",
           image: "React.png",
-          type: "reactJs",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
@@ -162,12 +159,11 @@ export default {
           title: "Back-End / Node. JS",
           subTitle: "5-րդ փուլ",
           image: "NodeJS.png",
-          type: "nodeJs",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
       ],
       bar: false,
-      activeIndex: 0,
+      activeIndex: this.currentSlide - 1,
       isActive: true,
     };
   },
@@ -175,7 +171,7 @@ export default {
     openModal(i) {
       this.bar = true;
       this.activeIndex = i;
-      this.slide = this.courseStages[i].type;
+      this.currentSlide = this.sliderItems[i].id;
     },
     prev() {
       if (this.activeIndex !== 0) {
@@ -188,7 +184,7 @@ export default {
       this.isActive = true;
     },
     nextOfFinish() {
-      if (this.activeIndex !== this.courseStages.length - 1) {
+      if (this.activeIndex !== this.sliderItems.length - 1) {
         this.activeIndex++;
       } else {
         this.isActive = false;
@@ -197,42 +193,24 @@ export default {
     },
     setActive(idx) {
       this.activeIndex = idx;
-      this.slide = this.courseStages[idx].type;
+      this.currentSlide = this.sliderItems[idx].id;
     },
   },
   computed: {
     activeStep() {
-      return this.courseStages[this.activeIndex];
-    },
-    activeSlder() {
-      if (this.activeIndex === 0) {
-        return [
-          this.courseStages[this.activeIndex],
-          this.courseStages[this.activeIndex + 1],
-        ];
-      } else if (this.activeIndex === 4) {
-        return [
-          this.courseStages[this.activeIndex - 1],
-          this.courseStages[this.activeIndex],
-        ];
-      } else {
-        return [
-          this.courseStages[this.activeIndex - 1],
-          this.courseStages[this.activeIndex],
-          this.courseStages[this.activeIndex + 1],
-        ];
-      }
+      return this.sliderItems[this.activeIndex];
     },
     prevDisabled() {
       return this.activeIndex === 0;
     },
     nextDisabled() {
-      return this.activeIndex === this.courseStages.length - 1;
+      return this.activeIndex === this.sliderItems.length - 1;
     },
     isLastStep() {
-      return this.activeIndex === this.courseStages.length - 1;
+      return this.activeIndex === this.sliderItems.length - 1;
     },
   },
+  mixins: [activeSlideMixin],
   components: { Stage },
 };
 </script>

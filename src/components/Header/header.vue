@@ -18,11 +18,13 @@
           {{ navItem.title }}
         </li>
       </ul>
+      <img src="images/Menu.png" alt="" />
     </div>
   </header>
 </template>
 
 <script>
+import { COURSES } from "../../providers/constants";
 export default {
   data() {
     return {
@@ -65,7 +67,7 @@ export default {
   },
   methods: {
     changePage(id, path) {
-      if (id === 2) {
+      if (id === COURSES) {
         this.$router.push("/");
         setTimeout(() => {
           window.scrollTo(0, 920);
@@ -113,6 +115,10 @@ header {
         margin-left: 0;
       }
     }
+    > img {
+      display: none;
+      cursor: pointer;
+    }
   }
   > img {
     position: absolute;
@@ -122,5 +128,15 @@ header {
 }
 .noScrollPages {
   padding-right: 10.9895833334vw;
+}
+@media screen and (max-width: 1300px) {
+  .menu {
+    .navBar {
+      display: none !important;
+    }
+    > img {
+      display: block !important;
+    }
+  }
 }
 </style>
