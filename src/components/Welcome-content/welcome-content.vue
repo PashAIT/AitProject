@@ -1,14 +1,12 @@
 <template>
   <div class="welcome-content">
     <div class="welome-text">
-      <div>
-        <h1>Ararat</h1>
-        <h3>IT Center</h3>
-        <p>IT հնարավորություններն արդեն Արարատում են.</p>
-        <button @click="$router.push('/registration')">
-          Գրանցվել դասընթացին
-        </button>
-      </div>
+      <h1>Ararat</h1>
+      <h3>IT Center</h3>
+      <p>IT հնարավորություններն արդեն Արարատում են.</p>
+      <button @click="$router.push('/registration')">
+        Գրանցվել դասընթացին
+      </button>
     </div>
     <div class="man">
       <img src="images/Man.png" alt="" />
@@ -40,7 +38,6 @@ export default {};
     h3 {
       font-weight: bold;
       font-size: 4.16666666667vw;
-      // line-height: 98px;
       font-family: Montserrat;
       color: #0e243c;
       padding-left: 8px;
@@ -82,6 +79,45 @@ export default {};
     position: absolute;
     top: 0px;
     right: 0px;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .welcome-content {
+    flex-direction: column-reverse !important;
+    .welome-text {
+      align-items: center !important;
+      display: flex;
+      flex-direction: column;
+      h1 {
+        letter-spacing: 0.02em;
+        font-size: 12vw;
+        line-height: 12vw;
+        font-family: MonserratAlternates;
+        color: #004a5e;
+      }
+      h3 {
+        font-size: 6vw !important;
+        font-family: MontserratBold !important;
+        margin-top: 5px !important;
+        margin-bottom: 2vh;
+      }
+
+      p {
+        font-size: 2vw;
+        margin-bottom: 3.3vh;
+      }
+      button {
+        padding: 24px 43px;
+      }
+    }
+    .man {
+      width: 49vw;
+      height: 49vw;
+      img {
+        width: 70%;
+        height: 42vw;
+      }
+    }
   }
 }
 </style>

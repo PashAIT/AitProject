@@ -68,7 +68,6 @@
           :name="blog.name"
           :minInfo="blog.minInfo"
           class="col-4.5"
-          @click="$router.push('/blogInfo')"
         />
       </div>
     </div>

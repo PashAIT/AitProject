@@ -8,11 +8,9 @@
         transition-next="slide-left"
         swipeable
         animated
-        control-color="primary"
         padding
-        height="max-content"
         ref="carousel"
-        class="option-slider"
+        class="option-slider row justify-center items-center"
       >
         <q-carousel-slide
           v-for="item in sliderItems"
@@ -20,17 +18,15 @@
           :name="item.id"
           class="column no-wrap flex-center"
         >
-          <div class="one-opinion row items-center">
+          <div class="one-opinion">
             <img src="images/opinionPerson.png" alt="" />
-            <div class="person-opinion">
-              <div class="person-info">
-                <h4>{{ item.name }}</h4>
-                <p>{{ item.speciality }}</p>
-              </div>
-              <p>
-                {{ item.info }}
-              </p>
+            <div class="person-info">
+              <h4>{{ item.name }}</h4>
+              <p>{{ item.speciality }}</p>
             </div>
+            <p>
+              {{ item.info }}
+            </p>
           </div>
         </q-carousel-slide>
         <template v-slot:control>
@@ -101,55 +97,65 @@ export default {
   align-items: center;
   padding: 0 10.4166666667vw;
   margin-bottom: 100px;
-  h2 {
-    margin-bottom: 100px;
-  }
   .opinion-container {
-    width: 100%;
     .option-slider {
       width: 79vw;
       background: none;
       position: relative;
+
       .one-opinion {
         background: rgba(255, 255, 255, 0.5);
         border-radius: 50px;
-        padding: 90px;
+        padding: 4.7vw;
+        display: grid;
+        align-items: center;
+        z-index: 2;
+        grid-template-areas:
+          "personImg personName personName"
+          "personImg personText personText"
+          "personImg personText personText";
         > img {
-          width: 200px;
-          height: 200px;
+          // width: 10vw;
+          // height: 10vw;
           border-radius: 100%;
           margin-right: 60px;
+          grid-area: personImg;
+          min-width: 100px;
+          min-height: 100px;
         }
-        .person-opinion {
-          .person-info {
-            color: #004a5d;
-            margin-bottom: 30px;
-            h4 {
-              font-family: Nortar;
-              font-weight: bold;
-              font-size: 18px;
-              line-height: 140%;
-            }
-            p {
-              font-family: Montserrat;
-              font-weight: 500;
-              font-size: 18px;
-              line-height: 140%;
-            }
-          }
-          > p {
-            width: 31.25vw;
-            overflow: auto;
+        .person-info {
+          color: #004a5d;
+          margin-bottom: 10px;
+          grid-area: personName;
+          h4 {
             font-family: Nortar;
-            font-weight: normal;
-            font-size: 16px;
+            font-weight: bold;
+            font-size: 18px;
             line-height: 140%;
-            color: #0e243c;
-            min-height: 140px;
-            ::-webkit-scrollbar {
-              display: none;
-            }
           }
+          p {
+            font-family: Montserrat;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 140%;
+          }
+        }
+        > p {
+          width: 32.25vw;
+          height: 140px;
+          overflow: auto;
+          font-family: Nortar;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 140%;
+          color: #0e243c;
+          min-height: 140px;
+          grid-area: personText;
+          margin: 0;
+          overflow: auto;
+        }
+        ::-webkit-scrollbar {
+          display: none;
         }
       }
       .controls {
@@ -168,6 +174,36 @@ export default {
         .arrows {
           font-size: 1.9em;
         }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1350px) {
+  .menu {
+    .navBar {
+      display: none !important;
+    }
+    > img {
+      display: block !important;
+    }
+  }
+}
+@media screen and (max-width: 1150px) {
+  .option-slider {
+    width: 85vw !important;
+    .one-opinion {
+      width: 72%;
+      border-radius: 15% !important;
+      grid-template-areas:
+        "personImg personName personName"
+        "personText personText personText"
+        "personText personText personText" !important;
+      > img {
+        margin-bottom: 30px;
+      }
+      > p {
+        height: 100px !important;
+        width: 100% !important;
       }
     }
   }

@@ -11,6 +11,10 @@
   font-family: Montserrat;
   src: url("../../public/Fonts/montserrat/Montserrat-Regular.otf");
 }
+@font-face {
+  font-family: MontserratBold;
+  src: url("../../public/Fonts/montserrat/Montserrat-Bold.otf");
+}
 
 * {
   margin: 0;
@@ -38,6 +42,10 @@ h2 {
 .q-carousel__slide {
   padding: 0;
 }
+
 .q-expansion-item__container:hover {
   background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.q-panel {
+  overflow: hidden;
 }
