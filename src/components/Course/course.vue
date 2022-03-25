@@ -6,6 +6,7 @@
         class="course-stages"
         v-for="(stage, i) in sliderItems"
         :key="`stage${stage.id}`"
+        :class="`course-stage${stage.id}`"
       >
         <Stage
           :image="stage.image"
@@ -20,7 +21,8 @@
             alt=""
             :class="`stage${stage.id}path`"
             class="path"
-        /></Stage>
+          />
+        </Stage>
       </div>
     </div>
   </div>
@@ -233,6 +235,7 @@ export default {
       height: 100%;
       display: flex;
       .stage {
+        align-items: center;
         position: relative;
         img {
           position: absolute;
@@ -417,5 +420,39 @@ export default {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.5);
   transition: 0.8s;
+}
+@media screen and (max-width: 1150px) {
+  .stage-container {
+    width: 450px;
+    height: max-content !important;
+    flex-direction: column;
+    .stage {
+      width: 200px !important;
+      height: 200px !important;
+      margin: 0px !important;
+
+      img {
+        width: 80px !important;
+        height: 130px !important;
+      }
+    }
+    .course-stage2 {
+      align-self: flex-end !important;
+    }
+    .stage1path,
+    .stage3path {
+      left: 65% !important;
+      transform: rotateY(180deg) rotateZ(265deg);
+    }
+    .stage2path,
+    .stage4path {
+      top: 100% !important;
+      left: 0% !important;
+      transform: rotateX(0deg) rotateZ(268deg) !important;
+    }
+    .course-stage4 {
+      align-self: flex-end !important;
+    }
+  }
 }
 </style>

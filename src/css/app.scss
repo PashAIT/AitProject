@@ -27,7 +27,7 @@
 h2 {
   font-family: Nortar;
   font-weight: bold;
-  font-size: 2.08333333333vw;
+  font-size: 40px;
   line-height: 41px;
   color: #004a5d;
   margin-bottom: 100px;
@@ -48,4 +48,9 @@ h2 {
 }
 .q-panel {
   overflow: hidden;
+}
+@media screen and (max-width: 1150px) {
+  h2 {
+    font-size: 30px !important;
+  }
 }

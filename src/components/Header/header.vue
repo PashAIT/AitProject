@@ -159,9 +159,9 @@ header {
   height: 100vh;
   display: grid;
   grid-template-rows: 18vh auto;
-  // .modal-header {
-  //   margin-bottom: 10vw;
-  // }
+  .modal-header {
+    height: max-content;
+  }
   .modal-menu-items {
     .modal-navBar {
       font-family: "Nortar";

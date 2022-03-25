@@ -30,15 +30,15 @@ export default {
   box-sizing: border-box;
   cursor: pointer;
   img {
-    width: 13.3333333333vw;
-    height: 11vw;
+    width: 65%;
+    height: 60%;
   }
   h4 {
     font-size: 1.1vw;
     line-height: 24px;
     font-weight: bold;
     color: #0e243c;
-    font-family: Montserrat;
+    font-family: MontserratBold;
     margin-bottom: 0.5vw;
   }
   p {
@@ -47,6 +47,16 @@ export default {
     line-height: 16px;
     color: #004a5d;
     font-family: Nortar;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .stage {
+    h4 {
+      font-size: 16px !important;
+    }
+    p {
+      font-size: 12px !important;
+    }
   }
 }
 </style>
