@@ -25,3 +25,26 @@
     background: #636262;
   }
 }
+@mixin mobile {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 800px) {
+    @content;
+  }
+}
+
+@mixin noteBook {
+  @media screen and (max-width: $notebook_width) {
+    @content;
+  }
+}
+
+@mixin beforeNotebook {
+  @media screen and (max-width: 1600px) {
+    @content;
+  }
+}

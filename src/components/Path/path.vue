@@ -87,4 +87,29 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1150px) {
+  .path {
+    .path-item-container {
+      .paths {
+        .path-items {
+          margin-top: 40px !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .path {
+    .path-item-container {
+      flex-direction: column;
+      .paths {
+        width: max-content !important;
+      }
+      > img {
+        width: 310px !important;
+        height: 310px !important;
+      }
+    }
+  }
+}
 </style>

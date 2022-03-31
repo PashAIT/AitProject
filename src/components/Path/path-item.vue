@@ -25,6 +25,7 @@ export default {
   padding: 20px 40px;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 50px;
+  z-index: 1;
   .number {
     margin-right: 40px;
     font-family: Montserrat;
@@ -45,6 +46,25 @@ export default {
       max-width: 350px;
       font-size: 14px;
       line-height: 140%;
+    }
+  }
+}
+@media screen and (max-width: 1150px) {
+  .path-item {
+    padding: 20px !important;
+    .number {
+      font-size: 90px !important;
+      margin-right: 20px !important;
+      font-family: MontserratBold !important;
+    }
+    h3 {
+      font-size: 24px !important;
+      font-family: NorTarBold !important;
+    }
+    p {
+      width: 226px !important;
+      font-size: 12px !important;
+      margin: 0 !important;
     }
   }
 }

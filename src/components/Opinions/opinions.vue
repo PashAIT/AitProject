@@ -8,6 +8,7 @@
         transition-next="slide-left"
         swipeable
         animated
+        height="max-content"
         padding
         ref="carousel"
         class="option-slider row justify-center items-center"
@@ -18,15 +19,43 @@
           :name="item.id"
           class="column no-wrap flex-center"
         >
-          <div class="one-opinion">
-            <img src="images/opinionPerson.png" alt="" />
-            <div class="person-info">
-              <h4>{{ item.name }}</h4>
-              <p>{{ item.speciality }}</p>
+          <div class="gt-md one-opinion">
+            <div class="row">
+              <div class="col-4">
+                <img src="images/opinionPerson.png" alt="" />
+              </div>
+              <div class="col-8">
+                <div class="person-info">
+                  <h4>{{ item.name }}</h4>
+                  <p>{{ item.speciality }}</p>
+                </div>
+                <p class="item-info">
+                  {{ item.info }}
+                </p>
+              </div>
             </div>
-            <p>
-              {{ item.info }}
-            </p>
+          </div>
+          <div class="lt-lg one-opinion">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row items-center justify-center">
+                  <div class="col-md-5">
+                    <img src="images/opinionPerson.png" alt="" />
+                  </div>
+                  <div class="col-md-6">
+                    <div class="person-info q-ml-md">
+                      <h4>{{ item.name }}</h4>
+                      <p>{{ item.speciality }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 q-mt-sm">
+                <p class="item-info">
+                  {{ item.info }}
+                </p>
+              </div>
+            </div>
           </div>
         </q-carousel-slide>
         <template v-slot:control>
@@ -66,14 +95,14 @@ export default {
           speciality: "CEO Aranea",
           name: "Արման Սարգսյան",
           type: "first",
-          info: "Տեքստի մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։ Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
+          info: "Տեքստի մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։",
         },
         {
           id: 2,
           speciality: "CTO Aranea",
           name: "Կարեն Արամյան",
           type: "second",
-          info: "Մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։ Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
+          info: "Մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։",
         },
         {
           id: 3,
@@ -91,6 +120,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .opinions {
   display: flex;
   flex-direction: column;
@@ -99,34 +130,37 @@ export default {
   margin-bottom: 100px;
   .opinion-container {
     .option-slider {
-      width: 79vw;
+      width: 80vw;
       background: none;
       position: relative;
 
       .one-opinion {
+        width: 75%;
         background: rgba(255, 255, 255, 0.5);
-        border-radius: 50px;
-        padding: 4.7vw;
-        display: grid;
+        border-radius: 30px;
+        padding: 4vw;
         align-items: center;
-        z-index: 2;
-        grid-template-areas:
-          "personImg personName personName"
-          "personImg personText personText"
-          "personImg personText personText";
-        > img {
-          // width: 10vw;
-          // height: 10vw;
+        @include tablet {
+          width: 80%;
+        }
+        img {
           border-radius: 100%;
-          margin-right: 60px;
-          grid-area: personImg;
           min-width: 100px;
           min-height: 100px;
+          @include tablet {
+            width: 30vw;
+            height: 30vw;
+            margin-bottom: 5px;
+          }
         }
         .person-info {
           color: #004a5d;
           margin-bottom: 10px;
-          grid-area: personName;
+          @include tablet {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
           h4 {
             font-family: Nortar;
             font-weight: bold;
@@ -140,19 +174,26 @@ export default {
             line-height: 140%;
           }
         }
-        > p {
-          width: 32.25vw;
-          height: 140px;
+        .item-info {
+          width: 100%;
+          height: 120px;
           overflow: auto;
           font-family: Nortar;
           font-weight: normal;
           font-size: 16px;
           line-height: 140%;
           color: #0e243c;
-          min-height: 140px;
+          min-height: 120px;
           grid-area: personText;
           margin: 0;
           overflow: auto;
+          @include tablet {
+            font-size: 14px;
+            text-align: center;
+            height: 100px;
+            min-height: 120px;
+            margin-top: 0px;
+          }
         }
         ::-webkit-scrollbar {
           display: none;
@@ -165,6 +206,9 @@ export default {
         width: 96.5%;
         top: 0% !important;
         left: 0% !important;
+        @include tablet {
+          display: none;
+        }
         .arrows::before {
           box-shadow: 0 0 0;
         }
@@ -178,34 +222,9 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1350px) {
-  .menu {
-    .navBar {
-      display: none !important;
-    }
-    > img {
-      display: block !important;
-    }
-  }
-}
 @media screen and (max-width: 1150px) {
   .option-slider {
     width: 85vw !important;
-    .one-opinion {
-      width: 72%;
-      border-radius: 15% !important;
-      grid-template-areas:
-        "personImg personName personName"
-        "personText personText personText"
-        "personText personText personText" !important;
-      > img {
-        margin-bottom: 30px;
-      }
-      > p {
-        height: 100px !important;
-        width: 100% !important;
-      }
-    }
   }
 }
 </style>
