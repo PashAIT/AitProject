@@ -27,22 +27,31 @@
       transition-show="slide-up"
       transition-hide="slide-down"
     >
-      <q-card class="bg-white text-black menu-modal-container">
-        <div class="modal-header row justify-between items-center">
-          <img src="images/aitModalLogo.png" alt="ait logo" />
-          <img src="images/closeMenuModal.png" alt="close" v-close-popup />
+      <q-card class="bg-white text-black menu-modal-container row">
+        <div class="modal-header col-12">
+          <div class="row justify-between items-center">
+            <img class="aitLogo" src="images/aitModalLogo.png" alt="ait logo" />
+            <img
+              class="closeModal"
+              src="images/closeMenuModal.png"
+              alt="close"
+              v-close-popup
+            />
+          </div>
         </div>
-        <div class="modal-menu-items row justify-center items-center">
-          <ul class="modal-navBar column justify-evenly items-center">
-            <li
-              class="li"
-              v-for="navItem in navBar"
-              :key="navItem.id"
-              @click="changePage(navItem.id, navItem.path)"
-            >
-              {{ navItem.title }}
-            </li>
-          </ul>
+        <div class="modal-menu-items col-12">
+          <div class="row justify-center items-center">
+            <ul class="modal-navBar column justify-evenly items-center">
+              <li
+                class="li"
+                v-for="navItem in navBar"
+                :key="navItem.id"
+                @click="changePage(navItem.id, navItem.path)"
+              >
+                {{ navItem.title }}
+              </li>
+            </ul>
+          </div>
         </div>
       </q-card>
     </q-dialog>
@@ -109,6 +118,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 header {
   font-family: NorTar;
   font-style: normal;
@@ -126,6 +137,12 @@ header {
   .logo {
     z-index: 1;
     cursor: pointer;
+    img {
+      @include mobile {
+        width: 80px;
+        height: 80px;
+      }
+    }
   }
   .menu {
     .navBar {
@@ -146,6 +163,10 @@ header {
     > img {
       display: none;
       cursor: pointer;
+      @include mobile {
+        width: 40px;
+        height: 23px;
+      }
     }
   }
   > img {
@@ -156,13 +177,26 @@ header {
 }
 .menu-modal-container {
   padding: 1.5625vw 10.4166666667vw 0 10.4166666667vw;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 18vh auto;
+
   .modal-header {
-    height: max-content;
+    .aitLogo {
+      @include mobile {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .closeModal {
+      @include mobile {
+        width: 28px;
+        height: 25px;
+      }
+    }
   }
   .modal-menu-items {
+    height: 70%;
+    > div {
+      height: 100%;
+    }
     .modal-navBar {
       font-family: "Nortar";
       font-style: normal;
@@ -173,6 +207,9 @@ header {
       height: 100%;
       li {
         list-style-type: none;
+        @include mobile {
+          font-size: 30px;
+        }
       }
     }
   }
