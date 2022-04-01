@@ -27,22 +27,46 @@ export default {};
   justify-content: space-between;
   position: relative;
   margin-bottom: 194px;
+  @include mobile {
+    margin-bottom: 80px;
+  }
+  @include noteBook {
+    flex-direction: column-reverse !important;
+  }
   .welome-text {
+    @include noteBook {
+      align-items: center !important;
+      display: flex;
+      flex-direction: column;
+    }
     h1 {
       letter-spacing: 0.02em;
       font-size: 8.33333333333vw;
       line-height: 12vw;
       font-family: MonserratAlternates;
       color: #004a5e;
+      @include tablet() {
+        font-size: 120px;
+      }
+      @include mobile() {
+        font-size: 80px;
+      }
     }
     h3 {
       font-weight: bold;
       font-size: 4.16666666667vw;
-      font-family: Montserrat;
+      font-family: MontserratBold;
       color: #0e243c;
       padding-left: 8px;
       margin-top: -20px;
       margin-bottom: 5.55555555556vh;
+      @include tablet() {
+        font-size: 60px;
+        margin: 20px 0;
+      }
+      @include mobile() {
+        font-size: 40px;
+      }
     }
 
     p {
@@ -52,13 +76,21 @@ export default {};
       padding-left: 8px;
       font-family: NorTar;
       margin-bottom: 5.55555555556vh;
+      @include tablet() {
+        font-size: 20px;
+      }
+      @include mobile() {
+        font-size: 16px;
+        text-align: center;
+      }
     }
     button {
       @include button();
-      padding: 27px 50px;
+      padding: 25px 36px;
       border: none;
       font-family: NorTar;
       font-weight: bold;
+      font-size: 15px;
     }
   }
   .man {
@@ -70,54 +102,32 @@ export default {};
     justify-content: center;
     align-items: center;
     z-index: 1;
+    @include tablet {
+      width: 550px;
+      height: 550px;
+      margin-bottom: 20px;
+    }
+    @include mobile {
+      width: 280px;
+      height: 280px;
+    }
     img {
       width: 24vw;
       height: 33vw;
+      @include tablet {
+        width: 360px;
+        height: 490px;
+      }
+      @include mobile {
+        width: 170px;
+        height: 230px;
+      }
     }
   }
   > img {
     position: absolute;
     top: 0px;
     right: 0px;
-  }
-}
-@media screen and (max-width: 1150px) {
-  .welcome-content {
-    flex-direction: column-reverse !important;
-    .welome-text {
-      align-items: center !important;
-      display: flex;
-      flex-direction: column;
-      h1 {
-        letter-spacing: 0.02em;
-        font-size: 12vw;
-        line-height: 12vw;
-        font-family: MonserratAlternates;
-        color: #004a5e;
-      }
-      h3 {
-        font-size: 6vw !important;
-        font-family: MontserratBold !important;
-        margin-top: 5px !important;
-        margin-bottom: 2vh;
-      }
-
-      p {
-        font-size: 2vw;
-        margin-bottom: 3.3vh;
-      }
-      button {
-        padding: 24px 43px;
-      }
-    }
-    .man {
-      width: 49vw;
-      height: 49vw;
-      img {
-        width: 70%;
-        height: 42vw;
-      }
-    }
   }
 }
 </style>

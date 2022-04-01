@@ -38,12 +38,12 @@
 }
 
 @mixin noteBook {
-  @media screen and (max-width: $notebook_width) {
+  @media screen and (max-width: 1150px) {
     @content;
   }
 }
 
-@mixin beforeNotebook {
+@mixin afterNotebook {
   @media screen and (max-width: 1600px) {
     @content;
   }
