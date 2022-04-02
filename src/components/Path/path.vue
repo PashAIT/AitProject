@@ -47,6 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
 .path {
   display: flex;
   flex-direction: column;
@@ -59,14 +60,22 @@ export default {
   .path-item-container {
     display: flex;
     align-items: center;
-
+    @include tablet {
+      flex-direction: column;
+    }
     .paths {
       width: 39.1vw;
       display: flex;
       flex-direction: column;
       margin-right: 0;
+      @include tablet {
+        width: max-content !important;
+      }
       .path-items {
         margin-top: 60px;
+        @include noteBook {
+          margin-top: 40px !important;
+        }
       }
       :first-child {
         margin-top: 0;
@@ -82,32 +91,11 @@ export default {
       }
     }
     > img {
-      width: 39vw;
-      height: 39vw;
-    }
-  }
-}
-@media screen and (max-width: 1150px) {
-  .path {
-    .path-item-container {
-      .paths {
-        .path-items {
-          margin-top: 40px !important;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 900px) {
-  .path {
-    .path-item-container {
-      flex-direction: column;
-      .paths {
-        width: max-content !important;
-      }
-      > img {
-        width: 310px !important;
-        height: 310px !important;
+      width: 38vw;
+      height: 38vw;
+      @include tablet {
+        width: 310px;
+        height: 310px;
       }
     }
   }

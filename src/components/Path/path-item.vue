@@ -1,5 +1,5 @@
 <template>
-  <div class="path-item">
+  <div class="path-item items-center row">
     <span class="number">0{{ id }}</span>
     <div class="path-text">
       <h3>{{ title }}</h3>
@@ -19,20 +19,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .path-item {
-  display: flex;
-  align-items: center;
   padding: 20px 40px;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 50px;
   z-index: 1;
+  @include noteBook {
+    padding: 18px;
+  }
+  @include mobile {
+    border-radius: 30px;
+  }
   .number {
-    margin-right: 40px;
+    // margin-right: 40px;
     font-family: Montserrat;
     font-weight: bold;
     font-size: 120px;
     line-height: 146px;
     color: #004a5d;
+    @include noteBook {
+      width: 114px;
+      height: 110px;
+      font-size: 90px;
+      margin-right: 10px;
+      font-family: MontserratBold;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    @include mobile {
+      width: 102px;
+      height: 98px;
+      font-size: 80px;
+    }
   }
   .path-text {
     color: #0e243c;
@@ -41,30 +62,43 @@ export default {
       font-size: 30px;
       line-height: 30px;
       margin-bottom: 10px;
+      @include noteBook {
+        font-size: 24px;
+        font-family: NorTarBold;
+      }
+      @include mobile {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
     }
     p {
       max-width: 350px;
       font-size: 14px;
       line-height: 140%;
+      @include noteBook {
+        width: 140px;
+        font-size: 10px;
+        margin: 0;
+      }
     }
   }
 }
 @media screen and (max-width: 1150px) {
   .path-item {
-    padding: 20px !important;
+    // padding: 20px !important;
     .number {
-      font-size: 90px !important;
-      margin-right: 20px !important;
-      font-family: MontserratBold !important;
+      // font-size: 90px !important;
+      // margin-right: 20px !important;
+      // font-family: MontserratBold !important;
     }
     h3 {
-      font-size: 24px !important;
-      font-family: NorTarBold !important;
+      // font-size: 24px !important;
+      // font-family: NorTarBold !important;
     }
     p {
-      width: 226px !important;
-      font-size: 12px !important;
-      margin: 0 !important;
+      // width: 226px !important;
+      // font-size: 12px !important;
+      // margin: 0 !important;
     }
   }
 }
