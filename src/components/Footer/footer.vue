@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer row items-center justify-center">
     <div class="footer-menu">
       <ul>
         <li>Գլխավոր</li>
@@ -8,16 +8,6 @@
         <li>AIT բլոգ</li>
         <li>Կապ</li>
         <li>Մուտք</li>
-      </ul>
-    </div>
-    <div class="footer-stages">
-      <ul>
-        <li>Փուլեր</li>
-        <li>HTML&CSS</li>
-        <li>javascript</li>
-        <li>Advaced JS</li>
-        <li>Front-End / React JS</li>
-        <li>Back-End / Node. JS</li>
       </ul>
     </div>
     <div class="footer-contact">
@@ -44,14 +34,17 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .footer {
   height: 470px;
   background: #0e243c;
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  @include mobile {
+    flex-direction: column;
+    height: 770px;
+    justify-content: space-around;
+  }
   ul {
     li {
       list-style-type: none;
@@ -67,10 +60,17 @@ export default {};
     }
   }
   div {
-    margin-left: 5vw;
+    margin-left: 10vw;
+    @include mobile {
+      margin-left: 20vw;
+      align-self: flex-start;
+    }
   }
-  :first-child {
+  > :first-child {
     margin-left: 0;
+    @include mobile {
+      margin-left: 20vw;
+    }
   }
   .footer-contact {
     ul {
