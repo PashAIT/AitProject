@@ -16,12 +16,22 @@
           :class="`stage${stage.id}`"
           @click="openModal(i)"
         >
-          <img
-            src="images/path.png"
-            alt=""
-            :class="`stage${stage.id}path`"
-            class="path"
-          />
+          <div class="gt-xs">
+            <img
+              src="images/path.png"
+              alt=""
+              :class="`stage${stage.id}path`"
+              class="path"
+            />
+          </div>
+          <div class="lt-sm">
+            <img
+              src="images/path-small.png"
+              alt=""
+              :class="`stage${stage.id}path`"
+              class="path"
+            />
+          </div>
         </Stage>
       </div>
     </div>
@@ -231,37 +241,94 @@ export default {
   .stage-container {
     height: 43vw;
     display: flex;
+    @include noteBook {
+      width: 450px;
+      height: max-content;
+      flex-direction: column;
+    }
+    @include mobile {
+      width: 290px;
+    }
     .course-stages {
       height: 100%;
       display: flex;
       .stage {
         align-items: center;
         position: relative;
+        @include noteBook {
+          width: 200px;
+          height: 200px;
+          margin: 0px;
+        }
+        @include mobile {
+          width: 150px;
+          height: 150px;
+        }
         img {
           position: absolute;
           width: 28%;
           height: 10vw;
+          @include noteBook {
+            width: 80px;
+            height: 130px;
+          }
+          @include mobile {
+            width: 64px;
+            height: 111px;
+          }
         }
       }
     }
-    .stage1path {
-      bottom: -60%;
-      left: 52%;
+    .course-stage2 {
+      @include noteBook {
+        align-self: flex-end !important;
+      }
     }
-    .stage2path {
+    .course-stage4 {
+      @include noteBook {
+        align-self: flex-end !important;
+      }
+    }
+    .stage2path,
+    .stage4path {
       top: -60%;
       left: 50%;
       transform: rotateX(170deg);
+      @include noteBook {
+        top: 100% !important;
+        left: 0% !important;
+        transform: rotateX(0deg) rotateZ(272deg) !important;
+      }
+      @include mobile {
+        top: 107% !important;
+        left: 20% !important;
+        width: 64px !important;
+        height: 64px !important;
+      }
     }
-    .stage3path {
+    .stage3path,
+    .stage1path {
       bottom: -60%;
-      left: 43%;
+      left: 52%;
+      @include noteBook {
+        left: 65%;
+        transform: rotateY(180deg) rotateZ(265deg);
+      }
+      @include mobile {
+        left: 27% !important;
+        transform: rotateY(121deg) rotateZ(268deg);
+      }
     }
-    .stage4path {
-      top: -60%;
-      left: 40%;
-      transform: rotateX(180deg);
-    }
+    // .stage4path {
+    //   top: -60%;
+    //   left: 40%;
+    //   transform: rotateX(180deg);
+    //   @include noteBook {
+    //     top: 100% !important;
+    //     left: 0% !important;
+    //     transform: rotateX(0deg) rotateZ(268deg) !important;
+    //   }
+    // }
     .stage5path {
       display: none;
     }
@@ -277,7 +344,7 @@ export default {
       margin-left: -65px;
     }
     .stage5 {
-      margin-left: -90px;
+      margin-left: -70px;
     }
   }
 }
@@ -420,39 +487,5 @@ export default {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.5);
   transition: 0.8s;
-}
-@media screen and (max-width: 1150px) {
-  .stage-container {
-    width: 450px;
-    height: max-content !important;
-    flex-direction: column;
-    .stage {
-      width: 200px !important;
-      height: 200px !important;
-      margin: 0px !important;
-
-      img {
-        width: 80px !important;
-        height: 130px !important;
-      }
-    }
-    .course-stage2 {
-      align-self: flex-end !important;
-    }
-    .stage1path,
-    .stage3path {
-      left: 65% !important;
-      transform: rotateY(180deg) rotateZ(265deg);
-    }
-    .stage2path,
-    .stage4path {
-      top: 100% !important;
-      left: 0% !important;
-      transform: rotateX(0deg) rotateZ(268deg) !important;
-    }
-    .course-stage4 {
-      align-self: flex-end !important;
-    }
-  }
 }
 </style>

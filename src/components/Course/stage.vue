@@ -18,6 +18,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .stage {
   width: 18.75vw;
   height: 18vw;
@@ -40,6 +42,12 @@ export default {
     color: #0e243c;
     font-family: MontserratBold;
     margin-bottom: 0.5vw;
+    @include noteBook {
+      font-size: 16px;
+    }
+    @include mobile {
+      font-size: 10px;
+    }
   }
   p {
     font-weight: bold;
@@ -47,15 +55,11 @@ export default {
     line-height: 16px;
     color: #004a5d;
     font-family: Nortar;
-  }
-}
-@media screen and (max-width: 1150px) {
-  .stage {
-    h4 {
-      font-size: 16px !important;
+    @include noteBook {
+      font-size: 12px;
     }
-    p {
-      font-size: 12px !important;
+    @include mobile {
+      font-size: 9px;
     }
   }
 }
