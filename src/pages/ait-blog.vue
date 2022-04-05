@@ -6,7 +6,7 @@
         v-for="video in videos"
         :key="'video' + video.id"
         :videoData="video"
-        class="video col"
+        class="video"
       />
     </div>
     <div class="blogs column items-center">
@@ -1062,9 +1062,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../css/mixins.scss";
+
 .ait-blog {
   .videos {
     margin-bottom: 100px;
+    :first-child {
+      @include noteBook {
+        margin-top: 0;
+      }
+    }
   }
   .blogs {
     .blog-month {

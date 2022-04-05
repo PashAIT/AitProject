@@ -116,7 +116,7 @@ export default {
           name: "Էրիկ Մուրադյան",
           speciality: "Front-End Developer",
           fbLink: "erik.muradyan.50",
-          linkedIn: "",
+          linkedIn: "eric-muradyan-961732233/",
           image: "Erik.jpg",
         },
         {
@@ -124,7 +124,7 @@ export default {
           name: "Պարույր Կարապետյան",
           speciality: "Front-End Developer",
           fbLink: "paruyr.karapetyan",
-          linkedIn: "",
+          linkedIn: "pash-karapetyan-a0443a234/",
           image: "Pash.jpg",
         },
       ],
