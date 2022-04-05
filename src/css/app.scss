@@ -54,11 +54,13 @@ h2 {
 .q-panel {
   overflow: hidden;
 }
+
 h2 {
   @include tablet {
     font-size: 30px;
   }
   @include mobile {
     font-size: 20px;
+    margin-bottom: 60px;
   }
 }

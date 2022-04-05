@@ -1,18 +1,21 @@
 <template>
   <div class="blog column items-center">
-    <img :src="'images/' + image" :alt="name" />
-    <h3>{{ name }}</h3>
-    <p>{{ minInfo }}</p>
-    <button>Կարդալ ավելին</button>
+    <img :src="'images/' + blogData.image" :alt="blogData.name" />
+    <h3>{{ blogData.name }}</h3>
+    <p>{{ blogData.minInfo }}</p>
+    <button @click="goToBlogInfo">Կարդալ ավելին</button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    image: String,
-    name: String,
-    minInfo: String,
+    blogData: Object,
+  },
+  methods: {
+    goToBlogInfo() {
+      this.$router.push(`/blogInfo?${this.blogData.id}`);
+    },
   },
 };
 </script>

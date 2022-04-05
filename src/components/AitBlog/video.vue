@@ -1,11 +1,11 @@
 <template>
   <div class="video row justify-between items-center">
     <video controls>
-      <source :src="'videos/' + video" type="video/mp4" />
+      <source :src="'videos/' + videoData.video" type="video/mp4" />
     </video>
     <div class="info">
-      <h3>{{ title }}</h3>
-      <p>{{ text }}</p>
+      <h3>{{ videoData.title }}</h3>
+      <p>{{ videoData.text }}</p>
     </div>
   </div>
 </template>
@@ -13,10 +13,7 @@
 <script>
 export default {
   props: {
-    video: String,
-    title: String,
-    text: String,
-    backgroundImg: String,
+    videoData: Object,
   },
 };
 </script>

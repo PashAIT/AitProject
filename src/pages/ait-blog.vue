@@ -5,10 +5,7 @@
       <Video
         v-for="video in videos"
         :key="'video' + video.id"
-        :text="video.text"
-        :title="video.title"
-        :video="video.video"
-        :backgroundImg="video.backgroundImg"
+        :videoData="video"
         class="video col"
       />
     </div>
@@ -64,9 +61,7 @@
         <blog-item
           v-for="blog in activeMonth.blogs"
           :key="`blog${blog.id}`"
-          :image="blog.image"
-          :name="blog.name"
-          :minInfo="blog.minInfo"
+          :blogData="blog"
           class="col-4.5"
         />
       </div>
@@ -1062,6 +1057,7 @@ export default {
       return this.months[+this.slide - 1];
     },
   },
+  methods: {},
 };
 </script>
 
