@@ -85,6 +85,10 @@ export default defineComponent({
     right: 30px;
     top: 80%;
     cursor: pointer;
+    @include mobile {
+      width: 55px;
+      height: 55px;
+    }
   }
 }
 .forPages {

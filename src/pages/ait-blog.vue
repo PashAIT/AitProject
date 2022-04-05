@@ -62,7 +62,8 @@
           v-for="blog in activeMonth.blogs"
           :key="`blog${blog.id}`"
           :blogData="blog"
-          class="col-4.5"
+          class="col-4.5 blog"
+          :class="`blog${blog.id}`"
         />
       </div>
     </div>
@@ -1077,9 +1078,12 @@ export default {
     .blog-month {
       margin-bottom: 100px;
       .month-carousel {
-        width: 600px;
+        width: 550px;
         background: #f8f8f8;
         height: 100px !important;
+        @include mobile {
+          width: 280px;
+        }
 
         .month-name {
           font-family: Nortar;
@@ -1088,12 +1092,39 @@ export default {
           font-size: 40px;
           line-height: 41px;
           color: #004a5d;
+          @include mobile {
+            font-size: 18px;
+            text-align: center;
+          }
         }
       }
     }
     .blog-container {
       padding: 0 10vw;
       margin-bottom: 100px;
+      @include noteBook {
+        padding: 0 8vw;
+      }
+      @include mobile {
+        margin-left: 0;
+      }
+      .blog1,
+      .blog3,
+      .blog5,
+      .blog7,
+      .blog9 {
+        @include mobile {
+          margin: 0 8px 20px 0;
+        }
+      }
+      .blog2,
+      .blog4,
+      .blog6,
+      .blog8 {
+        @include mobile {
+          margin: 0 0 20px 8px;
+        }
+      }
     }
     .controls {
       position: absolute;
@@ -1102,6 +1133,9 @@ export default {
       width: 91%;
       top: 0% !important;
       left: 0% !important;
+      @include mobile {
+        width: 244px;
+      }
       .arrows::before {
         box-shadow: 0 0 0;
       }
