@@ -5,7 +5,7 @@
     <Footer v-if="!onRegistration" />
     <div class="scrollDiv" v-if="scrollDiv">
       <img
-        v-if="!onRegistration"
+        v-if="scrollDiv"
         class="scrollimage"
         src="../public/images/Scroll.png"
         alt=""
@@ -45,14 +45,11 @@ export default defineComponent({
     },
     GoToTop() {
       window.scrollTo(0, 0);
-      console.log(this.$route.path);
-    },
-    getCourseScrolltop() {
-      return;
     },
   },
   created() {
     window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.foundersAnimation);
   },
   provide() {
     return {

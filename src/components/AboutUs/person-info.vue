@@ -11,7 +11,7 @@
       <a :href="`https://www.facebook.com/${fbLink}`" target="blank"
         ><img src="images/facebook.png" alt="facebook"
       /></a>
-      <a :href="`https://www.facebook.com/${inLink}`"
+      <a :href="`https://www.linkedin.com/in/${inLink}`" target="blank"
         ><img src="images/linkedIn.png" alt="linkedin"
       /></a>
     </div>
@@ -31,13 +31,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .person-info {
-  width: 32.2916666667vw;
-  max-width: 620px;
-  min-width: 500px;
+  width: 500px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.5);
-  padding: 60px 0 30px 0;
+  padding: 60px 30px;
+  @include noteBook {
+    width: 380px;
+    border-radius: 30px;
+    padding: 40px 50px;
+  }
+  @include mobile {
+    width: 280px;
+    padding: 25px 29px;
+  }
   > .person-image {
     width: 280px;
     height: 280px;
@@ -45,6 +54,15 @@ export default {
     border-radius: 100%;
     background-size: cover;
     background-position: top right;
+    @include noteBook {
+      width: 240px;
+      height: 240px;
+      margin-bottom: 20px;
+    }
+    @include mobile {
+      width: 150px;
+      height: 150px;
+    }
   }
   h4 {
     color: #0e243c;
@@ -54,6 +72,12 @@ export default {
     font-size: 30px;
     line-height: 30px;
     margin-bottom: 10px;
+    @include noteBook {
+      font-size: 24px;
+    }
+    @include mobile {
+      font-size: 17px;
+    }
   }
   h5 {
     margin-bottom: 20px;
@@ -63,6 +87,9 @@ export default {
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
+    @include noteBook {
+      font-size: 14px;
+    }
   }
   .icons {
     > :first-child {

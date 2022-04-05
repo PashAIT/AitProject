@@ -98,7 +98,7 @@ export default {
           name: "Երվանդ Թադևոսյան",
           speciality: "CEO",
           fbLink: "YervandSamvelichTadevosyan",
-          linkedIn: "",
+          linkedIn: "yervand-tadevosyan-89a53114a/",
           image: "Yero.jpg",
         },
         {
@@ -106,7 +106,7 @@ export default {
           name: "Ռաֆայել Ջամալյան",
           speciality: "CTO",
           fbLink: "raf.raf.798",
-          linkedIn: "",
+          linkedIn: "rafayel-jamalyan-2901261b2/",
           image: "Rafo.jpg",
         },
       ],
@@ -199,9 +199,15 @@ export default {
   }
   &-founders {
     margin-bottom: 100px;
+    @include mobile {
+      margin-bottom: 80px;
+    }
   }
   &-trainers {
     margin-bottom: 200px;
+    @include mobile {
+      margin-bottom: 80px;
+    }
   }
   .questions-container {
     margin-bottom: 100px;
@@ -217,6 +223,15 @@ export default {
         padding: 40px 100px;
         width: 79.6875vw;
         margin-top: 40px;
+        @include noteBook {
+          padding: 30px 100px;
+          font-size: 16px;
+        }
+        @include mobile {
+          border-radius: 20px;
+          font-size: 12px;
+          padding: 10px 20px;
+        }
         .answer {
           background: rgba(255, 255, 255, 0.1);
           margin-top: 20px;
@@ -226,6 +241,20 @@ export default {
           font-size: 18px;
           line-height: 150%;
           color: #0e243c;
+          @include noteBook {
+            font-size: 14px;
+          }
+
+          @include mobile {
+            font-size: 10px;
+            margin: 0;
+            padding: 0;
+          }
+          > div {
+            @include mobile {
+              padding-top: 10px;
+            }
+          }
         }
       }
       .my-custom-class {
