@@ -5,7 +5,7 @@
       <div class="info row justify-between items-center">
         <p>
           Կենտրոնի նպատակն է ապակենտրոնացնել ՏՏ ոլորտը և զարգացնել այն նաև
-          մարզերում ստեղծով ՏՏ էկոհամակարգ։ Կենտրոնը ընձեռում է բարձրորակ ՏՏ
+          մարզերում ստեղծելով ՏՏ էկոհամակարգ։ Կենտրոնը ընձեռում է բարձրորակ ՏՏ
           կրթության հնարավորություն Արարատի բնակչությանը։ 2022 թվականից մենք
           ստեղծեցինք նաև մեր օնլայն կրթության մոդելը, ընձեռելով հնարավորություն
           ՀՀ բոլոր մարզերի և Արցախի բնակչությանը ստանալու բարձրորակ և մատչելի ՏՏ
@@ -228,12 +228,12 @@ export default {
           font-size: 16px;
         }
         @include mobile {
-          border-radius: 20px;
+          border-radius: 20px !important;
           font-size: 12px;
           padding: 10px 20px;
         }
         .answer {
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.01);
           margin-top: 20px;
           font-family: Nortar;
           font-style: normal;
@@ -259,7 +259,7 @@ export default {
       }
       .my-custom-class {
         &:hover {
-          background: rgba(255, 255, 255, 0.5);
+          background: rgba(255, 255, 255, 1);
         }
       }
       :first-child {
