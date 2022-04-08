@@ -37,9 +37,9 @@ export default defineComponent({
     },
     handleScroll() {
       this.scrollY = window.scrollY;
-      if (this.scrollY >= 700) {
+      if (this.scrollY >= 850) {
         this.scrollDiv = true;
-      } else if (this.scrollY < 700) {
+      } else if (this.scrollY < 850) {
         this.scrollDiv = false;
       }
     },
@@ -93,5 +93,8 @@ export default defineComponent({
 }
 .forPages {
   height: 100vh;
+  @include noteBook {
+    height: max-content;
+  }
 }
 </style>
