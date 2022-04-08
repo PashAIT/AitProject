@@ -119,7 +119,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../css/mixins.scss";
-
 header {
   font-family: NorTar;
   font-style: normal;
@@ -133,7 +132,9 @@ header {
   margin-bottom: 1.5vw;
   color: #004a5d;
   position: relative;
-
+  @include afterNotebook {
+    margin-bottom: 0;
+  }
   .logo {
     z-index: 1;
     cursor: pointer;
@@ -147,6 +148,9 @@ header {
   .menu {
     .navBar {
       display: flex;
+      @include tablet {
+        display: none;
+      }
       .li {
         list-style-type: none;
         margin-left: 60px;
@@ -166,6 +170,7 @@ header {
       @include mobile {
         width: 40px;
         height: 23px;
+        display: block;
       }
     }
   }
@@ -205,6 +210,9 @@ header {
       line-height: 51px;
       color: #004a5d;
       height: 100%;
+      @include mobile {
+        justify-content: space-between;
+      }
       li {
         list-style-type: none;
         @include mobile {
@@ -216,16 +224,6 @@ header {
 }
 .noScrollPages {
   padding-right: 10.9895833334vw;
-}
-@media screen and (max-width: 1300px) {
-  .menu {
-    .navBar {
-      display: none !important;
-    }
-    > img {
-      display: block !important;
-    }
-  }
 }
 @media screen and (min-width: 1299px) {
   .menu-modal-container {
