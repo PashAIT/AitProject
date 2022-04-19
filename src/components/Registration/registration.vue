@@ -3,7 +3,9 @@
     <h2>Գրանցում</h2>
     <div class="registration-container row justify-center">
       <img src="images/registration-person.png" alt="person" class="self-end" />
-      <div class="registration-form row justify-center items-center self-start">
+      <div
+        class="registration-form row justify-center items-center self-start q-mt-lg"
+      >
         <div class="inputs-container row justify-evenly">
           <input
             v-model="name"
@@ -72,23 +74,50 @@ export default {
 .registration {
   h2 {
     margin-bottom: 3vw;
+    @include noteBook {
+      margin-bottom: 100px;
+    }
   }
   .registration-container {
     width: 100%;
+
     img {
-      width: 32vw;
-      height: 30vw;
+      width: 750px;
+      height: 740px;
+      @include afterNotebook {
+        width: 40vw;
+        height: 43vw;
+      }
+
+      @include noteBook {
+        width: 40vw;
+        height: 40vw;
+        position: absolute;
+        left: 0;
+        bottom: 0%;
+      }
+      @include tablet {
+        display: none;
+      }
     }
+
     .registration-form {
-      width: 39.0625vw;
-      padding: 4vh 1vw;
+      width: 750px;
+      padding: 90px 40px;
       background: rgba(255, 255, 255, 0.5);
       border-radius: 50px;
-      margin-bottom: 5vh;
+      @include afterNotebook {
+        width: 50%;
+        padding: 70px 20px;
+      }
+      @include noteBook {
+        width: 640px;
+        padding: 50px 40px;
+      }
       .inputs-container {
-        margin-bottom: 5vh;
+        margin-bottom: 80px;
         .inputs {
-          width: 15.625vw;
+          width: 45%;
           height: 60px;
           padding-left: 40px;
           font-family: Nortar;
@@ -100,6 +129,7 @@ export default {
           border: 2px solid #004a5d;
           border-radius: 20px;
           margin-top: 40px;
+          z-index: 10;
         }
         .inputForName,
         .inputForSurname {
@@ -119,6 +149,7 @@ export default {
         font-size: 16px;
         line-height: 16px;
         padding: 22px 74px;
+        z-index: 1000;
       }
     }
   }

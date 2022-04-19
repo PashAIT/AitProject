@@ -148,7 +148,7 @@ header {
   .menu {
     .navBar {
       display: flex;
-      @include tablet {
+      @include noteBook {
         display: none;
       }
       .li {
@@ -170,6 +170,8 @@ header {
       @include mobile {
         width: 40px;
         height: 23px;
+      }
+      @include noteBook {
         display: block;
       }
     }
@@ -182,7 +184,6 @@ header {
 }
 .menu-modal-container {
   padding: 1.5625vw 10.4166666667vw 0 10.4166666667vw;
-
   .modal-header {
     .aitLogo {
       @include mobile {

@@ -92,9 +92,6 @@ export default defineComponent({
   }
 }
 .forPages {
-  height: 100vh;
-  @include noteBook {
-    height: max-content;
-  }
+  min-height: 100vh;
 }
 </style>
