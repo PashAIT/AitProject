@@ -77,6 +77,9 @@ export default {
     @include noteBook {
       margin-bottom: 100px;
     }
+    @include tablet {
+      margin-bottom: 60px;
+    }
   }
   .registration-container {
     width: 100%;
@@ -114,8 +117,21 @@ export default {
         width: 640px;
         padding: 50px 40px;
       }
+      @include tablet {
+        width: 570px;
+        padding: 40px 20px;
+      }
+      @include mobile {
+        width: 300px;
+        border-radius: 30px;
+        margin-bottom: 55px;
+        margin-top: 0;
+      }
       .inputs-container {
         margin-bottom: 80px;
+        @include mobile {
+          margin-bottom: 40px;
+        }
         .inputs {
           width: 45%;
           height: 60px;
@@ -129,11 +145,21 @@ export default {
           border: 2px solid #004a5d;
           border-radius: 20px;
           margin-top: 40px;
+          outline: none;
           z-index: 10;
+          @include mobile {
+            width: 240px;
+            font-size: 12px;
+          }
         }
         .inputForName,
         .inputForSurname {
           margin-top: 0px;
+        }
+        .inputForSurname {
+          @include mobile {
+            margin-top: 40px;
+          }
         }
         .inputForName,
         .inputForAge,

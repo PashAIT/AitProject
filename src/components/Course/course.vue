@@ -349,17 +349,14 @@ export default {
   }
 }
 .course-modal {
-  .modal-header {
-    background: rgba(14, 36, 60, 0.8) !important;
-  }
   &-card {
     border-radius: 50px;
     background: none;
     overflow: hidden;
+    background: rgba(14, 36, 60, 0.8);
     .course-modal-container {
       max-height: 880px;
       padding: 2vh 4vw 5vh 4vw;
-      background: rgba(14, 36, 60, 0.8) !important;
       .modal-info {
         color: #fff;
         > img {
@@ -454,6 +451,7 @@ export default {
   background: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   position: absolute;
+
   img {
     width: 6.25vw;
     height: 5vw;
