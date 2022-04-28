@@ -61,6 +61,7 @@ export default {
       width: 32vw;
       height: 22vw;
       margin-bottom: 10px;
+      border-radius: 10px;
     }
   }
   h3 {

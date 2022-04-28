@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-info-container justify-center items-center">
+  <div class="blog-info-container row justify-center items-center">
     <div class="blog-info row justify-center items-center">
       <img src="images/ilonmask.png" alt="ilon mask" class="person-img" />
       <div class="blog-text">
@@ -42,24 +42,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../css/mixins.scss";
+
 .blog-info-container {
   padding: 0 10.4166666667vw 0;
   background: #f8f8f8;
-
+  @include noteBook {
+    padding-bottom: 50px;
+  }
   .blog-info {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
     padding: 13.25925925926vh 5vw 9.25925925926vh;
     position: relative;
+    @include noteBook {
+      padding: 60px;
+      width: 750px;
+    }
+    @include mobile {
+      padding: 80px 20px 40px 20px;
+      width: 300px;
+      border-radius: 30px;
+    }
     .person-img {
       width: 26vw;
       height: 20vw;
       object-fit: cover;
       border-radius: 30px;
       margin-right: 4.6875vw;
+      @include afterNotebook {
+        width: 335px;
+        object-fit: contain;
+        margin-right: 3vw;
+      }
+      @include noteBook {
+        width: 460px;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 40px;
+      }
+      @include mobile {
+        width: 250px;
+        margin-bottom: 20px;
+      }
     }
     h2 {
       margin-bottom: 40px;
+      @include noteBook {
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+      @include mobile {
+        font-size: 24px;
+        text-align: center;
+      }
     }
     p {
       width: 37vw;
@@ -72,6 +108,15 @@ export default {
       line-height: 140%;
       color: #000000;
       margin: 0;
+      @include noteBook {
+        width: 460px;
+        height: auto;
+        font-size: 14px;
+      }
+      @include mobile {
+        width: 250px;
+        font-size: 10px;
+      }
     }
     ::-webkit-scrollbar {
       display: none;
@@ -82,6 +127,17 @@ export default {
     top: 10%;
     right: 40px;
     cursor: pointer;
+    @include noteBook {
+      width: 40px;
+      height: 40px;
+      right: 20px;
+    }
+    @include mobile {
+      width: 50px;
+      height: 50px;
+      top: 10px;
+      right: 10px;
+    }
   }
 }
 </style>
