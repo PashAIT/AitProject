@@ -290,10 +290,10 @@ export default {
       return this.sliderItems[this.activeIndex];
     },
     prevDisabled() {
-      return this.activeIndex === 0;
+      return this.currentSlide - 1 === 0;
     },
     nextDisabled() {
-      return this.activeIndex === this.sliderItems.length - 1;
+      return this.currentSlide - 1 === this.sliderItems.length - 1;
     },
     isLastStep() {
       return this.activeIndex === this.sliderItems.length - 1;
