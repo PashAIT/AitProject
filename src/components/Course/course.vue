@@ -36,97 +36,164 @@
       </div>
     </div>
   </div>
-  <div class="">
-    <q-dialog v-model="bar" persistent full-width class="course-modal">
-      <q-card class="course-modal-card">
-        <div class="modal-header row justify-end items-center q-pt-lg q-pr-xl">
-          <img
-            src="images/Esc.png"
-            alt="Esc"
-            v-close-popup
-            class="cursor-pointer"
-          />
-        </div>
-        <div class="course-modal-container">
-          <ul class="steps-list">
-            <li
-              v-for="(stage, idx) in sliderItems"
-              :key="stage.title"
-              class="row items-center"
-              :class="`step${stage.id}`"
-            >
-              <div
-                class="steps-item row items-center justify-center"
-                :class="{
-                  active: idx === activeIndex,
-                  done: idx < activeIndex,
-                  [`step${stage.id}`]: true,
-                }"
-                @click="setActive(idx)"
-              >
-                <img :src="`images/${stage.image}`" alt="" />
-              </div>
-              <img
-                src="images/Line.png"
-                alt="line"
-                :class="'line' + stage.id"
-                class="lines"
-              />
-            </li>
-          </ul>
-          <q-carousel
-            v-model="currentSlide"
-            transition-prev="slide-right"
-            transition-next="slide-left"
-            swipeable
-            animated
-            control-color="primary"
-            padding
-            height="max-content"
-            ref="carousel"
+
+  <q-dialog v-model="bar" persistent full-width class="gt-xs course-modal">
+    <q-card class="course-modal-card">
+      <div class="modal-header row justify-end items-center q-pt-lg q-pr-xl">
+        <img
+          src="images/Esc.png"
+          alt="Esc"
+          v-close-popup
+          class="cursor-pointer"
+        />
+      </div>
+      <div class="course-modal-container">
+        <ul class="steps-list">
+          <li
+            v-for="(stage, idx) in sliderItems"
+            :key="stage.title"
+            class="row items-center"
+            :class="`step${stage.id}`"
           >
-            <q-carousel-slide
-              v-for="item in activeSlides"
-              :key="item + item.id"
-              :name="item.id"
+            <div
+              class="steps-item row items-center justify-center"
+              :class="{
+                active: idx === activeIndex,
+                done: idx < activeIndex,
+                [`step${stage.id}`]: true,
+              }"
+              @click="setActive(idx)"
             >
-              <div class="modal-info row items-center justify-center q-mr-xl">
-                <img :src="`images/${item.image}`" alt="activeStep.img" />
-                <div class="steps">
-                  <div class="modal-info-text">
-                    <h3>{{ item.title }}</h3>
-                    <h4>{{ item.subTitle }}</h4>
-                    <p>{{ item.text }}</p>
-                  </div>
+              <img :src="`images/${stage.image}`" alt="" />
+            </div>
+            <img
+              :src="
+                courseModalSmallLine
+                  ? 'images/smallLineInCourseModal.png'
+                  : 'images/Line.png'
+              "
+              alt="line"
+              :class="'line' + stage.id"
+              class="lines"
+            />
+          </li>
+        </ul>
+        <q-carousel
+          v-model="currentSlide"
+          transition-prev="slide-right"
+          transition-next="slide-left"
+          swipeable
+          animated
+          control-color="primary"
+          padding
+          height="max-content"
+          ref="carousel"
+        >
+          <q-carousel-slide
+            v-for="item in activeSlides"
+            :key="item + item.id"
+            :name="item.id"
+          >
+            <div class="modal-info row items-center justify-center q-mr-xl">
+              <img :src="`images/${item.image}`" alt="activeStep.img" />
+              <div class="steps">
+                <div class="modal-info-text">
+                  <h3>{{ item.title }}</h3>
+                  <h4>{{ item.subTitle }}</h4>
+                  <p>{{ item.text }}</p>
                 </div>
               </div>
-            </q-carousel-slide>
-          </q-carousel>
-          <div class="buttons row justify-end items-center">
-            <button class="addCourse" @click="$router.push('/registration')">
-              Գրանցվել դասընթացին
-            </button>
-            <div class="row justify-center items-center">
-              <img
-                src="images/monthLeft.png"
-                v-if="!prevDisabled"
-                @click="prev"
-                alt="left"
-                class="cursor-pointer prev-icon q-mr-md"
-              />
-              <img
-                @click="nextOfFinish"
-                src="images/monthRight.png"
-                alt="right"
-                class="cursor-pointer next-icon"
-                v-if="!nextDisabled"
-              />
             </div>
+          </q-carousel-slide>
+        </q-carousel>
+        <div class="buttons row justify-end items-center">
+          <button class="addCourse" @click="$router.push('/registration')">
+            Գրանցվել դասընթացին
+          </button>
+          <div class="row justify-center items-center">
+            <img
+              src="images/monthLeft.png"
+              v-if="!prevDisabled"
+              @click="prev"
+              alt="left"
+              class="cursor-pointer prev-icon q-mr-md"
+            />
+            <img
+              @click="nextOfFinish"
+              src="images/monthRight.png"
+              alt="right"
+              class="cursor-pointer next-icon"
+              v-if="!nextDisabled"
+            />
           </div>
         </div>
-      </q-card>
-    </q-dialog>
-  </div>
+      </div>
+    </q-card>
+  </q-dialog>
+
+  <q-dialog v-model="bar" persistent full-width class="lt-sm course-modal">
+    <q-card class="course-modal-card">
+      <img
+        src="images/Esc.png"
+        alt="Esc"
+        v-close-popup
+        class="cursor-pointer close"
+      />
+      <div class="course-modal-container">
+        <q-carousel
+          v-model="currentSlide"
+          transition-prev="slide-right"
+          transition-next="slide-left"
+          swipeable
+          animated
+          control-color="primary"
+          padding
+          height="max-content"
+          ref="carousel"
+        >
+          <q-carousel-slide
+            v-for="item in activeSlides"
+            :key="item + item.id"
+            :name="item.id"
+          >
+            <div class="modal-info row items-center justify-center q-mr-xl">
+              <div class="steps-item-active">
+                <img :src="`images/${item.image}`" alt="activeStep.img" />
+              </div>
+              <div class="steps">
+                <div class="modal-info-text">
+                  <h3>{{ item.title }}</h3>
+                  <h4>{{ item.subTitle }}</h4>
+                  <p>{{ item.text }}</p>
+                </div>
+              </div>
+            </div>
+          </q-carousel-slide>
+        </q-carousel>
+        <div class="buttons row justify-end items-center">
+          <button class="addCourse" @click="$router.push('/registration')">
+            Գրանցվել դասընթացին
+          </button>
+          <div class="row justify-center items-center">
+            <img
+              src="images/monthLeft.png"
+              v-if="!prevDisabled"
+              @click="prev"
+              alt="left"
+              class="cursor-pointer prev-icon q-mr-md"
+            />
+            <img
+              @click="nextOfFinish"
+              src="images/monthRight.png"
+              alt="right"
+              class="cursor-pointer next-icon"
+              v-if="!nextDisabled"
+            />
+          </div>
+        </div>
+      </div>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>
@@ -177,10 +244,12 @@ export default {
       bar: false,
       activeIndex: this.currentSlide - 1,
       isActive: true,
+      courseModalSmallLine: false,
     };
   },
   methods: {
     openModal(i) {
+      this.smallLineChange();
       this.bar = true;
       this.activeIndex = i;
       this.currentSlide = this.sliderItems[i].id;
@@ -206,6 +275,14 @@ export default {
     setActive(idx) {
       this.activeIndex = idx;
       this.currentSlide = this.sliderItems[idx].id;
+    },
+    smallLineChange() {
+      console.log(1);
+      if (window.screen.width < 1150) {
+        this.courseModalSmallLine = true;
+      } else {
+        this.courseModalSmallLine = false;
+      }
     },
   },
   computed: {
@@ -354,21 +431,78 @@ export default {
     background: none;
     overflow: hidden;
     background: rgba(14, 36, 60, 0.8);
+    @include mobile {
+      border-radius: 30px;
+      possition: relative;
+    }
+    .close {
+      position: absolute;
+      width: 40px;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+    .modal-header {
+      @include noteBook {
+        padding: 14px 17px 10px 0;
+      }
+    }
+
     .course-modal-container {
       max-height: 880px;
       padding: 2vh 4vw 5vh 4vw;
+      @include noteBook {
+        padding: 1vw 4.5vw 5vh 1.5vw;
+      }
+      @include mobile {
+        padding: 0 4vw 8vw 4vw;
+      }
       .modal-info {
         color: #fff;
+        @include noteBook {
+          margin-right: 0;
+        }
+        @include tablet {
+          flex-direction: column;
+        }
         > img {
           width: 20vw;
           height: 18vw;
+          @include tablet {
+            width: 38vw;
+            height: 30vw;
+          }
+        }
+        .steps-item-active {
+          img {
+            @include mobile {
+              width: 170px;
+              margin-top: 20px;
+            }
+          }
         }
         &-text {
+          @include tablet {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+          }
           h3 {
             font-family: Montserrat;
             font-style: normal;
             font-weight: bold;
-            font-size: 1.5625;
+            @include noteBook {
+              font-size: 33px;
+            }
+            @include tablet {
+              font-size: 25px;
+              font-family: MontserratBold;
+            }
+            @include mobile {
+              font-size: 20px;
+              margin-bottom: -10px;
+              margin-top: -20px;
+            }
           }
           h4 {
             font-family: Nortar;
@@ -376,6 +510,17 @@ export default {
             font-weight: bold;
             font-size: 30px;
             margin-bottom: 3vh;
+            @include noteBook {
+              font-size: 25px;
+            }
+            @include tablet {
+              font-size: 24px;
+              margin-bottom: 20px;
+            }
+            @include mobile {
+              font-size: 18px;
+              margin-bottom: 0px;
+            }
           }
           p {
             font-family: Nortar;
@@ -384,10 +529,33 @@ export default {
             font-size: 18px;
             line-height: 140%;
             width: 48.1770833333vw;
+
+            @include noteBook {
+              font-size: 16px;
+              overflow: auto;
+              height: 180px;
+              text-align: center;
+              margin-bottom: 30px;
+            }
+            @include mobile {
+              min-height: 180px;
+              margin-bottom: 3vw;
+              width: 65vw;
+              font-size: 12px;
+            }
+          }
+          ::-webkit-scrollbar {
+            display: none !important;
           }
         }
       }
       .buttons {
+        @include tablet {
+          justify-content: center;
+        }
+        @include mobile {
+          flex-direction: column-reverse;
+        }
         .addCourse {
           @include button();
           padding: 2vh 2.60416666667vw;
@@ -395,12 +563,28 @@ export default {
           font-style: normal;
           font-weight: bold;
           margin-right: 2.08333333333vw;
+          @include noteBook {
+            padding: 27px 57px;
+          }
+          @include mobile {
+            padding: 4vw 7vw;
+            font-size: 13px;
+          }
         }
         .prev-icon,
         .next-icon {
           width: 4.16666666667vw;
           height: 4.16666666667vw;
           transition: 1s;
+          @include noteBook {
+            width: 8.7vw;
+            height: 8.7vw;
+          }
+          @include mobile {
+            margin-bottom: 2vw;
+            width: 11vw;
+            height: 11vw;
+          }
         }
       }
     }
@@ -417,25 +601,69 @@ export default {
   justify-content: space-between;
   margin-bottom: 9vh;
   position: relative;
+  @include tablet {
+    margin-bottom: 5vh;
+  }
   li {
     .lines {
       position: absolute;
       width: 6.25vw;
+      @include noteBook {
+        width: 4.25vw;
+      }
     }
     .line1 {
       left: 12.5%;
+      @include noteBook {
+        left: 17%;
+      }
     }
     .line2 {
       left: 35%;
+      @include noteBook {
+        left: 38.5%;
+      }
     }
     .line3 {
       left: 58%;
+      @include noteBook {
+        left: 59.6%;
+      }
     }
     .line4 {
       left: 81%;
     }
   }
-
+  .step1 {
+    left: 0%;
+    @include noteBook {
+      left: 2%;
+    }
+  }
+  .step2 {
+    left: 22%;
+    @include noteBook {
+      left: 24%;
+    }
+  }
+  .step3 {
+    left: 45.5%;
+    @include afterNotebook {
+      left: 45%;
+    }
+  }
+  .step4 {
+    left: 68%;
+    @include noteBook {
+      left: 66%;
+    }
+  }
+  .step5 {
+    left: 91%;
+    @include noteBook {
+      left: 88%;
+    }
+  }
   .line5 {
     display: none;
   }
@@ -451,26 +679,26 @@ export default {
   background: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   position: absolute;
-
+  @include afterNotebook {
+    width: 9vw;
+    height: 9vw;
+  }
+  @include noteBook {
+    width: 11vw;
+    height: 11vw;
+  }
   img {
     width: 6.25vw;
     height: 5vw;
+    @include afterNotebook {
+      width: 8.25vw;
+      height: 6vw;
+    }
+    @include noteBook {
+      width: 10.25vw;
+      height: 8.2vw;
+    }
   }
-}
-.step1 {
-  left: 0%;
-}
-.step2 {
-  left: 22%;
-}
-.step3 {
-  left: 45.5%;
-}
-.step4 {
-  left: 68%;
-}
-.step5 {
-  left: 91%;
 }
 
 .steps-item.active,
@@ -485,5 +713,13 @@ export default {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.5);
   transition: 0.8s;
+  @include afterNotebook {
+    width: 10vw;
+    height: 10vw;
+  }
+  @include noteBook {
+    width: 12vw;
+    height: 12vw;
+  }
 }
 </style>
