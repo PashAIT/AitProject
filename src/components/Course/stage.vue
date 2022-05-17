@@ -14,6 +14,7 @@ export default {
     title: String,
     subTitle: String,
   },
+  
 };
 </script>
 
