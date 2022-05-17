@@ -26,7 +26,7 @@
               </div>
               <div class="col-8">
                 <div class="person-info">
-                  <h4>{{ item.name }}</h4>
+                  <h4>{{ item.fullname }}</h4>
                   <p>{{ item.speciality }}</p>
                 </div>
                 <p class="item-info">
@@ -44,7 +44,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="person-info q-ml-md">
-                      <h4>{{ item.name }}</h4>
+                      <h4>{{ item.fullname }}</h4>
                       <p>{{ item.speciality }}</p>
                     </div>
                   </div>
@@ -93,22 +93,19 @@ export default {
         {
           id: 1,
           speciality: "CEO Aranea",
-          name: "Արման Սարգսյան",
-          type: "first",
+          fullname: "Արման Սարգսյան",
           info: "Տեքստի մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։",
         },
         {
           id: 2,
           speciality: "CTO Aranea",
-          name: "Կարեն Արամյան",
-          type: "second",
+          fullname: "Կարեն Արամյան",
           info: "Մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։",
         },
         {
           id: 3,
           speciality: "Meneger",
-          name: "Աշոտ Սարգսյան",
-          type: "tirth",
+          fullname: "Աշոտ Սարգսյան",
           info: "Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
         },
       ],
