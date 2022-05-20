@@ -1,5 +1,5 @@
 <template>
-  <div class="course" id="course" ref="course">
+  <div class="course" id="course" ref="courseContainer">
     <h2 class="course-header">Դասընթացի փուլեր</h2>
     <div class="stage-container">
       <div
@@ -10,7 +10,7 @@
       >
         <Stage
           :image="stage.image"
-          :subTitle="stage.subTitle"
+          :subtitle="stage.subtitle"
           :title="stage.title"
           class="stage"
           :class="`stage${stage.id}`"
@@ -50,7 +50,7 @@
       <div class="course-modal-container">
         <ul class="steps-list">
           <li
-            v-for="(stage, idx) in sliderItems"
+            v-for="(stage, idx) in modalSliderItems"
             :key="stage.title"
             class="row items-center"
             :class="`step${stage.id}`"
@@ -90,7 +90,7 @@
           ref="carousel"
         >
           <q-carousel-slide
-            v-for="item in activeSlides"
+            v-for="item in modalSliderItems"
             :key="item + item.id"
             :name="item.id"
           >
@@ -99,7 +99,7 @@
               <div class="steps">
                 <div class="modal-info-text">
                   <h3>{{ item.title }}</h3>
-                  <h4>{{ item.subTitle }}</h4>
+                  <h4>{{ item.subtitle }}</h4>
                   <p>{{ item.text }}</p>
                 </div>
               </div>
@@ -152,7 +152,7 @@
           ref="carousel"
         >
           <q-carousel-slide
-            v-for="item in activeSlides"
+            v-for="item in modalSliderItems"
             :key="item + item.id"
             :name="item.id"
           >
@@ -163,7 +163,7 @@
               <div class="steps">
                 <div class="modal-info-text">
                   <h3>{{ item.title }}</h3>
-                  <h4>{{ item.subTitle }}</h4>
+                  <h4>{{ item.subtitle }}</h4>
                   <p>{{ item.text }}</p>
                 </div>
               </div>
@@ -199,6 +199,8 @@
 <script>
 import activeSlideMixin from "src/mixins/activeSlideMixin";
 import Stage from "./stage.vue";
+import { mapMutations } from "vuex";
+// import Api from "src/api";
 export default {
   data() {
     return {
@@ -207,21 +209,59 @@ export default {
         {
           id: 1,
           title: "HTML & CSS",
-          subTitle: "1-ին փուլ",
+          subtitle: "1-ին փուլ",
+          image: "HTMLCSS.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 2,
+          title: "Javascript",
+          subtitle: "2-րդ փուլ",
+          image: "JS.png",
+          // text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 3,
+          title: "Advanced JS",
+          subtitle: "3-րդ փուլ",
+          image: "AdvancedJS.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+
+        {
+          id: 4,
+          title: "Front-End / React JS",
+          subtitle: "4-րդ փուլ",
+          image: "React.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 5,
+          title: "Back-End / Node. JS",
+          subtitle: "5-րդ փուլ",
+          image: "NodeJS.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+      ],
+      modalSliderItems: [
+        {
+          id: 1,
+          title: "HTML & CSS",
+          subtitle: "1-ին փուլ",
           image: "HTMLCSS.png",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
           id: 2,
           title: "Javascript",
-          subTitle: "2-րդ փուլ",
+          subtitle: "2-րդ փուլ",
           image: "JS.png",
           text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
           id: 3,
           title: "Advanced JS",
-          subTitle: "3-րդ փուլ",
+          subtitle: "3-րդ փուլ",
           image: "AdvancedJS.png",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
@@ -229,14 +269,14 @@ export default {
         {
           id: 4,
           title: "Front-End / React JS",
-          subTitle: "4-րդ փուլ",
+          subtitle: "4-րդ փուլ",
           image: "React.png",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
         {
           id: 5,
           title: "Back-End / Node. JS",
-          subTitle: "5-րդ փուլ",
+          subtitle: "5-րդ փուլ",
           image: "NodeJS.png",
           text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
         },
@@ -247,12 +287,18 @@ export default {
       courseModalSmallLine: false,
     };
   },
+  // mounted() {
+  //   this.getCourses();
+  // },
   methods: {
+    ...mapMutations(["changeScrollY"]),
     openModal(i) {
+      console.log(this.$refs.courseContainer.scrollTop);
+      // this.getCoursesDetailed();
       this.smallLineChange();
       this.bar = true;
       this.activeIndex = i;
-      this.currentSlide = this.sliderItems[i].id;
+      this.currentSlide = this.modalSliderItems[i].id;
     },
     prev() {
       if (this.activeIndex !== 0) {
@@ -265,7 +311,7 @@ export default {
       this.isActive = true;
     },
     nextOfFinish() {
-      if (this.activeIndex !== this.sliderItems.length - 1) {
+      if (this.activeIndex !== this.modalSliderItems.length - 1) {
         this.activeIndex++;
       } else {
         this.isActive = false;
@@ -274,29 +320,36 @@ export default {
     },
     setActive(idx) {
       this.activeIndex = idx;
-      this.currentSlide = this.sliderItems[idx].id;
+      this.currentSlide = this.modalSliderItems[idx].id;
     },
     smallLineChange() {
-      console.log(1);
       if (window.screen.width < 1150) {
         this.courseModalSmallLine = true;
       } else {
         this.courseModalSmallLine = false;
       }
     },
+    // async getCourses(){
+    //   const rsp = await Api.Home.GetCourses();
+    //   this.sliderItems = rsp.data.items;
+    // },
+    // async getCoursesDetailed(){
+    //   const rsp = await Api.Home.GetCoursesDetailed();
+    //   this.modalSliderItems = rsp.data.items;
+    // }
   },
   computed: {
     activeStep() {
-      return this.sliderItems[this.activeIndex];
+      return this.modalSliderItems[this.activeIndex];
     },
     prevDisabled() {
       return this.currentSlide - 1 === 0;
     },
     nextDisabled() {
-      return this.currentSlide - 1 === this.sliderItems.length - 1;
+      return this.currentSlide - 1 === this.modalSliderItems.length - 1;
     },
     isLastStep() {
-      return this.activeIndex === this.sliderItems.length - 1;
+      return this.activeIndex === this.modalSliderItems.length - 1;
     },
   },
   mixins: [activeSlideMixin],

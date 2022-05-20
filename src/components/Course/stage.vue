@@ -2,7 +2,7 @@
   <div class="stage">
     <img :src="'images/' + image" :alt="title" />
     <h4>{{ title }}</h4>
-    <p>{{ subTitle }}</p>
+    <p>{{ subtitle }}</p>
     <slot />
   </div>
 </template>
@@ -12,9 +12,8 @@ export default {
   props: {
     image: String,
     title: String,
-    subTitle: String,
+    subtitle: String,
   },
-  
 };
 </script>
 

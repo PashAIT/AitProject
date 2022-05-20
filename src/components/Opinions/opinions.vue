@@ -85,10 +85,12 @@
 
 <script>
 import activeSlideMixin from "src/mixins/activeSlideMixin";
+// import Api from "src/api";
 
 export default {
   data() {
     return {
+      // sliderItems: [],
       sliderItems: [
         {
           id: 1,
@@ -112,6 +114,15 @@ export default {
       currentSlide: 1,
     };
   },
+  // mounted() {
+  //   this.getFeedbacks();
+  // },
+  // methods: {
+  //   async getFeedbacks() {
+  //     const rsp = await Api.Home.GetFeedbacks();
+  //     this.sliderItems = rsp.data.items;
+  //   },
+  // },
   mixins: [activeSlideMixin],
 };
 </script>

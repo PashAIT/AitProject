@@ -12,10 +12,11 @@ import { createStore } from "vuex";
  * with the Store instance.
  */
 
+import coursesPosition from "./courses-position";
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      // example
+      coursesPosition,
     },
 
     // enable strict mode (adds overhead!)

@@ -12,7 +12,7 @@
     <div class="blogs column items-center">
       <div class="blog-month">
         <q-carousel
-          v-model="slide"
+          v-model="currentSlide"
           transition-prev="slide-right"
           transition-next="slide-left"
           swipeable
@@ -72,7 +72,9 @@
 
 <script>
 import Video from "src/components/AitBlog/video.vue";
+import activeSlideMixin from "src/mixins/activeSlideMixin";
 import BlogItem from "src/components/AitBlog/blog-item.vue";
+// import Api from "src/api";
 export default {
   components: { Video, BlogItem },
   data() {
@@ -104,7 +106,7 @@ export default {
         {
           id: 1,
           name: "Հունվար",
-          type: "1",
+          type: 1,
           blogs: [
             {
               id: 1,
@@ -183,7 +185,7 @@ export default {
         {
           id: 2,
           name: "Փետրվար",
-          type: "2",
+          type: 2,
           blogs: [
             {
               id: 1,
@@ -262,7 +264,7 @@ export default {
         {
           id: 3,
           name: "Մարտ",
-          type: "3",
+          type: 3,
           blogs: [
             {
               id: 1,
@@ -341,7 +343,7 @@ export default {
         {
           id: 4,
           name: "Ապրիլ",
-          type: "4",
+          type: 4,
           blogs: [
             {
               id: 1,
@@ -420,7 +422,7 @@ export default {
         {
           id: 5,
           name: "Մայիս",
-          type: "5",
+          type: 5,
           blogs: [
             {
               id: 1,
@@ -499,7 +501,7 @@ export default {
         {
           id: 6,
           name: "Հունիս",
-          type: "6",
+          type: 6,
           blogs: [
             {
               id: 1,
@@ -578,7 +580,7 @@ export default {
         {
           id: 7,
           name: "Հուլիս",
-          type: "7",
+          type: 7,
           blogs: [
             {
               id: 1,
@@ -657,7 +659,7 @@ export default {
         {
           id: 8,
           name: "Օգոստոս",
-          type: "8",
+          type: 8,
           blogs: [
             {
               id: 1,
@@ -736,7 +738,7 @@ export default {
         {
           id: 9,
           name: "Սեպտեմբեր",
-          type: "9",
+          type: 9,
           blogs: [
             {
               id: 1,
@@ -815,7 +817,7 @@ export default {
         {
           id: 10,
           name: "Հոկտեբեր",
-          type: "10",
+          type: 10,
           blogs: [
             {
               id: 1,
@@ -894,7 +896,7 @@ export default {
         {
           id: 11,
           name: "Նոյեմբեր",
-          type: "11",
+          type: 11,
           blogs: [
             {
               id: 1,
@@ -973,7 +975,7 @@ export default {
         {
           id: 12,
           name: "Դեկտեմբեր",
-          type: "12",
+          type: 12,
           blogs: [
             {
               id: 1,
@@ -1050,14 +1052,15 @@ export default {
           ],
         },
       ],
-      slide: "2",
+      currentSlide: new Date().getMonth() + 1,
     };
   },
   computed: {
     activeMonth() {
-      return this.months[+this.slide - 1];
+      return this.months[+this.currentSlide - 1];
     },
   },
+  mixins: [activeSlideMixin],
   methods: {},
 };
 </script>

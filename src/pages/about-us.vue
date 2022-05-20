@@ -54,12 +54,12 @@
       >
         <person-info
           v-for="trainer in trainers"
-          :speciality="trainer.speciality"
-          :name="trainer.name"
-          :inLink="trainer.linkedIn"
-          :image="trainer.image"
+          :speciality="trainer.role"
+          :name="trainer.fullname"
+          :inLink="trainer.linkedin"
+          :image="trainer.avatar"
           :key="`trainer${trainer.id}`"
-          :fbLink="trainer.fbLink"
+          :fbLink="trainer.facebook"
           class="trainer"
         />
       </div>
@@ -72,7 +72,7 @@
           :key="`question${item.id}`"
           class="overflow-hidden header-acordion"
           style="border-radius: 50px"
-          :label="item.request"
+          :label="item.question"
           :dense-toggle="false"
           :header-class="{ 'my-custom-class': true }"
         >
@@ -110,52 +110,68 @@ export default {
           image: "Rafo.jpg",
         },
       ],
+      // trainers:[],
       trainers: [
         {
           id: 1,
-          name: "Էրիկ Մուրադյան",
-          speciality: "Front-End Developer",
+          fullname: "Էրիկ Մուրադյան",
+          role: "Front-End Developer",
           fbLink: "erik.muradyan.50",
-          linkedIn: "eric-muradyan-961732233/",
-          image: "Erik.jpg",
+          linkedin: "eric-muradyan-961732233/",
+          avatar: "Erik.jpg",
         },
         {
           id: 2,
-          name: "Պարույր Կարապետյան",
-          speciality: "Front-End Developer",
-          fbLink: "paruyr.karapetyan",
-          linkedIn: "pash-karapetyan-a0443a234/",
-          image: "Pash.jpg",
+          fullname: "Պարույր Կարապետյան",
+          role: "Front-End Developer",
+          facebook: "paruyr.karapetyan",
+          linkedin: "pash-karapetyan-a0443a234/",
+          avatar: "Pash.jpg",
         },
       ],
+      // questions:[],
       questions: [
         {
           id: 1,
-          request: "Որքա՞ն արժե այս դասընթացը:",
+          question: "Որքա՞ն արժե այս դասընթացը:",
           answer:
             " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
         },
         {
           id: 2,
-          request: "Կարո՞ղ եք ավելին պատմել այս դպրոցի մասին:",
+          question: "Կարո՞ղ եք ավելին պատմել այս դպրոցի մասին:",
           answer:
             " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
         },
         {
           id: 3,
-          request: "Նոր ուսանողներ ընդունու՞մ եք։",
+          question: "Նոր ուսանողներ ընդունու՞մ եք։",
           answer:
             " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
         },
         {
           id: 4,
-          request: "Որտե՞ղ եք գտնվում:",
+          question: "Որտե՞ղ եք գտնվում:",
           answer:
             " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
         },
       ],
     };
   },
+  // mounted() {
+  //   this.getTrainers();
+  //   this.getFaq();
+  // },
+  // methods: {
+  //   async getTrainers() {
+  //     const rsp = await Api.AboutUs.GetTrainers();
+  //     this.trainers = rsp.data.items;
+  //   },
+  //   async getFaq() {
+  //     const rsp = await Api.AboutUs.GetFaq();
+  //     this.questions = rsp.data.items;
+  //   },
+  // },
   components: { PersonInfo },
 };
 </script>

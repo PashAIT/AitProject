@@ -12,7 +12,7 @@ import Course from "../components/Course/course.vue";
 import Opinions from "../components/Opinions/opinions.vue";
 import Path from "../components/Path/path.vue";
 import welcomeContent from "../components/Welcome-content/welcome-content.vue";
-import Api from "src/api";
+// import Api from "src/api";
 
 export default {
   components: { welcomeContent, Course, Path, Opinions },
