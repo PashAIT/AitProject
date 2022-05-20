@@ -296,7 +296,9 @@ export default {
   },
   methods: {
     openModal(i) {
-      this.getCoursesDetailed();
+      if (this.modalSliderItems.length === 0) {
+        this.getCoursesDetailed();
+      }
       this.smallLineChange();
       this.bar = true;
       this.activeIndex = i;
@@ -334,7 +336,6 @@ export default {
     async getCourses() {
       const rsp = await Api.Home.GetCourses();
       this.sliderItems = rsp.data.items;
-      console.log(this.sliderItems);
     },
     async getCoursesDetailed() {
       const rsp = await Api.Home.GetCoursesDetailed();
