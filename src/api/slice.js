@@ -1,7 +1,5 @@
-import constants from "src/providers/constants";
+import { HOST } from "src/providers/constants";
 import axios from "axios";
-
-const HOST = constants.host;
 
 export default class ApiSlice {
   static host = HOST;

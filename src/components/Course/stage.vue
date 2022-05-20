@@ -1,6 +1,6 @@
 <template>
   <div class="stage">
-    <img :src="'images/' + image" :alt="title" />
+    <img :src="host + '/' + image" :alt="title" />
     <h4>{{ title }}</h4>
     <p>{{ subtitle }}</p>
     <slot />
@@ -8,7 +8,14 @@
 </template>
 
 <script>
+import { HOST } from "src/providers/constants";
+
 export default {
+  data() {
+    return {
+      host: HOST,
+    };
+  },
   props: {
     image: String,
     title: String,
