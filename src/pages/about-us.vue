@@ -40,7 +40,7 @@
           :speciality="founder.speciality"
           :name="founder.name"
           :inLink="founder.linkedIn"
-          :image="founder.image"
+          :image="`./images/${founder.image}`"
           :key="`founder${founder.id}`"
           :fbLink="founder.fbLink"
           class="founder"
@@ -57,38 +57,23 @@
           :speciality="trainer.role"
           :name="trainer.fullname"
           :inLink="trainer.linkedin"
-          :image="trainer.avatar"
+          :image="host + trainer.avatar"
           :key="`trainer${trainer.id}`"
           :fbLink="trainer.facebook"
           class="trainer"
         />
       </div>
     </div>
-    <div class="questions-container column items-center">
-      <h2>Հաճախ տրվող հարցեր</h2>
-      <div class="questions">
-        <q-expansion-item
-          v-for="item in questions"
-          :key="`question${item.id}`"
-          class="overflow-hidden header-acordion"
-          style="border-radius: 50px"
-          :label="item.question"
-          :dense-toggle="false"
-          :header-class="{ 'my-custom-class': true }"
-        >
-          <q-card class="answer">
-            <q-card-section>
-              {{ item.answer }}
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
-      </div>
-    </div>
+    <Faq />
   </div>
 </template>
 
 <script>
 import PersonInfo from "src/components/AboutUs/person-info.vue";
+import Api from "src/api";
+import { HOST } from "src/providers/constants";
+import Faq from "src/components/AboutUs/faq.vue";
+
 export default {
   data() {
     return {
@@ -110,69 +95,20 @@ export default {
           image: "Rafo.jpg",
         },
       ],
-      // trainers:[],
-      trainers: [
-        {
-          id: 1,
-          fullname: "Էրիկ Մուրադյան",
-          role: "Front-End Developer",
-          fbLink: "erik.muradyan.50",
-          linkedin: "eric-muradyan-961732233/",
-          avatar: "Erik.jpg",
-        },
-        {
-          id: 2,
-          fullname: "Պարույր Կարապետյան",
-          role: "Front-End Developer",
-          facebook: "paruyr.karapetyan",
-          linkedin: "pash-karapetyan-a0443a234/",
-          avatar: "Pash.jpg",
-        },
-      ],
-      // questions:[],
-      questions: [
-        {
-          id: 1,
-          question: "Որքա՞ն արժե այս դասընթացը:",
-          answer:
-            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
-        },
-        {
-          id: 2,
-          question: "Կարո՞ղ եք ավելին պատմել այս դպրոցի մասին:",
-          answer:
-            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
-        },
-        {
-          id: 3,
-          question: "Նոր ուսանողներ ընդունու՞մ եք։",
-          answer:
-            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
-        },
-        {
-          id: 4,
-          question: "Որտե՞ղ եք գտնվում:",
-          answer:
-            " Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական հաղորդակցական գործընթացի իրականացումը։ Տեքստի տարբեր մասերը, որոնք երբեմն նշանակալից հեռավորության վրա են գտնվում միմյանցից, այս կամ այն կերպ կապակցված են լինում։ Կապի այդ միջոցների, ձևերի նշանակման համար գործածվում է վերջերս շրջանառության մեջ մտած կոհեզիա եզրույթը։",
-        },
-      ],
+      trainers: [],
+      host: HOST,
     };
   },
-  // mounted() {
-  //   this.getTrainers();
-  //   this.getFaq();
-  // },
-  // methods: {
-  //   async getTrainers() {
-  //     const rsp = await Api.AboutUs.GetTrainers();
-  //     this.trainers = rsp.data.items;
-  //   },
-  //   async getFaq() {
-  //     const rsp = await Api.AboutUs.GetFaq();
-  //     this.questions = rsp.data.items;
-  //   },
-  // },
-  components: { PersonInfo },
+  mounted() {
+    this.getTrainers();
+  },
+  methods: {
+    async getTrainers() {
+      const rsp = await Api.AboutUs.GetTrainers();
+      this.trainers = rsp.data.items;
+    },
+  },
+  components: { PersonInfo, Faq },
 };
 </script>
 
@@ -223,64 +159,6 @@ export default {
     margin-bottom: 200px;
     @include mobile {
       margin-bottom: 80px;
-    }
-  }
-  .questions-container {
-    margin-bottom: 100px;
-    .questions {
-      .header-acordion {
-        background: rgba(255, 255, 255, 0.5);
-        color: #004a5d;
-        font-family: Nortar;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 20px;
-        line-height: 20px;
-        padding: 40px 100px;
-        width: 79.6875vw;
-        margin-top: 40px;
-        @include noteBook {
-          padding: 30px 100px;
-          font-size: 16px;
-        }
-        @include mobile {
-          border-radius: 20px !important;
-          font-size: 12px;
-          padding: 10px 20px;
-        }
-        .answer {
-          background: rgba(255, 255, 255, 0.01);
-          margin-top: 20px;
-          font-family: Nortar;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 18px;
-          line-height: 150%;
-          color: #0e243c;
-          @include noteBook {
-            font-size: 14px;
-          }
-
-          @include mobile {
-            font-size: 10px;
-            margin: 0;
-            padding: 0;
-          }
-          > div {
-            @include mobile {
-              padding-top: 10px;
-            }
-          }
-        }
-      }
-      .my-custom-class {
-        &:hover {
-          background: rgba(255, 255, 255, 1);
-        }
-      }
-      :first-child {
-        margin-top: 0;
-      }
     }
   }
 }

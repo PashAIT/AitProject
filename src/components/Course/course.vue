@@ -9,7 +9,7 @@
         :class="`course-stage${stage.id}`"
       >
         <Stage
-          :image="stage.image"
+          :image="`${host}/${stage.image}`"
           :subtitle="stage.subtitle"
           :title="stage.title"
           class="stage"

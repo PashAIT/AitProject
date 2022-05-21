@@ -27,10 +27,10 @@
               <div class="col-8">
                 <div class="person-info">
                   <h4>{{ item.fullname }}</h4>
-                  <p>{{ item.speciality }}</p>
+                  <p>{{ item.role }}</p>
                 </div>
                 <p class="item-info">
-                  {{ item.info }}
+                  {{ item.body }}
                 </p>
               </div>
             </div>
@@ -45,14 +45,14 @@
                   <div class="col-md-6">
                     <div class="person-info q-ml-md">
                       <h4>{{ item.fullname }}</h4>
-                      <p>{{ item.speciality }}</p>
+                      <p>{{ item.role }}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-md-12 q-mt-sm">
                 <p class="item-info">
-                  {{ item.info }}
+                  {{ item.body }}
                 </p>
               </div>
             </div>
@@ -85,44 +85,24 @@
 
 <script>
 import activeSlideMixin from "src/mixins/activeSlideMixin";
-// import Api from "src/api";
+import Api from "src/api";
 
 export default {
   data() {
     return {
-      // sliderItems: [],
-      sliderItems: [
-        {
-          id: 1,
-          speciality: "CEO Aranea",
-          fullname: "Արման Սարգսյան",
-          info: "Տեքստի մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։",
-        },
-        {
-          id: 2,
-          speciality: "CTO Aranea",
-          fullname: "Կարեն Արամյան",
-          info: "Մասին ուսմունքի առանցքային հասկացություններից մեկն է կոհեզիան՝ տեքստի տարբեր մասերի՝ միմյանց կապակցման յուրահատուկ միջոցների ամբողջականությունը։",
-        },
-        {
-          id: 3,
-          speciality: "Meneger",
-          fullname: "Աշոտ Սարգսյան",
-          info: "Խոսքը տեքստային կապակցությունների տարբեր ձևերի մասին է, առանց որոնց անհնար է միասնական լեզվական:",
-        },
-      ],
+      sliderItems: [],
       currentSlide: 1,
     };
   },
-  // mounted() {
-  //   this.getFeedbacks();
-  // },
-  // methods: {
-  //   async getFeedbacks() {
-  //     const rsp = await Api.Home.GetFeedbacks();
-  //     this.sliderItems = rsp.data.items;
-  //   },
-  // },
+  mounted() {
+    this.getFeedbacks();
+  },
+  methods: {
+    async getFeedbacks() {
+      const rsp = await Api.Home.GetFeedbacks();
+      this.sliderItems = rsp.data.items;
+    },
+  },
   mixins: [activeSlideMixin],
 };
 </script>

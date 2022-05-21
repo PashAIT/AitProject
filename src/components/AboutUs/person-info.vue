@@ -3,7 +3,7 @@
     <div
       alt="person"
       class="person-image"
-      :style="{ 'background-image': `url('images/${image}')` }"
+      :style="{ 'background-image': `url('${image}')` }"
     ></div>
     <h4>{{ name }}</h4>
     <h5>{{ speciality }}</h5>
