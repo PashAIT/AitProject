@@ -74,7 +74,7 @@
 import Video from "src/components/AitBlog/video.vue";
 import activeSlideMixin from "src/mixins/activeSlideMixin";
 import BlogItem from "src/components/AitBlog/blog-item.vue";
-// import Api from "src/api";
+import Api from "src/api";
 export default {
   components: { Video, BlogItem },
   data() {
@@ -1060,8 +1060,8 @@ export default {
       return this.months[+this.currentSlide - 1];
     },
   },
+
   mixins: [activeSlideMixin],
-  methods: {},
 };
 </script>
 

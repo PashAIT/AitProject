@@ -60,6 +60,9 @@
 
 <script>
 import { COURSES } from "../../providers/constants";
+import { scroll } from "quasar";
+const { getScrollTarget, setVerticalScrollPosition } = scroll;
+console.log(scroll);
 export default {
   data() {
     return {
@@ -72,7 +75,7 @@ export default {
         {
           id: 2,
           title: "Դասընթաց",
-          path: "",
+          path: "#course",
         },
         {
           id: 3,
@@ -106,12 +109,19 @@ export default {
       if (id === COURSES) {
         this.$router.push("/");
         setTimeout(() => {
-          window.scrollTo(0, 920);
+          this.handleScroll();
         }, 400);
       } else {
         this.$router.push(path);
       }
       this.headerModal = false;
+    },
+    handleScroll() {
+      const ele = document.getElementById("course"); // You need to get your element here
+      const target = getScrollTarget(ele);
+      const offset = ele.offsetTop;
+      const duration = 0;
+      setVerticalScrollPosition(target, offset, duration);
     },
   },
 };

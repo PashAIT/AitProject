@@ -10,6 +10,7 @@
         animated
         height="max-content"
         padding
+        thumbnails
         ref="carousel"
         class="option-slider row justify-center items-center"
       >

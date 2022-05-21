@@ -57,7 +57,7 @@
           :speciality="trainer.role"
           :name="trainer.fullname"
           :inLink="trainer.linkedin"
-          :image="host + trainer.avatar"
+          :image="`${host}/${trainer.avatar}`"
           :key="`trainer${trainer.id}`"
           :fbLink="trainer.facebook"
           class="trainer"
@@ -106,6 +106,7 @@ export default {
     async getTrainers() {
       const rsp = await Api.AboutUs.GetTrainers();
       this.trainers = rsp.data.items;
+      console.log(this.trainers);
     },
   },
   components: { PersonInfo, Faq },
