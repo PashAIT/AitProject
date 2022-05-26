@@ -1,5 +1,11 @@
 <template>
-  <div class="course" id="course" ref="courseContainer">
+  <div
+    class="course after-animated"
+    id="course"
+    ref="courseContainer"
+    data-aos="fade-up"
+    data-aos-duration="1800"
+  >
     <h2 class="course-header">Դասընթացի փուլեր</h2>
     <div class="stage-container">
       <div
@@ -201,89 +207,90 @@ import activeSlideMixin from "src/mixins/activeSlideMixin";
 import Stage from "./stage.vue";
 import Api from "src/api";
 import { HOST } from "src/providers/constants";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   data() {
     return {
       currentSlide: 1,
-      // sliderItems: [
-      //   {
-      //     id: 1,
-      //     title: "HTML & CSS",
-      //     subtitle: "1-ին փուլ",
-      //     image: "HTMLCSS.png",
-      //     // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      //   {
-      //     id: 2,
-      //     title: "Javascript",
-      //     subtitle: "2-րդ փուլ",
-      //     image: "JS.png",
-      //     // text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      //   {
-      //     id: 3,
-      //     title: "Advanced JS",
-      //     subtitle: "3-րդ փուլ",
-      //     image: "AdvancedJS.png",
-      //     // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
+      sliderItems: [
+        {
+          id: 1,
+          title: "HTML & CSS",
+          subtitle: "1-ին փուլ",
+          image: "HTMLCSS.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 2,
+          title: "Javascript",
+          subtitle: "2-րդ փուլ",
+          image: "JS.png",
+          // text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 3,
+          title: "Advanced JS",
+          subtitle: "3-րդ փուլ",
+          image: "AdvancedJS.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
 
-      //   {
-      //     id: 4,
-      //     title: "Front-End / React JS",
-      //     subtitle: "4-րդ փուլ",
-      //     image: "React.png",
-      //     // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      //   {
-      //     id: 5,
-      //     title: "Back-End / Node. JS",
-      //     subtitle: "5-րդ փուլ",
-      //     image: "NodeJS.png",
-      //     // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      // ],
-      // modalSliderItems: [
-      //   {
-      //     id: 1,
-      //     title: "HTML & CSS",
-      //     subtitle: "1-ին փուլ",
-      //     image: "HTMLCSS.png",
-      //     text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      //   {
-      //     id: 2,
-      //     title: "Javascript",
-      //     subtitle: "2-րդ փուլ",
-      //     image: "JS.png",
-      //     text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      //   {
-      //     id: 3,
-      //     title: "Advanced JS",
-      //     subtitle: "3-րդ փուլ",
-      //     image: "AdvancedJS.png",
-      //     text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
+        {
+          id: 4,
+          title: "Front-End / React JS",
+          subtitle: "4-րդ փուլ",
+          image: "React.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 5,
+          title: "Back-End / Node. JS",
+          subtitle: "5-րդ փուլ",
+          image: "NodeJS.png",
+          // text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+      ],
+      modalSliderItems: [
+        {
+          id: 1,
+          title: "HTML & CSS",
+          subtitle: "1-ին փուլ",
+          image: "HTMLCSS.png",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 2,
+          title: "Javascript",
+          subtitle: "2-րդ փուլ",
+          image: "JS.png",
+          text: "Պահանջված Front-end մասնագետ դառնալու համար, պետք է տիրապետել JavaScriptի խորը գիտելիքների։ Այս փուլում կուսումնասիրվեն Խորացված JavaScript, OOP-ն JavaScript-ում, անսիխրոն ծրագրավորում, JavaScript-ում հիմնական տվյալների տիպերը, JavaScript-ի framework-ները։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 3,
+          title: "Advanced JS",
+          subtitle: "3-րդ փուլ",
+          image: "AdvancedJS.png",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
 
-      //   {
-      //     id: 4,
-      //     title: "Front-End / React JS",
-      //     subtitle: "4-րդ փուլ",
-      //     image: "React.png",
-      //     text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      //   {
-      //     id: 5,
-      //     title: "Back-End / Node. JS",
-      //     subtitle: "5-րդ փուլ",
-      //     image: "NodeJS.png",
-      //     text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
-      //   },
-      // ],
-      sliderItems: [],
-      modalSliderItems: [],
+        {
+          id: 4,
+          title: "Front-End / React JS",
+          subtitle: "4-րդ փուլ",
+          image: "React.png",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+        {
+          id: 5,
+          title: "Back-End / Node. JS",
+          subtitle: "5-րդ փուլ",
+          image: "NodeJS.png",
+          text: "Ուսանողը կծանոթանա համացանցի աշխատանքին և վեբ կայքերի ստեղծման սկզբունքներին, կսովորի HTML5, CSS3 վեբ դիզայնի տեխնոլոգիաները, որոնք հանդիսանում են հիմնարար միջոց web ծրագրավորման համար։ Ուսանողը կսովորի նաև էջի դիզայնի կազմակերպման flexbox և grid մոտեցումներին։Դասընթացի տևողությունը՝ 2 ամիս։ 30.000 ՀՀ դրամ՝ 1 ամսվա արժեքը։",
+        },
+      ],
+      // sliderItems: [],
+      // modalSliderItems: [],
       bar: false,
       activeIndex: this.currentSlide - 1,
       isActive: true,
@@ -292,12 +299,13 @@ export default {
     };
   },
   mounted() {
-    this.getCourses();
+    // this.getCourses();
+    AOS.init();
   },
   methods: {
     openModal(i) {
       if (this.modalSliderItems.length === 0) {
-        this.getCoursesDetailed();
+        // this.getCoursesDetailed();
       }
       this.smallLineChange();
       this.bar = true;
@@ -333,15 +341,15 @@ export default {
         this.courseModalSmallLine = false;
       }
     },
-    async getCourses() {
-      const rsp = await Api.Home.GetCourses();
-      this.sliderItems = rsp.data.items;
-    },
-    async getCoursesDetailed() {
-      const rsp = await Api.Home.GetCoursesDetailed();
-      this.modalSliderItems = rsp.data.items;
-      console.log(this.modalSliderItems);
-    },
+    // async getCourses() {
+    //   const rsp = await Api.Home.GetCourses();
+    //   this.sliderItems = rsp.data.items;
+    // },
+    // async getCoursesDetailed() {
+    //   const rsp = await Api.Home.GetCoursesDetailed();
+    //   this.modalSliderItems = rsp.data.items;
+    //   console.log(this.modalSliderItems);
+    // },
   },
   computed: {
     activeStep() {
@@ -779,5 +787,27 @@ export default {
     width: 12vw;
     height: 12vw;
   }
+}
+.after-animated {
+  opacity: 0;
+}
+
+.animate-bounce {
+  animation: q-bounce 2s infinite;
+}
+
+@keyframes q-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.before-animated {
+  opacity: 1;
 }
 </style>

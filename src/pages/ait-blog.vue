@@ -7,6 +7,8 @@
         :key="'video' + video.id"
         :videoData="video"
         class="video"
+        :data-aos="[video.id % 2 === 0 ? 'fade-right' : 'fade-left']"
+        data-aos-duration="1800"
       />
     </div>
     <div class="blogs column items-center">
@@ -22,6 +24,8 @@
           ref="carousel"
           height="max-content"
           class="rounded-borders month-carousel"
+          data-aos="fade-up"
+          data-aos-duration="1800"
         >
           <q-carousel-slide
             v-for="month in months"
@@ -64,6 +68,8 @@
           :blogData="blog"
           class="col-4.5 blog"
           :class="`blog${blog.id}`"
+          data-aos="fade-up"
+          data-aos-duration="1800"
         />
       </div>
     </div>
@@ -74,7 +80,8 @@
 import Video from "src/components/AitBlog/video.vue";
 import activeSlideMixin from "src/mixins/activeSlideMixin";
 import BlogItem from "src/components/AitBlog/blog-item.vue";
-import Api from "src/api";
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   components: { Video, BlogItem },
   data() {
@@ -1060,7 +1067,9 @@ export default {
       return this.months[+this.currentSlide - 1];
     },
   },
-
+  mounted() {
+    AOS.init();
+  },
   mixins: [activeSlideMixin],
 };
 </script>

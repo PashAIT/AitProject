@@ -2,7 +2,11 @@
   <div class="contact-page column items-center">
     <h2>Կապ</h2>
     <div class="contact-container row items-center">
-      <div class="contacts column items-center">
+      <div
+        class="contacts column items-center"
+        data-aos="fade-right"
+        data-aos-duration="1800"
+      >
         <ul class="column justify-evenly">
           <li><span></span>Կոնտակտներ</li>
           <li>
@@ -34,7 +38,11 @@
           </li>
         </ul>
       </div>
-      <div class="chat row justify-evenly">
+      <div
+        class="chat row justify-evenly"
+        data-aos="fade-left"
+        data-aos-duration="1800"
+      >
         <div
           v-if="true"
           class="inputs-content column justify-evenly items-start"
@@ -70,6 +78,8 @@
 </template>
 
 <script>
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   data() {
     return {
@@ -94,6 +104,7 @@ export default {
   inject: ["isOnRegistration", "isOffRegistration"],
   mounted() {
     this.isOnRegistration();
+    AOS.init();
   },
   unmounted() {
     this.isOffRegistration();

@@ -1,5 +1,5 @@
 <template>
-  <div class="path">
+  <div class="path" data-aos="fade-up" data-aos-duration="1800">
     <h2>Ինչ կտա ձեզ AIT-ն</h2>
     <div class="path-item-container">
       <div class="paths">
@@ -20,6 +20,8 @@
 
 <script>
 import pathItem from "./path-item.vue";
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   components: { pathItem },
   data() {
@@ -42,6 +44,9 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    AOS.init();
   },
 };
 </script>

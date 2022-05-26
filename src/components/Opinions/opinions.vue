@@ -1,5 +1,5 @@
 <template>
-  <div class="opinions">
+  <div class="opinions" data-aos="fade-up" data-aos-duration="1800">
     <h2>Կարծիքներ</h2>
     <div class="opinion-container row justify-center">
       <q-carousel
@@ -87,7 +87,8 @@
 <script>
 import activeSlideMixin from "src/mixins/activeSlideMixin";
 import Api from "src/api";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   data() {
     return {
@@ -97,6 +98,7 @@ export default {
   },
   mounted() {
     this.getFeedbacks();
+    AOS.init();
   },
   methods: {
     async getFeedbacks() {

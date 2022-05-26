@@ -1,5 +1,9 @@
 <template>
-  <div class="questions-container column items-center">
+  <div
+    class="questions-container column items-center"
+    data-aos="fade-up"
+    data-aos-duration="800"
+  >
     <h2>Հաճախ տրվող հարցեր</h2>
     <div class="questions">
       <q-expansion-item
@@ -10,6 +14,8 @@
         :label="item.question"
         :dense-toggle="false"
         :header-class="{ 'my-custom-class': true }"
+        :data-aos="[founder.id % 2 === 0 ? 'fade-right' : 'fade-left']"
+        data-aos-duration="1800"
       >
         <q-card class="answer">
           <q-card-section>
@@ -23,7 +29,8 @@
 
 <script>
 import Api from "src/api";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   data() {
     return {
@@ -32,6 +39,7 @@ export default {
   },
   mounted() {
     this.getFaq();
+    AOS.init();
   },
   methods: {
     async getFaq() {

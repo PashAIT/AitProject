@@ -1,6 +1,6 @@
 <template>
   <div class="welcome-content">
-    <div class="welome-text">
+    <div class="welome-text" data-aos="fade-right" data-aos-duration="1000">
       <h1>Ararat</h1>
       <h3>IT Center</h3>
       <p>IT հնարավորություններն արդեն Արարատում են.</p>
@@ -8,14 +8,20 @@
         Գրանցվել դասընթացին
       </button>
     </div>
-    <div class="man">
+    <div class="man" data-aos="fade-left" data-aos-duration="1400">
       <img src="images/Man.png" alt="" />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import AOS from "aos";
+import "aos/dist/aos.css";
+export default {
+  mounted() {
+    AOS.init();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

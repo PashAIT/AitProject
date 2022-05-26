@@ -30,7 +30,11 @@
         </p>
       </div>
     </div>
-    <div class="about-us-founders column items-center">
+    <div
+      class="about-us-founders column items-center"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
       <h2>Հիմնադիրներ</h2>
       <div
         class="founders row items-center justify-center q-gutter-x-xl q-gutter-y-lg"
@@ -44,10 +48,16 @@
           :key="`founder${founder.id}`"
           :fbLink="founder.fbLink"
           class="founder"
+          :data-aos="[founder.id === 1 ? 'fade-right' : 'fade-left']"
+          data-aos-duration="1800"
         />
       </div>
     </div>
-    <div class="about-us-trainers column items-center">
+    <div
+      class="about-us-trainers column items-center"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
       <h2>Դասընթացավարներ</h2>
       <div
         class="trainers row items-center justify-center q-gutter-x-xl q-gutter-y-lg"
@@ -61,6 +71,8 @@
           :key="`trainer${trainer.id}`"
           :fbLink="trainer.facebook"
           class="trainer"
+          :data-aos="[trainer.id === 1 ? 'fade-right' : 'fade-left']"
+          data-aos-duration="1800"
         />
       </div>
     </div>
@@ -73,7 +85,8 @@ import PersonInfo from "src/components/AboutUs/person-info.vue";
 import Api from "src/api";
 import { HOST } from "src/providers/constants";
 import Faq from "src/components/AboutUs/faq.vue";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   data() {
     return {
@@ -101,7 +114,9 @@ export default {
   },
   mounted() {
     this.getTrainers();
+    AOS.init();
   },
+
   methods: {
     async getTrainers() {
       const rsp = await Api.AboutUs.GetTrainers();

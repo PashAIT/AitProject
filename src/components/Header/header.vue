@@ -1,5 +1,9 @@
 <template>
-  <header :class="{ noScrollPages: isNoScrollPages }">
+  <header
+    :class="{ noScrollPages: isNoScrollPages }"
+    data-aos="fade-down"
+    data-aos-duration="1600"
+  >
     <div class="logo">
       <img
         src="images/HeaderLogo.png"
@@ -62,7 +66,8 @@
 import { COURSES } from "../../providers/constants";
 import { scroll } from "quasar";
 const { getScrollTarget, setVerticalScrollPosition } = scroll;
-console.log(scroll);
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default {
   data() {
     return {
@@ -123,6 +128,9 @@ export default {
       const duration = 0;
       setVerticalScrollPosition(target, offset, duration);
     },
+  },
+  mounted() {
+    AOS.init();
   },
 };
 </script>

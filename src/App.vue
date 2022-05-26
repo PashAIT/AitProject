@@ -94,4 +94,13 @@ export default defineComponent({
 .forPages {
   min-height: 100vh;
 }
+.before-enter {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 2s ease-out;
+}
+.enter {
+  opacity: 0;
+  transform: translateY(100px);
+}
 </style>
