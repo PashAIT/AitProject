@@ -40,13 +40,15 @@
             class="inputForeducation inputs col-6"
           />
         </div>
-        <button>Գրանցվել</button>
+        <button @click="register">Գրանցվել</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Api from "src/api";
+
 export default {
   data() {
     return {
@@ -62,8 +64,31 @@ export default {
   mounted() {
     this.isOnRegistration();
   },
+  computed: {
+    personInfo() {
+      return {
+        name: this.name,
+        surname: this.surname,
+        age: this.age,
+        phone: this.phone,
+        email: this.email,
+        education: this.education,
+      };
+    },
+  },
   unmounted() {
     this.isOffRegistration();
+  },
+  methods: {
+    async register() {
+      await Api.Registration.Register(this.personInfo);
+      this.name = "";
+      this.surname = "";
+      this.age = "";
+      this.phone = "";
+      this.email = "";
+      this.education = "";
+    },
   },
 };
 </script>
