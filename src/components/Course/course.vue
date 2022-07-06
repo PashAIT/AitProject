@@ -45,7 +45,10 @@
 
   <q-dialog v-model="bar" persistent full-width class="gt-xs course-modal">
     <q-card class="course-modal-card">
-      <div class="modal-header row justify-end items-center q-pt-lg q-pr-xl">
+      <div
+        class="modal-header row justify-end items-center"
+        style="padding: 1vw 1.2vw 0 0"
+      >
         <img
           src="images/Esc.png"
           alt="Esc"
@@ -386,16 +389,6 @@ export default {
         transform: rotateY(121deg) rotateZ(268deg);
       }
     }
-    // .stage4path {
-    //   top: -60%;
-    //   left: 40%;
-    //   transform: rotateX(180deg);
-    //   @include noteBook {
-    //     top: 100% !important;
-    //     left: 0% !important;
-    //     transform: rotateX(0deg) rotateZ(268deg) !important;
-    //   }
-    // }
     .stage5path {
       display: none;
     }
@@ -585,11 +578,10 @@ export default {
   height: 8vw;
   list-style: none;
   margin: 0;
-  margin-bottom: 1rem;
   padding: 0;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 9vh;
+  margin-bottom: 6vh;
   position: relative;
   @include tablet {
     margin-bottom: 5vh;

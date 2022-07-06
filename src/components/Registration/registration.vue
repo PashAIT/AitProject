@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     async register() {
-      await Api.Registration.Register(this.personInfo);
+      await Api.Register(this.personInfo);
       this.name = "";
       this.surname = "";
       this.age = "";

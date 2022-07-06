@@ -48,19 +48,26 @@
           class="inputs-content column justify-evenly items-start"
           :class="{ animationInputs: activeclass }"
         >
-          <input type="mail" name="text" id="mail" placeholder="Էլ․ փոստ" />
+          <input
+            type="mail"
+            name="text"
+            id="mail"
+            placeholder="Էլ․ փոստ"
+            v-model="email"
+          />
           <textarea
             type="text"
             name="text"
             id="messageText"
             placeholder="Գրեք ձեր հարցը"
+            v-model="question"
           ></textarea>
         </div>
         <div class="arrow-image-container">
           <img
             src="images/messageArrow.png"
             alt="message arrow"
-            @click="issendMessage"
+            @click="sedQuestion"
           />
         </div>
         <div
@@ -80,20 +87,34 @@
 <script>
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Api from "src/api";
+
 export default {
   data() {
     return {
+      email: "",
+      question: "",
       sendMessage: true,
       mailValid: false,
       testValid: false,
       activeclass: false,
     };
   },
+  computed: {
+    sendingQuestion() {
+      return {
+        email: this.email,
+        question: this.question,
+      };
+    },
+  },
   methods: {
-    issendMessage() {
+    async sedQuestion() {
+      await Api.SendQuestion(this.sendingQuestion);
+      this.email = "";
+      this.question = "";
       this.activeclass = true;
       setTimeout(() => {
-        // this.sendMessage = false;
         setTimeout(() => {
           this.sendMessage = true;
           this.activeclass = false;
