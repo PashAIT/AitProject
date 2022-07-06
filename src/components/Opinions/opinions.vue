@@ -11,6 +11,7 @@
         height="max-content"
         padding
         thumbnails
+        navigation
         ref="carousel"
         class="option-slider row justify-center items-center"
       >

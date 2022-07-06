@@ -1,3 +1,6 @@
+[v-cloak] {
+  display: none;
+}
 @import "mixins.scss";
 @font-face {
   font-family: NorTar;
@@ -26,9 +29,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-[v-cloak] {
-  display: none;
-}
+
 h2 {
   font-family: Nortar;
   font-weight: bold;
@@ -47,7 +48,9 @@ h2 {
 .q-carousel__slide {
   padding: 0;
 }
-
+.q-carousel__navigation-inner {
+  color: #0e243c;
+}
 .q-hoverable:hover,
 .q-item__label,
 .q-item__section,
@@ -57,7 +60,20 @@ h2 {
 .q-panel {
   overflow: hidden;
 }
-
+.arrows {
+  img {
+    width: 4.1vw;
+    height: 4.1vw;
+  }
+  .q-btn {
+    font-size: 4.715rem;
+  }
+}
+.blogs {
+  .shadow-1 {
+    box-shadow: none;
+  }
+}
 h2 {
   @include tablet {
     font-size: 30px;

@@ -1,20 +1,37 @@
 <template>
-  <div class="blog column items-center">
-    <img :src="'images/' + blogData.image" :alt="blogData.name" />
-    <h3>{{ blogData.name }}</h3>
-    <p>{{ blogData.minInfo }}</p>
+  <div class="blog column items-center justidy-center">
+    <img
+      :src="'images/' + blogData.image"
+      :alt="blogData.name"
+      class="q-ma-none"
+    />
+    <h3 class="q-mt-md q-mb-md">{{ blogData.title }}</h3>
+    <p>{{ textFilter(blogData.description) }}</p>
     <button @click="goToBlogInfo">Կարդալ ավելին</button>
   </div>
 </template>
 
 <script>
 export default {
+  mounted() {
+    console.log(this.blogData);
+  },
   props: {
     blogData: Object,
   },
   methods: {
     goToBlogInfo() {
       this.$router.push(`/blogInfo?${this.blogData.id}`);
+    },
+  },
+  computed: {
+    textFilter() {
+      return (v) => {
+        if (v.length > 100) {
+          return v.slice(0, 100) + "...";
+        }
+        return v;
+      };
     },
   },
 };
@@ -24,45 +41,11 @@ export default {
 @import "../../css/mixins.scss";
 .blog {
   background: rgba(255, 255, 255, 0.5);
+  width: 24vw;
   padding: 2vw;
   border-radius: 50px;
-  @include afterNotebook {
-    padding: 30px;
-  }
-  @include noteBook {
-    padding: 15px;
-  }
-  @include tablet {
-    border-radius: 25px;
-  }
-  @include mobile {
-    padding: 9px;
-    border-radius: 20px;
-  }
   img {
-    width: 95%;
-    height: 8%;
-    border-radius: 20px;
-    margin-bottom: 40px;
-    @include afterNotebook {
-      width: 300px;
-      height: 209px;
-      margin-bottom: 30px;
-    }
-    @include noteBook {
-      width: 220px;
-      height: 169px;
-    }
-    @include tablet {
-      width: 180px;
-      height: 149px;
-    }
-    @include mobile {
-      width: 32vw;
-      height: 22vw;
-      margin-bottom: 10px;
-      border-radius: 10px;
-    }
+    width: 100%;
   }
   h3 {
     font-family: Nortar;

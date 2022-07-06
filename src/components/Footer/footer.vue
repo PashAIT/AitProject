@@ -1,6 +1,6 @@
 <template>
   <div class="footer row items-center justify-center">
-    <div class="footer-menu" data-aos="fade-right" data-aos-duration="1500">
+    <div class="footer-menu" data-aos="fade-up" data-aos-duration="1500">
       <ul>
         <li>Գլխավոր</li>
         <li>Դասընթաց</li>
@@ -10,7 +10,7 @@
         <li>Մուտք</li>
       </ul>
     </div>
-    <div class="footer-contact" data-aos="fade-left" data-aos-duration="1500">
+    <div class="footer-contact" data-aos="fade-up" data-aos-duration="1500">
       <ul>
         <li>Կոնտակտներ</li>
         <li>

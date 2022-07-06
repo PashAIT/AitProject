@@ -5,7 +5,7 @@
     data-aos-duration="800"
   >
     <h2>Հաճախ տրվող հարցեր</h2>
-    <div class="questions">
+    <div class="questions" data-aos="fade-up" data-aos-duration="1800">
       <q-expansion-item
         v-for="item in questions"
         :key="`question${item.id}`"
@@ -14,8 +14,6 @@
         :label="item.question"
         :dense-toggle="false"
         :header-class="{ 'my-custom-class': true }"
-        :data-aos="[founder.id % 2 === 0 ? 'fade-right' : 'fade-left']"
-        data-aos-duration="1800"
       >
         <q-card class="answer">
           <q-card-section>
