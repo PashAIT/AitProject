@@ -9,7 +9,7 @@
 }
 @mixin scroll {
   ::-webkit-scrollbar {
-    width: 11px;
+    width: 0.57291666666vw;
   }
   ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);

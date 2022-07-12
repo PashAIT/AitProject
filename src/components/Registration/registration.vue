@@ -3,9 +3,7 @@
     <h2>Գրանցում</h2>
     <div class="registration-container row justify-center">
       <img src="images/registration-person.png" alt="person" class="self-end" />
-      <div
-        class="registration-form row justify-center items-center self-start q-mt-lg"
-      >
+      <div class="registration-form row justify-center items-center self-start">
         <div class="inputs-container row justify-evenly">
           <input
             v-model="name"
@@ -110,11 +108,11 @@ export default {
     width: 100%;
 
     img {
-      width: 750px;
-      height: 740px;
+      width: 36vw;
+      height: 32.2vw;
       @include afterNotebook {
-        width: 40vw;
-        height: 43vw;
+        width: 30vw;
+        height: 31.7vw;
       }
 
       @include noteBook {
@@ -131,16 +129,16 @@ export default {
 
     .registration-form {
       width: 750px;
-      padding: 90px 40px;
+      padding: 5vh 2vw;
       background: rgba(255, 255, 255, 0.5);
       border-radius: 50px;
       @include afterNotebook {
         width: 50%;
-        padding: 70px 20px;
+        // padding: 70px 20px;
       }
       @include noteBook {
         width: 640px;
-        padding: 50px 40px;
+        // padding: 50px 40px;
       }
       @include tablet {
         width: 570px;
@@ -153,9 +151,9 @@ export default {
         margin-top: 0;
       }
       .inputs-container {
-        margin-bottom: 80px;
+        margin-bottom: 7.40740740741vh;
         @include mobile {
-          margin-bottom: 40px;
+          // margin-bottom: 40px;
         }
         .inputs {
           width: 45%;

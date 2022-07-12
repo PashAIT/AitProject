@@ -41,11 +41,20 @@ export default {
 @import "../../css/mixins.scss";
 .blog {
   background: rgba(255, 255, 255, 0.5);
-  width: 24vw;
   padding: 2vw;
   border-radius: 50px;
+  @include mobile {
+    padding: 4vw;
+  }
+  @include afterNotebook {
+    border-radius: 30px;
+  }
+  margin: 0;
   img {
     width: 100%;
+    @include afterNotebook {
+      width: 90%;
+    }
   }
   h3 {
     font-family: Nortar;
@@ -56,14 +65,14 @@ export default {
     color: #0e243c;
     margin-bottom: 20px;
     @include afterNotebook {
-      font-size: 16px;
+      font-size: 27px;
     }
     @include noteBook {
-      font-size: 15px;
+      font-size: 25px;
     }
 
     @include mobile {
-      font-size: 10px;
+      font-size: 20px;
       margin-bottom: 10px;
       text-align: center;
     }
@@ -83,16 +92,16 @@ export default {
       text-align: center;
     }
     @include noteBook {
-      width: 250px;
+      width: 350px;
       font-size: 14px;
     }
     @include tablet {
-      width: 140px;
+      width: 280px;
       font-size: 11px;
     }
     @include mobile {
-      width: 80px;
-      font-size: 9px;
+      width: 80%;
+      font-size: 2.4vw;
       margin-bottom: 20px;
     }
   }
@@ -114,8 +123,8 @@ export default {
       font-size: 12px;
     }
     @include mobile {
-      padding: 9px 11px;
-      font-size: 8px;
+      padding: 15px 26px;
+      font-size: 12px;
     }
   }
 }
