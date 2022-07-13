@@ -13,15 +13,12 @@
 
 <script>
 export default {
-  mounted() {
-    console.log(this.blogData);
-  },
   props: {
     blogData: Object,
   },
   methods: {
     goToBlogInfo() {
-      this.$router.push(`/blogInfo?${this.blogData.id}`);
+      this.$router.push(`/blogInfo/${this.blogData.id}`);
     },
   },
   computed: {

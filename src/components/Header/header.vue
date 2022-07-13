@@ -1,9 +1,5 @@
 <template>
-  <header
-    :class="{ noScrollPages: isNoScrollPages }"
-    data-aos="fade-down"
-    data-aos-duration="1600"
-  >
+  <header :class="{ noScrollPages: isNoScrollPages }">
     <div class="logo">
       <img
         src="images/HeaderLogo.png"

@@ -1,23 +1,10 @@
 <template>
   <div class="blog-info-container row justify-center items-center">
     <div class="blog-info row justify-center items-center">
-      <img src="images/ilonmask.png" alt="ilon mask" class="person-img" />
+      <img :src="`${host}/${blog.image}`" alt="ilon mask" class="person-img" />
       <div class="blog-text">
-        <h2>Իլոն Մասկ</h2>
-        <p>
-          Իր առաջին խաղը ստեղծել է 12 տարեկանում և վաճառել 500 դոլարով։ Նա ամեն
-          օր ամենաքիչը 5 ժամ նվիրել է ընթերցանությանը։ Դպրոցում նրան ծաղրում էին
-          «գիրք կրծող» անվանելով։ Համալսարանում սովորելու տարիներին Մասկը ապրում
-          էր օրը 1 դոլարով։ Երկու անգամ ամուսնացել է նույն կնոջ հետ և երկու
-          անգամ էլ բաժանվել։ Մասկի նպատակն է Մարսը բնակեցնելը, նա անգամ
-          խոստովանել է, որ ցանկանում է մեռնել Մարսի վրա։ Նա միակ մարդն է, որի
-          կարողությունը գերազանցել է 300 միլիարդ դոլարը։ Մասկի տարեկան
-          աշխատավարձը 1 դոլար է։ Եվ վերջում հավելենք, որ Մասկը ինքն իր մասին
-          գրում է. «Որոշ մարդկանց թվում է, թե ես այնքան փող ունեմ, որ կարող եմ
-          ընդհանրապես չաշխատել և ողջ օրը պառկել լողափին։ Բայց ես աշխատում եմ,
-          շատ եմ աշխատում՝ առանց շաբաթ ու կիրակի օրերի հանգստի»:
-          Մեկնաբանություններում կարող եք ավելացնել Մասկի մասին հետաքրքիր փաստեր։
-        </p>
+        <h2>{{ blog.title }}</h2>
+        <p>{{ blog.description }}</p>
       </div>
       <img
         class="arrowBack"
@@ -30,13 +17,35 @@
 </template>
 
 <script>
+import HOST from "../../providers/constants";
+import Api from "src/api";
+
 export default {
+  data() {
+    return {
+      blog: {},
+      host: HOST,
+    };
+  },
   inject: ["isOnRegistration", "isOffRegistration"],
   mounted() {
+    this.getblog();
     this.isOnRegistration();
   },
   unmounted() {
     this.isOffRegistration();
+  },
+  computed: {
+    blogId() {
+      return this.$route.params.id;
+    },
+  },
+  methods: {
+    async getblog() {
+      const rsp = await Api.Blogs.GetBlogDetailed(this.blogId);
+      // console.log(rsp.data.items);
+      this.blog = rsp.data.items[0];
+    },
   },
 };
 </script>

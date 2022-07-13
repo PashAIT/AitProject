@@ -12,7 +12,7 @@ export default [
     component: () => import("../pages/ait-blog.vue"),
   },
   {
-    path: "/blogInfo",
+    path: "/blogInfo/:id",
     component: () => import("../../src/components/AitBlog/blog-info.vue"),
   },
   {

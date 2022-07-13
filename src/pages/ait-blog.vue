@@ -24,7 +24,11 @@
         class="text-white shadow-1 rounded-borders full-width relative-position"
       >
         <template v-slot:control>
-          <q-carousel-control class="q-gutter-xs controls relative-position">
+          <q-carousel-control
+            class="q-gutter-xs controls relative-position"
+            data-aos="fade-up"
+            data-aos-duration="1800"
+          >
             <q-btn
               round
               dense
@@ -55,18 +59,20 @@
               font-weight: 700;
             "
             class="q-pt-md"
+            data-aos="fade-up"
+            data-aos-duration="1800"
           >
-            {{ blog.month }}</span
+            <h2>{{ blog.month }}</h2></span
           >
 
-          <div
-            class="q-mt-lg row q-gutter-lg items-center full-width blogs-container"
-          >
+          <div class="q-mt-xl row justify-evenly full-width blogs-container">
             <blog-item
               v-for="item in blog.blogs"
               :key="item.id"
-              class=""
+              class="col-lg-4 col-md-6 col-sm-8 col-xs-10"
               :blogData="item"
+              data-aos="fade-up"
+              data-aos-duration="1800"
             />
           </div>
         </q-carousel-slide>
@@ -77,10 +83,8 @@
 
 <script>
 import Video from "src/components/AitBlog/video.vue";
-
 import AOS from "aos";
 import Api from "src/api";
-
 import "aos/dist/aos.css";
 import BlogItem from "src/components/AitBlog/blog-item.vue";
 export default {
@@ -185,7 +189,6 @@ export default {
       this.blogs.forEach((el, i) => {
         let a = el[0].creation_date.split("-")[1];
         let b = this.month.find((el) => el.monthNum === a);
-        console.log(b, a);
         let obj = { blogs: el, month: b.title, id: i + 1 };
         arr.push(obj);
       });
@@ -212,7 +215,6 @@ export default {
     nextBlogs() {
       if (this.activeMonth < 12) {
         this.activeMonth++;
-        console.log(this.activeMonth);
         this.getblogs();
 
         this.$refs.carousel.next();
@@ -221,7 +223,6 @@ export default {
     prevBlogs() {
       if (this.activeMonth < 0) {
         this.activeMonth--;
-        console.log(this.activeMonth);
         this.getblogs();
         this.$refs.carousel.previous();
       }
@@ -246,18 +247,31 @@ export default {
   .blogs {
     padding: 0 7vw;
     .controls {
-      width: max-content;
+      width: 26vw;
       height: max-content;
       position: absolute;
-      top: 1%;
-      left: 40%;
+      top: 0.1%;
+      left: 29vw;
+      display: flex;
+      justify-content: space-between;
       z-index: 1;
+      @include noteBook {
+        width: 35vw;
+        left: 23vw;
+      }
+      @include noteBook {
+        width: 45vw;
+        left: 17vw;
+      }
+      @include mobile {
+        width: 52vw;
+        left: 12vw;
+      }
     }
-    .arrow1 {
-      left: -40%;
-    }
-    .arrow2 {
-      right: -340%;
+    .blogs-container {
+      @include mobile {
+        margin-top: 0;
+      }
     }
   }
 }
