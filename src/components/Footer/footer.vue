@@ -1,6 +1,6 @@
 <template>
   <div class="footer row items-center justify-center">
-    <div class="footer-menu" data-aos="fade-up" data-aos-duration="1500">
+    <div class="footer-menu">
       <ul>
         <li>Գլխավոր</li>
         <li>Դասընթաց</li>
@@ -10,7 +10,7 @@
         <li>Մուտք</li>
       </ul>
     </div>
-    <div class="footer-contact" data-aos="fade-up" data-aos-duration="1500">
+    <div class="footer-contact">
       <ul>
         <li>Կոնտակտներ</li>
         <li>
@@ -30,12 +30,9 @@
 </template>
 
 <script>
-import AOS from "aos";
 import "aos/dist/aos.css";
 export default {
-  mounted() {
-    AOS.init();
-  },
+  mounted() {},
 };
 </script>
 

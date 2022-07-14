@@ -1,3 +1,1 @@
-export function changeScrollY(/*state*/) {
-  console.log(1);
-}
+export function changeScrollY(/*state*/) {}

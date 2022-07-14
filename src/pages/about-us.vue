@@ -121,7 +121,6 @@ export default {
     async getTrainers() {
       const rsp = await Api.AboutUs.GetTrainers();
       this.trainers = rsp.data.items;
-      console.log(this.trainers);
     },
   },
   components: { PersonInfo, Faq },

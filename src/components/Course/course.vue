@@ -1,54 +1,40 @@
 <template>
   <div
-    class="course after-animated"
+    class="course"
     id="course"
     ref="courseContainer"
     data-aos="fade-up"
     data-aos-duration="1800"
   >
-    <h2 class="course-header">Դասընթացի փուլեր</h2>
-    <div class="stage-container">
+    <h2 class="course-header">Դասընթացներ</h2>
+    <div class="stage-container row">
       <div
-        class="course-stages"
+        class="course-stages col-lg-2 col-md-2 col-sm-6 col-xs-6"
         v-for="(stage, i) in sliderItems"
         :key="`stage${stage.id}`"
         :class="`course-stage${stage.id}`"
       >
         <Stage
           :image="`${host}/${stage.image}`"
-          :subtitle="stage.subtitle"
+          :duration="stage.duration"
           :title="stage.title"
           class="stage"
           :class="`stage${stage.id}`"
-          @click="openModal(i)"
+          @click="openModal(i, stage.id)"
         >
-          <div class="gt-xs">
-            <img
-              src="images/path.png"
-              alt=""
-              :class="`stage${stage.id}path`"
-              class="path"
-            />
-          </div>
-          <div class="lt-sm">
-            <img
-              src="images/path-small.png"
-              alt=""
-              :class="`stage${stage.id}path`"
-              class="path"
-            />
-          </div>
         </Stage>
       </div>
     </div>
   </div>
 
-  <q-dialog v-model="bar" persistent full-width class="gt-xs course-modal">
+  <q-dialog
+    v-model="webCourseModal"
+    persistent
+    full-width
+    class="gt-xs course-modal"
+  >
     <q-card class="course-modal-card">
-      <div
-        class="modal-header row justify-end items-center"
-        style="padding: 1vw 1.2vw 0 0"
-      >
+      <div class="modal-header row justify-end items-center q-pt-lg q-pr-xl">
         <img
           src="images/Esc.png"
           alt="Esc"
@@ -76,11 +62,7 @@
               <img :src="`${host}/${stage.image}`" alt="" />
             </div>
             <img
-              :src="
-                courseModalSmallLine
-                  ? 'images/smallLineInCourseModal.png'
-                  : 'images/Line.png'
-              "
+              :src="'images/Line.png'"
               alt="line"
               :class="'line' + stage.id"
               class="lines"
@@ -140,7 +122,12 @@
     </q-card>
   </q-dialog>
 
-  <q-dialog v-model="bar" persistent full-width class="lt-sm course-modal">
+  <q-dialog
+    v-model="webCourseModal"
+    persistent
+    full-width
+    class="lt-sm course-modal"
+  >
     <q-card class="course-modal-card">
       <img
         src="images/Esc.png"
@@ -167,13 +154,13 @@
           >
             <div class="modal-info row items-center justify-center q-mr-xl">
               <div class="steps-item-active">
-                <img :src="`images/${item.image}`" alt="activeStep.img" />
+                <img :src="`${host}/${item.image}`" alt="activeStep.img" />
               </div>
               <div class="steps">
                 <div class="modal-info-text">
                   <h3>{{ item.title }}</h3>
                   <h4>{{ item.subtitle }}</h4>
-                  <p>{{ item.text }}</p>
+                  <p>{{ item.description }}</p>
                 </div>
               </div>
             </div>
@@ -203,10 +190,46 @@
       </div>
     </q-card>
   </q-dialog>
+  <q-dialog
+    v-model="otherCourseModal"
+    persistent
+    full-width
+    class="course-modal"
+  >
+    <q-card class="course-modal-card">
+      <div class="modal-header row justify-end items-center q-pt-lg q-pr-xl">
+        <img
+          src="images/Esc.png"
+          alt="Esc"
+          class="cursor-pointer"
+          v-close-popup
+        />
+      </div>
+      <div class="course-modal-container">
+        <div class="modal-info row items-center justify-center q-mr-xl">
+          <img
+            :src="`${host}/${modalSliderItems.image}`"
+            alt="activeStep.img"
+          />
+          <div class="steps">
+            <div class="modal-info-text">
+              <h3>{{ modalSliderItems.title }}</h3>
+              <h4>{{ modalSliderItems.subtitle }}</h4>
+              <p>{{ modalSliderItems.description }}</p>
+            </div>
+          </div>
+          <div class="buttons row justify-end items-end full-width">
+            <button class="addCourse" @click="$router.push('/registration')">
+              Գրանցվել դասընթացին
+            </button>
+          </div>
+        </div>
+      </div>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>
-import activeSlideMixin from "src/mixins/activeSlideMixin";
 import Stage from "./stage.vue";
 import Api from "src/api";
 import { HOST } from "src/providers/constants";
@@ -218,64 +241,58 @@ export default {
       currentSlide: 1,
       sliderItems: [],
       modalSliderItems: [],
-      bar: false,
-      activeIndex: this.currentSlide - 1,
+      webCourseModal: false,
+      activeIndex: 0,
       isActive: true,
-      courseModalSmallLine: false,
       host: HOST,
+      otherCourseModal: false,
     };
+  },
+  watch: {
+    currentSlide() {
+      this.activeIndex = this.currentSlide - 1;
+    },
   },
   mounted() {
     this.getCourses();
     AOS.init();
   },
   methods: {
-    openModal(i) {
-      if (this.modalSliderItems.length === 0) {
-        this.getCoursesDetailed();
+    openModal(i, id) {
+      this.getCoursesDetailed(id);
+
+      if (id === 1) {
+        this.webCourseModal = true;
+      } else {
+        this.otherCourseModal = true;
       }
-      this.smallLineChange();
-      this.bar = true;
-      this.activeIndex = i;
-      this.currentSlide = this.modalSliderItems[i].id;
     },
     prev() {
-      if (this.activeIndex !== 0) {
-        this.activeIndex--;
-      }
+      this.activeIndex--;
       this.$refs.carousel.previous();
     },
-    reset() {
-      this.activeIndex = 0;
-      this.isActive = true;
-    },
     nextOfFinish() {
-      if (this.activeIndex !== this.modalSliderItems.length - 1) {
-        this.activeIndex++;
-      } else {
-        this.isActive = false;
-      }
+      this.activeIndex++;
       this.$refs.carousel.next();
     },
     setActive(idx) {
       this.activeIndex = idx;
-      this.currentSlide = this.modalSliderItems[idx].id;
-    },
-    smallLineChange() {
-      if (window.screen.width < 1150) {
-        this.courseModalSmallLine = true;
-      } else {
-        this.courseModalSmallLine = false;
-      }
     },
     async getCourses() {
+      this.$q.loading.show();
       const rsp = await Api.Home.GetCourses();
+      this.$q.loading.hide();
       this.sliderItems = rsp.data.items;
     },
-    async getCoursesDetailed() {
-      const rsp = await Api.Home.GetCoursesDetailed();
-      this.modalSliderItems = rsp.data.items;
-      console.log(this.modalSliderItems);
+    async getCoursesDetailed(id) {
+      this.$q.loading.show();
+      const rsp = await Api.Home.GetCoursesDetailed(id);
+      this.$q.loading.hide();
+      if (id !== 1) {
+        this.modalSliderItems = rsp.data[0];
+      } else {
+        this.modalSliderItems = rsp.data.items;
+      }
     },
   },
   computed: {
@@ -283,16 +300,15 @@ export default {
       return this.modalSliderItems[this.activeIndex];
     },
     prevDisabled() {
-      return this.currentSlide - 1 === 0;
+      return this.activeIndex === 0;
     },
     nextDisabled() {
-      return this.currentSlide - 1 === this.modalSliderItems.length - 1;
+      return this.activeIndex === this.modalSliderItems.length - 1;
     },
     isLastStep() {
       return this.activeIndex === this.modalSliderItems.length - 1;
     },
   },
-  mixins: [activeSlideMixin],
   components: { Stage },
 };
 </script>
@@ -307,104 +323,33 @@ export default {
   align-items: center;
   padding: 0 10.4166666667vw;
   margin-bottom: 139px;
-
-  .stage-container {
-    height: 43vw;
-    display: flex;
-    @include noteBook {
-      width: 450px;
-      height: max-content;
-      flex-direction: column;
-    }
-    @include mobile {
-      width: 290px;
-    }
-    .course-stages {
-      height: 100%;
+  @include mobile {
+    margin-bottom: 0px;
+  }
+}
+.stage-container {
+  height: 40vw;
+  margin-left: 5.20833333333vw;
+  @include noteBook {
+    height: 45vw;
+  }
+  @include forCourseStage {
+    height: 1235px;
+  }
+  @include mobile {
+    margin: 0;
+    height: 1080px;
+  }
+  .course-stage2,
+  .course-stage4 {
+    align-self: flex-end;
+  }
+  .course-stage1,
+  .course-stage3,
+  .course-stage5 {
+    @include forCourseStage {
       display: flex;
-      .stage {
-        align-items: center;
-        position: relative;
-        @include noteBook {
-          width: 200px;
-          height: 200px;
-          margin: 0px;
-        }
-        @include mobile {
-          width: 150px;
-          height: 150px;
-        }
-        img {
-          position: absolute;
-          width: 28%;
-          height: 10vw;
-          @include noteBook {
-            width: 80px;
-            height: 130px;
-          }
-          @include mobile {
-            width: 64px;
-            height: 111px;
-          }
-        }
-      }
-    }
-    .course-stage2 {
-      @include noteBook {
-        align-self: flex-end !important;
-      }
-    }
-    .course-stage4 {
-      @include noteBook {
-        align-self: flex-end !important;
-      }
-    }
-    .stage2path,
-    .stage4path {
-      top: -60%;
-      left: 50%;
-      transform: rotateX(170deg);
-      @include noteBook {
-        top: 100% !important;
-        left: 0% !important;
-        transform: rotateX(0deg) rotateZ(272deg) !important;
-      }
-      @include mobile {
-        top: 107% !important;
-        left: 20% !important;
-        width: 64px !important;
-        height: 64px !important;
-      }
-    }
-    .stage3path,
-    .stage1path {
-      bottom: -60%;
-      left: 52%;
-      @include noteBook {
-        left: 65%;
-        transform: rotateY(180deg) rotateZ(265deg);
-      }
-      @include mobile {
-        left: 27% !important;
-        transform: rotateY(121deg) rotateZ(268deg);
-      }
-    }
-    .stage5path {
-      display: none;
-    }
-    .stage1 {
-      margin-right: -60px;
-    }
-    .stage2 {
-      align-self: flex-end;
-      margin-right: -65px;
-    }
-    .stage4 {
-      align-self: flex-end;
-      margin-left: -65px;
-    }
-    .stage5 {
-      margin-left: -70px;
+      justify-content: flex-end;
     }
   }
 }
@@ -578,10 +523,11 @@ export default {
   height: 8vw;
   list-style: none;
   margin: 0;
+  margin-bottom: 1rem;
   padding: 0;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 6vh;
+  margin-bottom: 9vh;
   position: relative;
   @include tablet {
     margin-bottom: 5vh;
@@ -703,27 +649,5 @@ export default {
     width: 12vw;
     height: 12vw;
   }
-}
-.after-animated {
-  opacity: 0;
-}
-
-.animate-bounce {
-  animation: q-bounce 2s infinite;
-}
-
-@keyframes q-bounce {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.before-animated {
-  opacity: 1;
 }
 </style>

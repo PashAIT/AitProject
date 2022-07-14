@@ -2,8 +2,7 @@
   <div class="stage">
     <img :src="image" :alt="title" />
     <h4>{{ title }}</h4>
-    <p>{{ subtitle }}</p>
-    <slot />
+    <p>Տևողությունը՝ {{ duration }}</p>
   </div>
 </template>
 
@@ -15,7 +14,7 @@ export default {
   props: {
     image: String,
     title: String,
-    subtitle: String,
+    duration: String,
   },
 };
 </script>
@@ -33,6 +32,14 @@ export default {
   align-items: center;
   padding-top: 20px;
   box-sizing: border-box;
+  @include noteBook {
+    width: 215px;
+    height: 207px;
+  }
+  @include mobile {
+    width: 130px;
+    height: 130px;
+  }
   cursor: pointer;
   img {
     width: 65%;
@@ -50,6 +57,8 @@ export default {
     }
     @include mobile {
       font-size: 10px;
+      line-height: 10px;
+      margin-bottom: 0vw;
     }
   }
   p {
@@ -62,7 +71,11 @@ export default {
       font-size: 12px;
     }
     @include mobile {
-      font-size: 9px;
+      font-size: 7px;
+      width: 47px;
+      text-align: center;
+      line-height: 1.2;
+      margin-top: 4px;
     }
   }
 }

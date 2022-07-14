@@ -9,7 +9,10 @@ export default class HomeSlice extends ApiSlice {
   static GetCourses() {
     return this.request({ method: "GET", url: "/courses" });
   }
-  static GetCoursesDetailed() {
-    return this.request({ method: "GET", url: "/courses-detailed" });
+  static GetCoursesDetailed(id) {
+    return this.request({
+      method: "GET",
+      url: `/course-detailed/${id}`,
+    });
   }
 }

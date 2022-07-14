@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import HOST from "../../providers/constants";
+import { HOST } from "../../providers/constants";
 import Api from "src/api";
 
 export default {
