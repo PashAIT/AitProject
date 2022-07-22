@@ -7,7 +7,7 @@
         @click="$router.push('/')"
       />
     </div>
-    <div class="menu">
+    <div class="menu q-mr-xl">
       <ul class="navBar">
         <li
           class="li"
@@ -91,11 +91,6 @@ export default {
           id: 5,
           title: "Կապ",
           path: "/contact",
-        },
-        {
-          id: 6,
-          title: "Մուտք",
-          path: "/logIn",
         },
       ],
       headerModal: false,

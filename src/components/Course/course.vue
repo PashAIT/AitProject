@@ -289,9 +289,7 @@ export default {
       this.currentSlide = idx + 1;
     },
     async getCourses() {
-      this.$q.loading.show();
       const rsp = await Api.Home.GetCourses();
-      this.$q.loading.hide();
       this.sliderItems = rsp.data.items;
     },
     async getCoursesDetailed(id) {
@@ -327,12 +325,13 @@ export default {
 @import "../../css/mixins.scss";
 
 .course {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 0 10.4166666667vw;
-  margin-bottom: 139px;
+  margin-bottom: 160px;
   @include mobile {
     margin-bottom: 0px;
   }

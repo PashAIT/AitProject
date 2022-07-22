@@ -19,10 +19,7 @@ export default [
     path: "/contact",
     component: () => import("../pages/contact.vue"),
   },
-  {
-    path: "/logIn",
-    component: () => import("../pages/logIn.vue"),
-  },
+
   {
     path: "/registration",
     component: () =>

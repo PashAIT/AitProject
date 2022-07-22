@@ -66,7 +66,7 @@
               push
               round
               dense
-              icon="img:images/LeftButton.png"
+              icon="img:images/Left-Button.svg"
               class="arrows arrow1"
               @click="$refs.carousel.previous()"
             ></q-btn>
@@ -74,7 +74,7 @@
               push
               round
               dense
-              icon="img:images/RightButton.png"
+              icon="img:images/Right-Button.svg"
               @click="$refs.carousel.next()"
               class="arrows arrow2"
             ></q-btn>

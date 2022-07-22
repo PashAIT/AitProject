@@ -12,6 +12,14 @@
         @click="GoToTop"
       />
     </div>
+    <img
+      v-for="img in 7"
+      :key="`image${img}`"
+      :src="`images/Ellipse${img}.svg`"
+      :alt="`Ellipe${img}`"
+      :class="`ellipse${img}`"
+      class="ellipses"
+    />
   </div>
 </template>
 <script>
@@ -69,12 +77,10 @@ export default defineComponent({
   scroll-behavior: smooth;
   @include scroll();
 }
-.main {
+body {
   background-color: #f8f8f8;
-  // background-image: url("../public/images/Background.png");
-  // background-size: ;
-  // background-repeat: no-repeat;
-  // background-position: center center;
+}
+.main {
   position: relative;
   .scrollimage {
     width: 80px;
@@ -89,6 +95,43 @@ export default defineComponent({
       width: 55px;
       height: 55px;
     }
+  }
+  .ellipses {
+    position: absolute;
+    z-index: -1;
+  }
+  .ellipse1 {
+    top: 0;
+    left: 0;
+  }
+  .ellipse2 {
+    top: 13vw;
+    right: 0;
+  }
+  .ellipse3 {
+    top: 60vw;
+    left: 0;
+  }
+  .ellipse4 {
+    top: 95vw;
+    right: 0;
+  }
+  .ellipse5 {
+    top: 100vw;
+    left: 36.5vw;
+  }
+  .ellipse6 {
+    top: 130.9vw;
+    left: 0.05vw;
+  }
+  .ellipse7 {
+    bottom: 36vw;
+    left: 13vw;
+  }
+  .ellipse1,
+  .ellipse4 {
+    width: 26vw;
+    height: 26vw;
   }
 }
 .forPages {

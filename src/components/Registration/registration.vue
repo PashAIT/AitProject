@@ -32,10 +32,19 @@
             class="inputForEmail inputs col-6"
             type="email"
           />
-          <input
-            v-model="education"
-            placeholder="Կրթություն *"
+          <!-- <input
+            v-model="course"
+            placeholder="Դասընթաց *"
             class="inputForeducation inputs col-6"
+          /> -->
+          <q-select
+            v-model="course"
+            borderless
+            :options="category"
+            label="Դասընթացներ"
+            class="q-mb-md inputs col-6"
+            popup-content-style="max-width:300px; font-family: monserrat;
+                  font-size: 20px;"
           />
         </div>
         <button @click="register">Գրանցվել</button>
@@ -55,7 +64,8 @@ export default {
       age: "",
       phone: "",
       email: "",
-      education: "",
+      course: "",
+      courses: [""],
     };
   },
   inject: ["isOnRegistration", "isOffRegistration"],
