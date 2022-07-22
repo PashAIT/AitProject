@@ -8,7 +8,7 @@
         :videoData="video"
         class="video"
         :data-aos="[video.id % 2 === 0 ? 'fade-right' : 'fade-left']"
-        data-aos-duration="1800"
+        data-aos-duration="800"
       />
     </div>
     <div class="blogs column items-center full-width q-mb-lg">
@@ -27,7 +27,7 @@
           <q-carousel-control
             class="q-gutter-xs controls relative-position"
             data-aos="fade-up"
-            data-aos-duration="1800"
+            data-aos-duration="800"
           >
             <q-btn
               round
@@ -60,20 +60,23 @@
             "
             class="q-pt-md"
             data-aos="fade-up"
-            data-aos-duration="1800"
+            data-aos-duration="800"
           >
             <h2>{{ blog.month }}</h2></span
           >
 
-          <div class="q-mt-xl row justify-evenly full-width blogs-container">
-            <blog-item
+          <div
+            class="q-mt-xl row justify-evenly full-width blogs-container q-col-gutter-xl"
+          >
+            <div
               v-for="item in blog.blogs"
               :key="item.id"
-              class="col-lg-4 col-md-6 col-sm-8 col-xs-10"
-              :blogData="item"
               data-aos="fade-up"
-              data-aos-duration="1800"
-            />
+              data-aos-duration="800"
+              class="col-lg-4 col-md-6 col-sm-8 col-xs-10"
+            >
+              <blog-item :blogData="item" />
+            </div>
           </div>
         </q-carousel-slide>
       </q-carousel>

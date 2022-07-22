@@ -71,8 +71,8 @@
           :key="`trainer${trainer.id}`"
           :fbLink="trainer.facebook"
           class="trainer"
-          :data-aos="[trainer.id === 1 ? 'fade-right' : 'fade-left']"
-          data-aos-duration="1800"
+          data-aos="fade-up"
+          data-aos-duration="800"
         />
       </div>
     </div>
