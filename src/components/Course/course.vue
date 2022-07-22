@@ -4,7 +4,7 @@
     id="course"
     ref="courseContainer"
     data-aos="fade-up"
-    data-aos-duration="1800"
+    data-aos-duration="800"
   >
     <h2 class="course-header">Դասընթացներ</h2>
     <div class="stage-container row">
@@ -98,7 +98,10 @@
           </q-carousel-slide>
         </q-carousel>
         <div class="buttons row justify-end items-center">
-          <button class="addCourse" @click="$router.push('/registration')">
+          <button
+            class="addCourse"
+            @click="$router.push(`/registration?${item.id}`)"
+          >
             Գրանցվել դասընթացին
           </button>
           <div class="row justify-center items-center">
@@ -167,7 +170,10 @@
           </q-carousel-slide>
         </q-carousel>
         <div class="buttons row justify-end items-center">
-          <button class="addCourse" @click="$router.push('/registration')">
+          <button
+            class="addCourse"
+            @click="$router.push(`/registration?${item.id}`)"
+          >
             Գրանցվել դասընթացին
           </button>
           <div class="row justify-center items-center">
@@ -219,7 +225,10 @@
             </div>
           </div>
           <div class="buttons row justify-end items-end full-width">
-            <button class="addCourse" @click="$router.push('/registration')">
+            <button
+              class="addCourse"
+              @click="$router.push(`/registration?${modalSliderItems.id}`)"
+            >
               Գրանցվել դասընթացին
             </button>
           </div>
@@ -277,6 +286,7 @@ export default {
     },
     setActive(idx) {
       this.activeIndex = idx;
+      this.currentSlide = idx + 1;
     },
     async getCourses() {
       this.$q.loading.show();
@@ -338,7 +348,7 @@ export default {
   }
   @include mobile {
     margin: 0;
-    height: 1080px;
+    height: 770px;
   }
   .course-stage2,
   .course-stage4 {
