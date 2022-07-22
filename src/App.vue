@@ -57,9 +57,13 @@ export default defineComponent({
       window.scrollTo(0, 0);
     },
   },
-  created() {
+  beforeCreate() {
+    this.$q.loading.show();
+  },
+  mounted() {
     window.addEventListener("scroll", this.handleScroll);
     window.addEventListener("scroll", this.foundersAnimation);
+    this.$q.loading.hide();
   },
   provide() {
     return {
@@ -101,12 +105,13 @@ body {
   .ellipses {
     position: absolute;
     z-index: -1;
+    @include noteBook {
+      display: none;
+    }
   }
   .ellipse1 {
     top: 0;
     left: 0;
-    width: 19vw;
-    height: 19vw;
   }
   .ellipse2 {
     top: 13vw;
@@ -121,23 +126,39 @@ body {
     right: 0;
     width: 26vw;
     height: 26vw;
+    @include afterNotebook {
+      top: 105vw;
+    }
+    @include noteBook {
+      top: 125vw;
+    }
   }
   .ellipse5 {
     top: 100vw;
     left: 36.5vw;
+    @include noteBook {
+      top: 149vw;
+    }
   }
   .ellipse6 {
     top: 130.9vw;
     left: 0.05vw;
+    @include noteBook {
+      top: 185vw;
+    }
   }
   .ellipse7 {
-    top: 173.3vw;
+    top: 162vw;
     left: 13vw;
+    @include afterNotebook {
+      top: 2900px;
+      // top: 170vw;
+    }
   }
-  .ellipse2,
-  .ellipse3 {
-    width: 20.8vw;
-    height: 20.8vw;
+  .ellipse1,
+  .ellipse4 {
+    width: 26vw;
+    height: 26vw;
   }
 }
 .forPages {
