@@ -62,8 +62,7 @@
 import { COURSES } from "../../providers/constants";
 import { scroll } from "quasar";
 const { getScrollTarget, setVerticalScrollPosition } = scroll;
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 export default {
   data() {
     return {
@@ -107,7 +106,7 @@ export default {
   },
   methods: {
     changePage(id, path) {
-      if (id === COURSES) {
+      if (id == COURSES) {
         this.$router.push("/");
         setTimeout(() => {
           this.handleScroll();
@@ -124,9 +123,6 @@ export default {
       const duration = 0;
       setVerticalScrollPosition(target, offset, duration);
     },
-  },
-  mounted() {
-    AOS.init();
   },
 };
 </script>

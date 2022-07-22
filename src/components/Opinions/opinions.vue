@@ -1,5 +1,5 @@
 <template>
-  <div class="opinions" data-aos="fade-up" data-aos-duration="1800">
+  <div class="opinions" data-aos="fade-up" data-aos-duration="800">
     <h2>Կարծիքներ</h2>
     <div class="opinion-container row justify-center">
       <q-carousel

@@ -1,5 +1,5 @@
 <template>
-  <div class="path" data-aos="fade-up" data-aos-duration="1800">
+  <div class="path" data-aos="fade-up" data-aos-duration="800">
     <h2>Ինչ կտա ձեզ AIT-ն</h2>
     <div class="path-item-container">
       <div class="paths">
