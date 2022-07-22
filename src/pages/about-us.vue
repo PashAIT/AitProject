@@ -49,7 +49,7 @@
           :fbLink="founder.fbLink"
           class="founder"
           :data-aos="[founder.id === 1 ? 'fade-right' : 'fade-left']"
-          data-aos-duration="1800"
+          data-aos-duration="800"
         />
       </div>
     </div>
