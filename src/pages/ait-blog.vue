@@ -1,6 +1,6 @@
 <template>
   <div class="ait-blog column items-center">
-    <h2 @click="blogsAndMonths">AIT բլոգ</h2>
+    <h2 @click="blogsAndMonths">Բլոգ</h2>
     <div class="videos column q-gutter-y-xl">
       <Video
         v-for="video in videos"
@@ -274,6 +274,11 @@ export default {
     .blogs-container {
       @include mobile {
         margin-top: 0;
+      }
+      > div {
+        @include mobile {
+          padding: 0;
+        }
       }
     }
   }

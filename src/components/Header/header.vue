@@ -7,8 +7,8 @@
         @click="$router.push('/')"
       />
     </div>
-    <div class="menu q-mr-xl">
-      <ul class="navBar">
+    <div class="menu">
+      <ul class="navBar q-mr-xl">
         <li
           class="li"
           v-for="navItem in navBar"
@@ -84,7 +84,7 @@ export default {
         },
         {
           id: 4,
-          title: "AIT բլոգ",
+          title: "Բլոգ",
           path: "/aitblog",
         },
         {

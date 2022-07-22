@@ -12,14 +12,16 @@
         @click="GoToTop"
       />
     </div>
-    <img
-      v-for="img in 7"
-      :key="`image${img}`"
-      :src="`images/Ellipse${img}.svg`"
-      :alt="`Ellipe${img}`"
-      :class="`ellipse${img}`"
-      class="ellipses"
-    />
+    <div>
+      <img
+        v-for="img in 7"
+        :key="`image${img}`"
+        :src="`images/Ellipse${img}.svg`"
+        :alt="`Ellipe${img}`"
+        :class="`ellipse${img}`"
+        class="ellipses"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -103,6 +105,8 @@ body {
   .ellipse1 {
     top: 0;
     left: 0;
+    width: 19vw;
+    height: 19vw;
   }
   .ellipse2 {
     top: 13vw;
@@ -115,6 +119,8 @@ body {
   .ellipse4 {
     top: 95vw;
     right: 0;
+    width: 26vw;
+    height: 26vw;
   }
   .ellipse5 {
     top: 100vw;
@@ -125,17 +131,19 @@ body {
     left: 0.05vw;
   }
   .ellipse7 {
-    bottom: 36vw;
+    top: 173.3vw;
     left: 13vw;
   }
-  .ellipse1,
-  .ellipse4 {
-    width: 26vw;
-    height: 26vw;
+  .ellipse2,
+  .ellipse3 {
+    width: 20.8vw;
+    height: 20.8vw;
   }
 }
 .forPages {
   min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 .before-enter {
   opacity: 0;
